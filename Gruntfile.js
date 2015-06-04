@@ -1,4 +1,4 @@
-// Generated on 2015-06-02 using
+// Generated on 2015-06-04 using
 // generator-webapp 0.5.1
 'use strict';
 
@@ -34,16 +34,13 @@ module.exports = function (grunt) {
         files: ['bower.json'],
         tasks: ['wiredep']
       },
-      js: {
-        files: ['<%= config.app %>/scripts/{,*/}*.js'],
-        tasks: ['jshint'],
-        options: {
-          livereload: true
-        }
+      coffee: {
+        files: ['<%= config.app %>/scripts/{,*/}*.{coffee,litcoffee,coffee.md}'],
+        tasks: ['coffee:dist']
       },
-      jstest: {
-        files: ['test/spec/{,*/}*.js'],
-        tasks: ['test:watch']
+      coffeeTest: {
+        files: ['test/spec/{,*/}*.{coffee,litcoffee,coffee.md}'],
+        tasks: ['coffee:test', 'test:watch']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -63,6 +60,7 @@ module.exports = function (grunt) {
         files: [
           '<%= config.app %>/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',
+          '.tmp/scripts/{,*/}*.js',
           '<%= config.app %>/images/{,*/}*'
         ]
       }
@@ -146,6 +144,28 @@ module.exports = function (grunt) {
           run: true,
           urls: ['http://<%= connect.test.options.hostname %>:<%= connect.test.options.port %>/index.html']
         }
+      }
+    },
+
+    // Compiles CoffeeScript to JavaScript
+    coffee: {
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '<%= config.app %>/scripts',
+          src: '{,*/}*.{coffee,litcoffee,coffee.md}',
+          dest: '.tmp/scripts',
+          ext: '.js'
+        }]
+      },
+      test: {
+        files: [{
+          expand: true,
+          cwd: 'test/spec',
+          src: '{,*/}*.{coffee,litcoffee,coffee.md}',
+          dest: '.tmp/spec',
+          ext: '.js'
+        }]
       }
     },
 
@@ -349,12 +369,15 @@ module.exports = function (grunt) {
     concurrent: {
       server: [
         'sass:server',
+        'coffee:dist',
         'copy:styles'
       ],
       test: [
+        'coffee',
         'copy:styles'
       ],
       dist: [
+        'coffee',
         'sass',
         'copy:styles',
         'imagemin',
