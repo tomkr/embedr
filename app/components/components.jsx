@@ -29,7 +29,10 @@ var SearchBar = React.createClass({
   },
   render: function() {
     return (
-      <input className="search_bar" placeholder="Search" onChange={this.handleChange}/>
+      <div className="search_box">
+        <input className="search_bar" placeholder="Search" onChange={this.handleChange}/>
+        <div className="search__button"></div>
+      </div>
     );
   }
 });

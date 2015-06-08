@@ -9,20 +9,35 @@
   }
 }
 
-.search_bar {
+.search_box {
   margin-left: 400px;
   margin-top: 100px;
-  width: 400px;
+  width: 480px;
+}
+
+.search_bar {
   line-height: 40px;
   font-size: 20px;
   padding: 5px;
   padding-top: 10px;
+  float: left;
+  width: 400px;
+  display: inline-block;
+}
+
+.search__button {
+  height: 60px;
+  width: 60px;
+  background-color: black;
+  margin-top: 2px;
+  float: left;
+  display: inline-block;
 }
 
 .result_list {
   width: 990px;
   margin: auto;
-  margin-top: 150px;
+  margin-top: 250px;
 }
 
 .result {
