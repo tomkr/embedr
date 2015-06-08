@@ -50,10 +50,20 @@ var ResultList = React.createClass({
 });
 
 var Result = React.createClass({
+  getInitialState: function () {
+    return {hover: 'embed_button'};
+  },
+  mouseOver: function () {
+    this.setState({hover: 'embed_button display'});
+  },
+  mouseOut: function () {
+    this.setState({hover: 'embed_button'});
+  },
   render: function() {
     var source = "http://iiifhawk.klokantech.com/"+this.props.id+"/full/150,150/0/native.jpg";
     return (
-      <div className="result">
+      <div className="result" onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}>
+        <a className={this.state.hover} href="#">&lt;/&gt;</a>
         <img src={source} />
       </div>
     );
