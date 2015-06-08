@@ -9,3 +9,5 @@ $ ->
         imageId = image['_id']
         imageUrl = "http://iiifhawk.klokantech.com/#{imageId}/full/100,100/0/native.jpg"
         $results.html("<img src='#{imageUrl}'>")
+
+React.render React.createElement(Search, null), document.getElementById('search')

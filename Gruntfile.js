@@ -63,6 +63,10 @@ module.exports = function (grunt) {
           '.tmp/scripts/{,*/}*.js',
           '<%= config.app %>/images/{,*/}*'
         ]
+      },
+      react: {
+        files: ['<%= config.app %>/components/{,*/}*.jsx'],
+        tasks: ['react:dist']
       }
     },
 
@@ -164,6 +168,19 @@ module.exports = function (grunt) {
           cwd: 'test/spec',
           src: '{,*/}*.{coffee,litcoffee,coffee.md}',
           dest: '.tmp/spec',
+          ext: '.js'
+        }]
+      }
+    },
+
+    // Compiles jsx to JavaScript
+    react: {
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '<%= config.app %>/components',
+          src: '{,*/}*.jsx',
+          dest: '.tmp/scripts',
           ext: '.js'
         }]
       }
@@ -370,6 +387,7 @@ module.exports = function (grunt) {
       server: [
         'sass:server',
         'coffee:dist',
+        'react:dist',
         'copy:styles'
       ],
       test: [
@@ -378,6 +396,7 @@ module.exports = function (grunt) {
       ],
       dist: [
         'coffee',
+        'react',
         'sass',
         'copy:styles',
         'imagemin',
