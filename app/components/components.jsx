@@ -9,8 +9,12 @@ var Search = React.createClass({
     });
   },
   render: function() {
+    var classes = "search";
+    if (this.state.results.length > 0) {
+      classes += " overlay";
+    }
     return (
-      <div className="search">
+      <div className={classes}>
         <SearchBar search={this.search} />
         <ResultList results={this.state.results} />
       </div>
@@ -25,25 +29,20 @@ var SearchBar = React.createClass({
   },
   render: function() {
     return (
-      <input className="form-control input-lg" placeholder="Search" onChange={this.handleChange}/>
+      <input className="search_bar" placeholder="Search" onChange={this.handleChange}/>
     );
   }
 });
 
 var ResultList = React.createClass({
   render: function() {
-    var classes = "result_list";
-    if (this.props.results.length > 0) {
-      classes += " display";
-    }
-    console.log(this.props)
     var resultNodes = this.props.results.map(function (result) {
       return (
         <Result key={result._id} id={result._id} />
       );
     });
     return (
-      <div className={classes}>
+      <div className="result_list">
         {resultNodes}
       </div>
     )
@@ -52,9 +51,11 @@ var ResultList = React.createClass({
 
 var Result = React.createClass({
   render: function() {
-    var source = "http://iiifhawk.klokantech.com/"+this.props.id+"/full/100,100/0/native.jpg";
+    var source = "http://iiifhawk.klokantech.com/"+this.props.id+"/full/150,150/0/native.jpg";
     return (
-      <img src={source} />
+      <div className="result">
+        <img src={source} />
+      </div>
     );
   }
 });
