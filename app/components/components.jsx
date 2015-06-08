@@ -32,6 +32,10 @@ var SearchBar = React.createClass({
 
 var ResultList = React.createClass({
   render: function() {
+    var classes = "result_list";
+    if (this.props.results.length > 0) {
+      classes += " display";
+    }
     console.log(this.props)
     var resultNodes = this.props.results.map(function (result) {
       return (
@@ -39,7 +43,7 @@ var ResultList = React.createClass({
       );
     });
     return (
-      <div className="resultList">
+      <div className={classes}>
         {resultNodes}
       </div>
     )
