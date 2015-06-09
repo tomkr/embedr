@@ -15,10 +15,29 @@ var Search = React.createClass({
     }
     return (
       <div className={classes}>
+        <SearchHeader />
         <SearchBar search={this.search} />
         <ResultList results={this.state.results} />
       </div>
     );
+  }
+});
+
+var SearchHeader = React.createClass({
+  render: function() {
+    return (
+      <div className="header">
+        <div className="header__title">
+          <h1 className="header__title__name">embedr</h1>
+          <p className="header__title__text">High quality cultural heritage image embedding</p>
+        </div>
+        <ul className="nav nav-pills pull-right">
+          <li className="active"><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    )
   }
 });
 

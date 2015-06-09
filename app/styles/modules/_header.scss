@@ -1,0 +1,22 @@
+.header {
+  font-weight: bold;
+}
+
+.header__title {
+  color: white;
+  position: absolute;
+  left: 40px;
+  top: 40px;
+  width: 150px;
+}
+
+.header__title__name {
+  font-size: 50px;
+  margin: 0;
+}
+
+.header__title__text {
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 20px;
+}

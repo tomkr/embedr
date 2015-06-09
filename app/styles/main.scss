@@ -1,3 +1,20 @@
+@font-face {
+  font-family: Raleway;
+  src: url(/fonts/Raleway-Regular.ttf);
+  font-weight: normal;
+}
+@font-face {
+  font-family: Raleway;
+  src: url(/fonts/Raleway-Bold.ttf);
+  font-weight: bold;
+}
+
+@import "modules/_header";
+
+body {
+  font-family: 'Raleway';
+}
+
 .search {
   position: absolute;
   top: 0;
