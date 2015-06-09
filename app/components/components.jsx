@@ -63,12 +63,30 @@ var Result = React.createClass({
     this.setState({hover: 'embed_button'});
   },
   render: function() {
-    var source = "http://iiifhawk.klokantech.com/"+this.props.id+"/full/150,150/0/native.jpg";
     return (
       <div className="result" onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}>
         <a className={this.state.hover} href="#">&lt;/&gt;</a>
-        <img src={source} />
+        <IIIFImage server="http://iiifhawk.klokantech.com" id={this.props.id} size="150,150" />
       </div>
     );
+  }
+});
+
+var IIIFImage = React.createClass({
+  makeSource: function() {
+    var server = this.props.server;
+    var id = this.props.id;
+    var region = this.props.region || "full";
+    var size = this.props.size || "1000,";
+    var rotation = this.props.rotation || "0";
+    var quality = this.props.quality || "native";
+    var format = this.props.format || "jpg";
+    return server+"/"+id+"/"+region+"/"+size+"/"+rotation+"/"+quality + "." +format;
+  },
+  render: function() {
+    var source = this.makeSource();
+    return (
+      <img src={source} />
+    )
   }
 });
