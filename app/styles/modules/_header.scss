@@ -20,3 +20,18 @@
   font-size: 14px;
   line-height: 20px;
 }
+
+.header__navigation {
+  position: absolute;
+  left: 500px;
+  top: 40px;
+  list-style: none;
+  li {
+    float: left;
+    margin-right: 20px;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}

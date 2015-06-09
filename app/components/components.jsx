@@ -31,10 +31,9 @@ var SearchHeader = React.createClass({
           <h1 className="header__title__name">embedr</h1>
           <p className="header__title__text">High quality cultural heritage image embedding</p>
         </div>
-        <ul className="nav nav-pills pull-right">
-          <li className="active"><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
+        <ul className="header__navigation">
+          <li><a href="#">about</a></li>
+          <li><a href="#">contact</a></li>
         </ul>
       </div>
     )
