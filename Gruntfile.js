@@ -65,7 +65,7 @@ module.exports = function (grunt) {
         ]
       },
       react: {
-        files: ['<%= config.app %>/components/{,*/}*.jsx'],
+        files: ['<%= config.app %>/scripts/{,*/}*.jsx'],
         tasks: ['react:dist']
       }
     },
@@ -178,7 +178,7 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%= config.app %>/components',
+          cwd: '<%= config.app %>/scripts',
           src: '{,*/}*.jsx',
           dest: '.tmp/scripts',
           ext: '.js'
