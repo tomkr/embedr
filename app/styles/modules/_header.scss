@@ -35,3 +35,31 @@
     text-decoration: none;
   }
 }
+
+.detail {
+  .header {
+    background-color: black;
+    height: 50px;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  .header__title__text {
+    display: none;
+  }
+  .header__title {
+    position: initial;
+    float: left;
+  }
+  .header__title__name {
+    font-size: 30px;
+    padding-left: 20px;
+    line-height: 50px;
+  }
+  .header__navigation {
+    position: initial;
+    float: left;
+    line-height: 50px;
+    margin-left: 200px;
+  }
+}

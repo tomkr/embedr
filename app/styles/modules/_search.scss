@@ -39,3 +39,17 @@
   margin: auto;
   margin-top: 250px;
 }
+
+.detail {
+  .search_box {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 500px;
+  }
+  .search_bar {
+    line-height: 21px;
+    font-size: 16px;
+    margin-top: 4px;
+  }
+}

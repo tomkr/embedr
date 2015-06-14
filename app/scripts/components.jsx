@@ -1,6 +1,10 @@
 var Search = React.createClass({
   getInitialState: function() {
-    return {results: []};
+    return {
+      results: [],
+      selected: false,
+      id: null
+    };
   },
   search: function(query) {
     var self = this;
@@ -8,16 +12,29 @@ var Search = React.createClass({
       self.setState({results: data});
     });
   },
+  select: function(imageId) {
+    this.setState(
+      {
+        selected: true,
+        results: [],
+        id: imageId
+      }
+    )
+  },
   render: function() {
     var classes = "search";
     if (this.state.results.length > 0) {
       classes += " overlay";
     }
+    if (this.state.selected) {
+      classes += " detail";
+    }
     return (
       <div className={classes}>
         <SearchHeader />
         <SearchBar search={this.search} />
-        <ResultList results={this.state.results} />
+        <Detail id={this.state.imageId} />
+        <ResultList results={this.state.results} select={this.select}/>
       </div>
     );
   }
@@ -59,9 +76,9 @@ var ResultList = React.createClass({
   render: function() {
     var resultNodes = this.props.results.map(function (result) {
       return (
-        <Result key={result._id} id={result._id} />
+        <Result key={result._id} id={result._id} select={this.props.select}/>
       );
-    });
+    }.bind(this));
     return (
       <div className="result_list">
         {resultNodes}
@@ -80,9 +97,12 @@ var Result = React.createClass({
   mouseOut: function () {
     this.setState({hover: 'embed_button'});
   },
+  click: function () {
+    this.props.select(this.props.id);
+  },
   render: function() {
     return (
-      <div className="result" onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}>
+      <div className="result" onMouseOver={this.mouseOver} onMouseOut={this.mouseOut} onClick={this.click}>
         <a className={this.state.hover} href="#">&lt;/&gt;</a>
         <IIIFImage server="http://iiifhawk.klokantech.com" id={this.props.id} size="150,150" />
       </div>
@@ -108,3 +128,11 @@ var IIIFImage = React.createClass({
     )
   }
 });
+
+var Detail = React.createClass({
+  render: function() {
+    return (
+      <div id="map" />
+    )
+  }
+})
