@@ -130,9 +130,31 @@ var IIIFImage = React.createClass({
 });
 
 var Detail = React.createClass({
+  componentDidMount: function() {
+    var viewer = OpenSeadragon({
+      id: 'detailImage',
+      preserveViewport: true,
+      visibilityRatio:    1,
+      minZoomLevel:       1,
+      defaultZoomLevel:   6,
+      tileSources:   [{
+        "@context": "http://library.stanford.edu/iiif/image-api/1.1/context.json",
+        "@id": "http://iiifhawk.klokantech.com/000-test2/",
+        "formats": [ "jpg", "png", "gif" ],
+        "height": 3600,
+        "profile": "http://library.stanford.edu/iiif/image-api/1.1/compliance.html#level2",
+        "qualities": [ "native", "bitonal", "grey", "color" ],
+        "scale_factors": [ 1, 2, 4, 8, 16 ],
+        "tile_height": 256,
+        "tile_width": 256,
+        "width": 2617
+      }
+    ]
+    });
+  },
   render: function() {
     return (
-      <div id="map" />
+      <div id="detailImage" />
     )
   }
 })
