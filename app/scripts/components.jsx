@@ -1,3 +1,17 @@
+var Router = window.ReactRouter;
+var Route = Router.Route;
+var DefaultRoute = Router.DefaultRoute;
+var RouteHandler = Router.RouteHandler;
+var Link = Router.Link;
+
+var App = React.createClass({
+  render: function() {
+    return (
+      <RouteHandler/>
+    )
+  }
+});
+
 var Search = React.createClass({
   getInitialState: function() {
     return {
@@ -33,8 +47,7 @@ var Search = React.createClass({
       <div className={classes}>
         <SearchHeader />
         <SearchBar search={this.search} />
-        <Detail id={this.state.imageId} />
-        <ResultList results={this.state.results} select={this.select}/>
+        <ResultList results={this.state.results}/>
       </div>
     );
   }
@@ -102,9 +115,11 @@ var Result = React.createClass({
   },
   render: function() {
     return (
-      <div className="result" onMouseOver={this.mouseOver} onMouseOut={this.mouseOut} onClick={this.click}>
+      <div className="result" onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}>
         <a className={this.state.hover} href="#">&lt;/&gt;</a>
-        <IIIFImage server="http://iiifhawk.klokantech.com" id={this.props.id} size="150,150" />
+        <Link to="detail" params={{id: this.props.id}}>
+          <IIIFImage server="http://iiifhawk.klokantech.com" id={this.props.id} size="150,150" />
+        </Link>
       </div>
     );
   }
@@ -130,6 +145,17 @@ var IIIFImage = React.createClass({
 });
 
 var Detail = React.createClass({
+  render: function() {
+    return (
+      <div className="detail">
+        <OpenSeaDragon />
+        <Search />
+      </div>
+    )
+  }
+});
+
+var OpenSeaDragon = React.createClass({
   componentDidMount: function() {
     var viewer = OpenSeadragon({
       id: 'detailImage',
@@ -158,3 +184,14 @@ var Detail = React.createClass({
     )
   }
 })
+
+var routes = (
+  <Route path="/" handler={App}>
+    <DefaultRoute handler={Search}/>
+    <Route name="detail" path="/:id" handler={Detail}/>
+  </Route>
+);
+
+Router.run(routes, function(Root) {
+  React.render(<Root/>, document.getElementById('search'))
+});
