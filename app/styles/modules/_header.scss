@@ -1,12 +1,14 @@
 .header {
-  font-weight: bold;
+  position: absolute;
+  z-index: 20;
 }
 
 .header__title {
+  font-weight: bold;
   color: white;
-  position: absolute;
-  left: 40px;
-  top: 40px;
+  margin-left: 40px;
+  margin-top: 40px;
+  float: left;
   width: 150px;
 }
 
@@ -22,10 +24,11 @@
 }
 
 .header__navigation {
-  position: absolute;
-  left: 500px;
-  top: 40px;
+  float: left;
+  margin-left: 300px;
+  margin-top: 70px;
   list-style: none;
+  font-weight: bold;
   li {
     float: left;
     margin-right: 20px;

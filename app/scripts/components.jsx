@@ -37,23 +37,16 @@ var Search = React.createClass({
   },
   render: function() {
     var classes = "search";
-    if (this.state.results.length > 0) {
-      classes += " overlay";
-    }
-    if (this.state.selected) {
-      classes += " detail";
-    }
     return (
-      <div className={classes}>
-        <SearchHeader />
-        <SearchBar search={this.search} />
+      <div className="search">
         <ResultList results={this.state.results}/>
+        <HomeHeader search={this.search} />
       </div>
     );
   }
 });
 
-var SearchHeader = React.createClass({
+var HomeHeader = React.createClass({
   render: function() {
     return (
       <div className="header">
@@ -65,6 +58,7 @@ var SearchHeader = React.createClass({
           <li><a href="#">about</a></li>
           <li><a href="#">contact</a></li>
         </ul>
+        <SearchBar search={this.props.search} />
       </div>
     )
   }
@@ -128,14 +122,17 @@ var AdvancedOption = React.createClass({
 
 var ResultList = React.createClass({
   render: function() {
+    if (this.props.results.length == 0) return null;
     var resultNodes = this.props.results.map(function (result) {
       return (
         <Result key={result._id} id={result._id} select={this.props.select}/>
       );
     }.bind(this));
     return (
-      <div className="result_list">
-        {resultNodes}
+      <div className="results__overlay">
+        <div className="results">
+          {resultNodes}
+        </div>
       </div>
     )
   }

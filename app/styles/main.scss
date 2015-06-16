@@ -4,6 +4,10 @@
 @import "modules/_result";
 @import "modules/_search";
 
+html{
+  min-height: 100%;
+}
+
 body {
   font-family: 'Raleway';
   background: url(/images/background.png);
