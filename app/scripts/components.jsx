@@ -71,6 +71,14 @@ var SearchHeader = React.createClass({
 });
 
 var SearchBar = React.createClass({
+  getInitialState: function() {
+    return {
+      showAdvanced: false
+    }
+  },
+  showAdvanced: function(e) {
+    this.setState({showAdvanced: !this.state.showAdvanced})
+  },
   handleChange: function(e) {
     var query = e.target.value;
     this.props.search(query);
@@ -78,12 +86,45 @@ var SearchBar = React.createClass({
   render: function() {
     return (
       <div className="search_box">
+        <div className="search__advanced" onClick={this.showAdvanced}>advanced search</div>
         <input className="search_bar" placeholder="Search" onChange={this.handleChange}/>
         <div className="search__button"></div>
+        { this.state.showAdvanced ? <AdvancedSearch close={this.showAdvanced} /> : null }
       </div>
     );
   }
 });
+
+var AdvancedSearch = React.createClass({
+  render: function() {
+    return (
+      <div className="search__advanced__box">
+        <div className="close_button" onClick={this.props.close}>X</div>
+        <ul>
+          <AdvancedOption value="any">any license</AdvancedOption>
+          <AdvancedOption value="all">all creative commons</AdvancedOption>
+          <AdvancedOption value="commercial">commercial use allowed</AdvancedOption>
+          <AdvancedOption value="modification">commercial use and modifictions allowed</AdvancedOption>
+          <AdvancedOption value="unknown">no known copyright restrictions</AdvancedOption>
+        </ul>
+      </div>
+    )
+  }
+});
+
+var AdvancedOption = React.createClass({
+  render: function() {
+    var license = "license"+this.props.value;
+    return (
+      <li>
+        <label>
+          <input type="radio" name="license" id={license} value={this.props.value} />
+          {this.props.children}
+        </label>
+      </li>
+    )
+  }
+})
 
 var ResultList = React.createClass({
   render: function() {

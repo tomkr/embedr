@@ -40,6 +40,26 @@
   margin-top: 250px;
 }
 
+.search__advanced {
+  float: right;
+}
+
+.search__advanced__box {
+  float: left;
+  color: white;
+  width: 454px;
+  padding: 10px;
+  background-color: rgba(0,0,0,0.7);
+  ul {
+    margin-left: 10px;
+    list-style: none;
+  }
+}
+
+.close_button {
+  float: right;
+}
+
 .detail {
   .search_box {
     margin: 0;
