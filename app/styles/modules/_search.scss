@@ -51,13 +51,21 @@
 .detail {
   .search_box {
     margin: 0;
-    position: absolute;
-    top: 0;
-    left: 500px;
+    margin-left: 100px;
+    width: 620px;
   }
   .search_bar {
     line-height: 21px;
     font-size: 16px;
     margin-top: 4px;
+  }
+  .search__button {
+    height: 40px;
+    width: 40px;
+  }
+  .search__advanced {
+    float: right;
+    color: white;
+    line-height: 50px;
   }
 }

@@ -47,12 +47,8 @@
     left: 0;
     width: 100%;
   }
-  .header__title__text {
-    display: none;
-  }
   .header__title {
-    position: initial;
-    float: left;
+    margin: 0;
   }
   .header__title__name {
     font-size: 30px;
@@ -60,8 +56,7 @@
     line-height: 50px;
   }
   .header__navigation {
-    position: initial;
-    float: left;
+    margin: 0;
     line-height: 50px;
     margin-left: 200px;
   }

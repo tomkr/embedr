@@ -4,6 +4,20 @@ var DefaultRoute = Router.DefaultRoute;
 var RouteHandler = Router.RouteHandler;
 var Link = Router.Link;
 
+var SearchMixin = {
+  getInitialState: function() {
+    return {
+      results: []
+    };
+  },
+  search: function(query) {
+    var self = this;
+    $.getJSON('https://hawk-frontend-staging.herokuapp.com?query='+query, function(data) {
+      self.setState({results: data});
+    });
+  }
+}
+
 var App = React.createClass({
   render: function() {
     return (
@@ -13,19 +27,7 @@ var App = React.createClass({
 });
 
 var Search = React.createClass({
-  getInitialState: function() {
-    return {
-      results: [],
-      selected: false,
-      id: null
-    };
-  },
-  search: function(query) {
-    var self = this;
-    $.getJSON('https://hawk-frontend-staging.herokuapp.com?query='+query, function(data) {
-      self.setState({results: data});
-    });
-  },
+  mixins: [SearchMixin],
   select: function(imageId) {
     this.setState(
       {
@@ -183,11 +185,30 @@ var IIIFImage = React.createClass({
 });
 
 var Detail = React.createClass({
+  mixins: [SearchMixin],
   render: function() {
     return (
       <div className="detail">
         <OpenSeaDragon />
-        <Search />
+        <ResultList results={this.state.results}/>
+        <DetailHeader search={this.search} />
+      </div>
+    )
+  }
+});
+
+var DetailHeader = React.createClass({
+  render: function() {
+    return (
+      <div className="header detail">
+        <div className="header__title">
+          <h1 className="header__title__name">embedr</h1>
+        </div>
+        <ul className="header__navigation">
+          <li><a href="#">about</a></li>
+          <li><a href="#">contact</a></li>
+        </ul>
+        <SearchBar search={this.props.search} />
       </div>
     )
   }
@@ -200,7 +221,8 @@ var OpenSeaDragon = React.createClass({
       preserveViewport: true,
       visibilityRatio:    1,
       minZoomLevel:       1,
-      defaultZoomLevel:   6,
+      minZoomLevel:       10,
+      defaultZoomLevel:   1,
       tileSources:   [{
         "@context": "http://library.stanford.edu/iiif/image-api/1.1/context.json",
         "@id": "http://iiifhawk.klokantech.com/000-test2/",
