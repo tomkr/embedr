@@ -145,10 +145,10 @@ var Result = React.createClass({
     return {hover: 'embed_button'};
   },
   mouseOver: function () {
-    this.setState({hover: 'embed_button display'});
+    this.setState({hover: 'button__embed display'});
   },
   mouseOut: function () {
-    this.setState({hover: 'embed_button'});
+    this.setState({hover: 'button__embed'});
   },
   click: function () {
     this.props.select(this.props.id);
