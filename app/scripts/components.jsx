@@ -13,7 +13,7 @@ var SearchMixin = {
   search: function(query) {
     var self = this;
     $.getJSON('https://hawk-frontend-staging.herokuapp.com?query='+query, function(data) {
-      self.setState({results: data});
+      self.setState({results: data.hits});
     });
   }
 }
@@ -127,7 +127,7 @@ var ResultList = React.createClass({
     if (this.props.results.length == 0) return null;
     var resultNodes = this.props.results.map(function (result) {
       return (
-        <Result key={result._id} id={result._id} select={this.props.select}/>
+        <Result key={result.id} result={result} />
       );
     }.bind(this));
     return (
@@ -157,8 +157,8 @@ var Result = React.createClass({
     return (
       <div className="result" onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}>
         <a className={this.state.hover} href="#">&lt;/&gt;</a>
-        <Link to="detail" params={{id: this.props.id}}>
-          <IIIFImage server="http://iiifhawk.klokantech.com" id={this.props.id} size="150,150" />
+        <Link to="detail" params={{id: this.props.result.id}}>
+          <IIIFImage server="http://iiifhawk.klokantech.com" id={this.props.result.id} size="150,150" />
         </Link>
       </div>
     );
@@ -189,7 +189,7 @@ var Detail = React.createClass({
   render: function() {
     return (
       <div className="detail">
-        <OpenSeaDragon />
+        <OpenSeaDragon id={this.props.params.id}/>
         <ResultList results={this.state.results}/>
         <DetailHeader search={this.search} />
       </div>
@@ -216,26 +216,60 @@ var DetailHeader = React.createClass({
 
 var OpenSeaDragon = React.createClass({
   componentDidMount: function() {
+    console.log(this.props.id);
     var viewer = OpenSeadragon({
       id: 'detailImage',
-      preserveViewport: true,
-      visibilityRatio:    1,
-      minZoomLevel:       1,
-      minZoomLevel:       10,
-      defaultZoomLevel:   1,
-      tileSources:   [{
-        "@context": "http://library.stanford.edu/iiif/image-api/1.1/context.json",
-        "@id": "http://iiifhawk.klokantech.com/000-test2/",
-        "formats": [ "jpg", "png", "gif" ],
-        "height": 3600,
-        "profile": "http://library.stanford.edu/iiif/image-api/1.1/compliance.html#level2",
-        "qualities": [ "native", "bitonal", "grey", "color" ],
-        "scale_factors": [ 1, 2, 4, 8, 16 ],
-        "tile_height": 256,
-        "tile_width": 256,
-        "width": 2617
-      }
-    ]
+      tileSources: [
+        {
+          "@context": "http://iiif.io/api/image/2/context.json",
+          "@id": "http://iiifhawk.klokantech.com/000-test1",
+          "filename": "000-test1.jp2",
+          "height": 441,
+          "order": 0,
+          "profile": ["http://iiif.io/api/image/2/level1.json",
+            {"formats": ["jpg"],
+            "qualities": ["native", "color", "gray"],
+            "supports": ["regionByPct", "sizeByForcedWh", "sizeByWh", "sizeAboveFull", "rotationBy90s", "mirroring", "gray"]
+          }],
+          "protocol": "http://iiif.io/api/image",
+          "tiles": [
+            {"height": 256, "scaleFactors": [1, 2, 4], "width": 256}],
+          "width": 640
+        },
+        {
+          "@context": "http://iiif.io/api/image/2/context.json",
+          "@id": "http://iiifhawk.klokantech.com/000-test1/1",
+          "filename": "000-test1/1.jp2",
+          "height": 600,
+          "order": 1,
+          "profile": ["http://iiif.io/api/image/2/level1.json", {
+            "formats": ["jpg"],
+            "qualities": ["native", "color", "gray"],
+            "supports": ["regionByPct", "sizeByForcedWh", "sizeByWh", "sizeAboveFull", "rotationBy90s", "mirroring", "gray"]
+          }],
+          "protocol": "http://iiif.io/api/image",
+          "tiles": [
+            {"height": 256, "scaleFactors": [1, 2, 4], "width": 256}],
+          "width": 800
+        },
+        {
+          "@context": "http://iiif.io/api/image/2/context.json",
+          "@id": "http://iiifhawk.klokantech.com/000-test1/2",
+          "filename": "000-test1/2.jp2",
+          "height": 800,
+          "order": 2,
+          "profile": ["http://iiif.io/api/image/2/level1.json", {
+            "formats": ["jpg"],
+            "qualities": ["native", "color", "gray"],
+            "supports": ["regionByPct", "sizeByForcedWh", "sizeByWh", "sizeAboveFull", "rotationBy90s", "mirroring", "gray"]
+          }],
+          "protocol": "http://iiif.io/api/image",
+          "tiles": [
+            {"height": 256, "scaleFactors": [1, 2, 4, 8], "width": 256}
+          ],
+          "width": 1280
+        }],
+      sequenceMode: true
     });
   },
   render: function() {
