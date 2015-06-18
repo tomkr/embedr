@@ -142,7 +142,7 @@ var ResultList = React.createClass({
 
 var Result = React.createClass({
   getInitialState: function () {
-    return {hover: 'embed_button'};
+    return {hover: 'button__embed'};
   },
   mouseOver: function () {
     this.setState({hover: 'button__embed display'});
