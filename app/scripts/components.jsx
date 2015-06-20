@@ -12,7 +12,7 @@ var SearchMixin = {
   },
   search: function(query) {
     var self = this;
-    $.getJSON('https://hawk-frontend-staging.herokuapp.com?query='+query, function(data) {
+    $.getJSON('http://embedr.eu/search/?query='+query, function(data) {
       self.setState({results: data.hits});
     });
   }
