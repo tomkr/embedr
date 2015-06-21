@@ -253,14 +253,13 @@ var DetailHeader = React.createClass({
 
 var OpenSeaDragon = React.createClass({
   componentDidMount: function() {
-    console.log(this.props.id);
     var viewer = OpenSeadragon({
       id: 'detailImage',
       tileSources: [
         {
           "@context": "http://iiif.io/api/image/2/context.json",
-          "@id": "http://iiifhawk.klokantech.com/000-test1",
-          "filename": "000-test1.jp2",
+          "@id": "http://iiifhawk.klokantech.com/"+this.props.id,
+          "filename": this.props.id+".jp2",
           "height": 441,
           "order": 0,
           "profile": ["http://iiif.io/api/image/2/level1.json",
@@ -275,8 +274,8 @@ var OpenSeaDragon = React.createClass({
         },
         {
           "@context": "http://iiif.io/api/image/2/context.json",
-          "@id": "http://iiifhawk.klokantech.com/000-test1/1",
-          "filename": "000-test1/1.jp2",
+          "@id": "http://iiifhawk.klokantech.com/"+this.props.id+"/1",
+          "filename": this.props.id+"/1.jp2",
           "height": 600,
           "order": 1,
           "profile": ["http://iiif.io/api/image/2/level1.json", {
@@ -291,8 +290,8 @@ var OpenSeaDragon = React.createClass({
         },
         {
           "@context": "http://iiif.io/api/image/2/context.json",
-          "@id": "http://iiifhawk.klokantech.com/000-test1/2",
-          "filename": "000-test1/2.jp2",
+          "@id": "http://iiifhawk.klokantech.com/"+this.props.id+"/2",
+          "filename": this.props.id+"/2.jp2",
           "height": 800,
           "order": 2,
           "profile": ["http://iiif.io/api/image/2/level1.json", {
