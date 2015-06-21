@@ -252,13 +252,16 @@ var DetailHeader = React.createClass({
 });
 
 var OpenSeaDragon = React.createClass({
+  getInitialState: function() {
+    return {showPopup: false};
+  },
   componentDidMount: function() {
     $.getJSON('http://embedhawk.klokantech.com/'+this.props.id+'/manifest.json', function(result) {
       var canvas = result.sequences[0].canvases[0];
       var height = canvas.height;
       var width = canvas.width;
       var viewer = OpenSeadragon({
-        id: 'detailImage',
+        id: 'detail__image',
         showNavigationControl: false,
         tileSources: [
           {
@@ -280,9 +283,17 @@ var OpenSeaDragon = React.createClass({
       });
     }.bind(this));
   },
+  togglePopup: function(e) {
+    e.preventDefault();
+    this.setState({showPopup: !this.state.showPopup});
+  },
   render: function() {
     return (
-      <div id="detailImage" />
+      <div className="detail__main">
+        <div id="detail__image" />
+        <EmbedButton togglePopup={this.togglePopup}/>
+        { this.state.showPopup ? <EmbedPopup id={this.props.id} close={this.togglePopup}/> : null }
+      </div>
     )
   }
 })
