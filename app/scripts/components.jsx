@@ -188,6 +188,7 @@ var EmbedPopup = React.createClass({
   render: function() {
     return (
       <div className="embed__popup">
+        <div className="close_button" onClick={this.props.close}>X</div>
         <strong>Dit beeld embedden</strong>
         <p>Kopieer onderstaande code naar je website of blog. <a href="#">Meer informatie.</a></p>
         <textarea className="embed__box" rows="6"></textarea>
