@@ -142,7 +142,10 @@ var ResultList = React.createClass({
 
 var Result = React.createClass({
   getInitialState: function () {
-    return {buttonClass: 'is_hidden'};
+    return {
+      buttonClass: 'is_hidden',
+      showPopup: false
+    };
   },
   mouseOver: function () {
     this.setState({buttonClass: 'is_shown'});
@@ -153,11 +156,16 @@ var Result = React.createClass({
   click: function () {
     this.props.select(this.props.id);
   },
+  togglePopup: function(e) {
+    e.preventDefault();
+    this.setState({showPopup: !this.state.showPopup});
+  },
   render: function() {
     return (
       <div className="result" onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}>
+        { this.state.showPopup ? <EmbedPopup id={this.props.result.id} close={this.togglePopup} /> : null }
         <div className={this.state.buttonClass}>
-          <EmbedButton/>
+          <EmbedButton togglePopup={this.togglePopup}/>
         </div>
         <Link to="detail" params={{id: this.props.result.id}}>
           <IIIFImage server="http://iiifhawk.klokantech.com" id={this.props.result.id} size="150,150" />
@@ -171,11 +179,27 @@ var Result = React.createClass({
 var EmbedButton = React.createClass({
   render: function() {
     return (
-      <a className="button__embed" href="#">&lt;/&gt;</a>
+      <a className="button__embed" href="#" onClick={this.props.togglePopup}>&lt;/&gt;</a>
     )
   }
-})
+});
 
+var EmbedPopup = React.createClass({
+  render: function() {
+    return (
+      <div className="embed__popup">
+        <strong>Dit beeld embedden</strong>
+        <p>Kopieer onderstaande code naar je website of blog. <a href="#">Meer informatie.</a></p>
+        <textarea className="embed__box" rows="6"></textarea>
+        <a className="button__copy">kopieer</a>
+        <div>
+          <label>Toon preview</label>
+        </div>
+        <IIIFImage server="http://iiifhawk.klokantech.com" id={this.props.id} size="400,150" />
+      </div>
+    )
+  }
+});
 
 var IIIFImage = React.createClass({
   makeSource: function() {

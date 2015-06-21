@@ -1,17 +1,26 @@
 .button {
   background-color: black;
   height: 30px;
-  width: 30px;
   line-height: 30px;
   text-align: center;
-  border-radius: 30px;
   color: white;
   font-weight: bold;
 }
 
-.button__embed {
+.rounded__button {
   @extend .button;
+  width: 30px;
+  border-radius: 30px;
+}
+
+.button__embed {
+  @extend .rounded__button;
   position: absolute;
   top: 5px;
   left: 5px;
+}
+
+.button__copy {
+  @extend .button;
+  padding: 4px;
 }
