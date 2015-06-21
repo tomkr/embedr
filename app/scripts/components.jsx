@@ -253,60 +253,32 @@ var DetailHeader = React.createClass({
 
 var OpenSeaDragon = React.createClass({
   componentDidMount: function() {
-    var viewer = OpenSeadragon({
-      id: 'detailImage',
-      tileSources: [
-        {
-          "@context": "http://iiif.io/api/image/2/context.json",
-          "@id": "http://iiifhawk.klokantech.com/"+this.props.id,
-          "filename": this.props.id+".jp2",
-          "height": 441,
-          "order": 0,
-          "profile": ["http://iiif.io/api/image/2/level1.json",
-            {"formats": ["jpg"],
-            "qualities": ["native", "color", "gray"],
-            "supports": ["regionByPct", "sizeByForcedWh", "sizeByWh", "sizeAboveFull", "rotationBy90s", "mirroring", "gray"]
-          }],
-          "protocol": "http://iiif.io/api/image",
-          "tiles": [
-            {"height": 256, "scaleFactors": [1, 2, 4], "width": 256}],
-          "width": 640
-        },
-        {
-          "@context": "http://iiif.io/api/image/2/context.json",
-          "@id": "http://iiifhawk.klokantech.com/"+this.props.id+"/1",
-          "filename": this.props.id+"/1.jp2",
-          "height": 600,
-          "order": 1,
-          "profile": ["http://iiif.io/api/image/2/level1.json", {
-            "formats": ["jpg"],
-            "qualities": ["native", "color", "gray"],
-            "supports": ["regionByPct", "sizeByForcedWh", "sizeByWh", "sizeAboveFull", "rotationBy90s", "mirroring", "gray"]
-          }],
-          "protocol": "http://iiif.io/api/image",
-          "tiles": [
-            {"height": 256, "scaleFactors": [1, 2, 4], "width": 256}],
-          "width": 800
-        },
-        {
-          "@context": "http://iiif.io/api/image/2/context.json",
-          "@id": "http://iiifhawk.klokantech.com/"+this.props.id+"/2",
-          "filename": this.props.id+"/2.jp2",
-          "height": 800,
-          "order": 2,
-          "profile": ["http://iiif.io/api/image/2/level1.json", {
-            "formats": ["jpg"],
-            "qualities": ["native", "color", "gray"],
-            "supports": ["regionByPct", "sizeByForcedWh", "sizeByWh", "sizeAboveFull", "rotationBy90s", "mirroring", "gray"]
-          }],
-          "protocol": "http://iiif.io/api/image",
-          "tiles": [
-            {"height": 256, "scaleFactors": [1, 2, 4, 8], "width": 256}
-          ],
-          "width": 1280
-        }],
-      sequenceMode: true
-    });
+    $.getJSON('http://embedhawk.klokantech.com/'+this.props.id+'/manifest.json', function(result) {
+      var canvas = result.sequences[0].canvases[0];
+      var height = canvas.height;
+      var width = canvas.width;
+      var viewer = OpenSeadragon({
+        id: 'detailImage',
+        showNavigationControl: false,
+        tileSources: [
+          {
+            "@context": "http://iiif.io/api/image/2/context.json",
+            "@id": "http://iiifhawk.klokantech.com/"+this.props.id,
+            "filename": this.props.id+".jp2",
+            "height": height,
+            "order": 0,
+            "profile": ["http://iiif.io/api/image/2/level1.json",
+              {"formats": ["jpg"],
+              "qualities": ["native", "color", "gray"],
+              "supports": ["regionByPct", "sizeByForcedWh", "sizeByWh", "sizeAboveFull", "rotationBy90s", "mirroring", "gray"]
+            }],
+            "protocol": "http://iiif.io/api/image",
+            "tiles": [
+              {"height": 256, "scaleFactors": [1, 2, 4, 8], "width": 256}],
+            "width": width
+          }]
+      });
+    }.bind(this));
   },
   render: function() {
     return (
