@@ -142,13 +142,13 @@ var ResultList = React.createClass({
 
 var Result = React.createClass({
   getInitialState: function () {
-    return {hover: 'button__embed'};
+    return {buttonClass: 'is_hidden'};
   },
   mouseOver: function () {
-    this.setState({hover: 'button__embed display'});
+    this.setState({buttonClass: 'is_shown'});
   },
   mouseOut: function () {
-    this.setState({hover: 'button__embed'});
+    this.setState({buttonClass: 'is_hidden'});
   },
   click: function () {
     this.props.select(this.props.id);
@@ -156,7 +156,9 @@ var Result = React.createClass({
   render: function() {
     return (
       <div className="result" onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}>
-        <a className={this.state.hover} href="#">&lt;/&gt;</a>
+        <div className={this.state.buttonClass}>
+          <EmbedButton/>
+        </div>
         <Link to="detail" params={{id: this.props.result.id}}>
           <IIIFImage server="http://iiifhawk.klokantech.com" id={this.props.result.id} size="150,150" />
         </Link>
@@ -165,6 +167,15 @@ var Result = React.createClass({
     );
   }
 });
+
+var EmbedButton = React.createClass({
+  render: function() {
+    return (
+      <a className="button__embed" href="#">&lt;/&gt;</a>
+    )
+  }
+})
+
 
 var IIIFImage = React.createClass({
   makeSource: function() {

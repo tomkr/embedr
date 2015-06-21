@@ -11,11 +11,7 @@
 
 .button__embed {
   @extend .button;
-  display: none;
   position: absolute;
   top: 5px;
   left: 5px;
-  &.display {
-    display: block;
-  }
 }
