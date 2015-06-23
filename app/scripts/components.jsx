@@ -53,7 +53,7 @@ var HomeHeader = React.createClass({
     return (
       <div className="header">
         <div className="header__title">
-          <h1 className="header__title__name">embedr</h1>
+          <h1 className="header__title__name"><a href="/">embedr</a></h1>
           <p className="header__title__text">High quality cultural heritage image embedding</p>
         </div>
         <ul className="header__navigation">
@@ -239,7 +239,7 @@ var DetailHeader = React.createClass({
     return (
       <div className="header detail">
         <div className="header__title">
-          <h1 className="header__title__name">embedr</h1>
+          <h1 className="header__title__name"><a href="/">embedr</a></h1>
         </div>
         <ul className="header__navigation">
           <li><a href="#">about</a></li>
@@ -263,6 +263,7 @@ var OpenSeaDragon = React.createClass({
       var viewer = OpenSeadragon({
         id: 'detail__image',
         showNavigationControl: false,
+        zoomInButton: 'button__zoom',
         tileSources: [
           {
             "@context": "http://iiif.io/api/image/2/context.json",
@@ -293,6 +294,7 @@ var OpenSeaDragon = React.createClass({
         <div id="detail__image" />
         <EmbedButton togglePopup={this.togglePopup}/>
         { this.state.showPopup ? <EmbedPopup id={this.props.id} close={this.togglePopup}/> : null }
+        <a id="button__zoom" className="button__zoom">+</a>
       </div>
     )
   }

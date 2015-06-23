@@ -20,6 +20,14 @@
   left: 5px;
 }
 
+.button__zoom {
+  @extend .rounded__button;
+  position: absolute;
+  top: 5px;
+  left: 45px;
+}
+
+
 .button__copy {
   @extend .button;
   padding: 4px;
