@@ -19,7 +19,9 @@ module.exports = function (grunt) {
   // Configurable paths
   var config = {
     app: 'app',
-    dist: 'dist'
+    dist: 'dist',
+    build: 'build',
+    wp: 'wp'
   };
 
   // Define the configuration for all the tasks
@@ -350,6 +352,12 @@ module.exports = function (grunt) {
 
     // Copies remaining files to places other tasks can use
     copy: {
+      wordpress: {
+         expand: true,
+         cwd: 'wordpress',
+         src: '**',
+         dest: 'build/'
+      },
       dist: {
         files: [{
           expand: true,
