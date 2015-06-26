@@ -192,8 +192,8 @@ var Result = React.createClass({
         <div className={this.state.buttonClass}>
           <EmbedButton togglePopup={this.togglePopup}/>
         </div>
-        <Link to="detail" params={{id: this.props.result.id}}>
-          <IIIFImage server="http://iiifhawk.klokantech.com" id={this.props.result.id} size="150,150" />
+        <Link to="detail" params={{id: this.props.result.fields.id}}>
+          <IIIFImage server="http://iiifhawk.klokantech.com" id={this.props.result.fields.id} size="150,150" />
         </Link>
         <p className="result__description">{this.props.result.fields.title[0]}</p>
       </div>
