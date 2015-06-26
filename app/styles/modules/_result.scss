@@ -1,7 +1,11 @@
 .results {
   width: 990px;
   margin: auto;
-  margin-top: 250px;
+  position: absolute;
+  top: 250px;
+  left: 0;
+  right: 0;
+  z-index: 20;
 }
 
 .results__overlay {

@@ -3,10 +3,11 @@
 }
 
 .search_box {
-  float: left;
-  margin-left: 300px;
-  margin-top: 0px;
+  position: absolute;
+  left: 490px;
+  top: 90px;
   width: 480px;
+  z-index: 20;
 }
 
 .search_bar {
@@ -53,6 +54,7 @@
     margin: 0;
     margin-left: 100px;
     width: 620px;
+    top: 0;
   }
   .search_bar {
     line-height: 21px;

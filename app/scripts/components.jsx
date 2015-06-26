@@ -156,7 +156,8 @@ var ResultList = React.createClass({
       );
     }.bind(this));
     return (
-      <div className="results__overlay">
+      <div className="results__wrapper">
+        <div className="results__overlay"></div>
         <div className="results">
           {resultNodes}
         </div>
