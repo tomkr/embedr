@@ -4,6 +4,19 @@ var DefaultRoute = Router.DefaultRoute;
 var RouteHandler = Router.RouteHandler;
 var Link = Router.Link;
 
+var executeQuery = function (queryOptions, callback) {
+  var query = queryOptions.query;
+  var licenses = queryOptions.licenses || [];
+  var fullQuery = query;
+  if (licenses.length > 0) {
+    var licensesQuery = licenses.join(' OR ');
+    fullQuery = fullQuery + 'AND (' + licensesQuery +')';
+  }
+  $.getJSON('http://embedr.eu/search/?query='+fullQuery, function(data) {
+    callback(data);
+  });
+}
+
 var SearchMixin = {
   getInitialState: function() {
     return {
@@ -12,7 +25,7 @@ var SearchMixin = {
   },
   search: function(query) {
     var self = this;
-    $.getJSON('http://embedr.eu/search/?query='+query, function(data) {
+    executeQuery({query: query}, function(data) {
       self.setState({results: data.hits});
     });
   }
