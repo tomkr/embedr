@@ -126,6 +126,17 @@ module.exports = function (grunt) {
           ]
         }]
       },
+      build: {
+        files: [{
+          dot: true,
+          src: [
+            '.tmp',
+            'build/*',
+            '!build/.git*',
+            '!build/wp-config.php'
+          ]
+        }]
+      },
       server: '.tmp'
     },
 
@@ -358,6 +369,24 @@ module.exports = function (grunt) {
          src: '**',
          dest: 'build/'
       },
+      build: {
+        files: [{
+          expand: true,
+          cwd: '.tmp/styles',
+          src: '**',
+          dest: 'build/styles'
+        }, {
+          expand: true,
+          cwd: 'app',
+          src: 'images/**',
+          dest: 'build'
+        }, {
+          expand: true,
+          cwd: 'app',
+          src: 'styles/fonts/**',
+          dest: 'build'
+        }]
+      },
       dist: {
         files: [{
           expand: true,
@@ -410,6 +439,27 @@ module.exports = function (grunt) {
         'imagemin',
         'svgmin'
       ]
+    },
+
+    //Manually concat bower and own js
+    concat: {
+      options: {
+        separator: ';',
+      },
+      build: {
+        files: [{
+          src: [
+            'bower_components/jquery/dist/jquery.js',
+            'bower_components/react/react.js',
+            'bower_components/react-router/build/umd/ReactRouter.js',
+            'bower_components/openseadragon/built-openseadragon/openseadragon/openseadragon.min.js'
+          ],
+          dest: 'build/scripts/vendor.js',
+        }, {
+          src: '.tmp/scripts/*',
+          dest: 'build/scripts/main.js'
+        }]
+      }
     }
   });
 
@@ -453,18 +503,20 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('build', [
-    'clean:dist',
-    'wiredep',
-    'useminPrepare',
+    // 'clean:dist',
+    'clean:build',
+    // 'wiredep',
+    // 'useminPrepare',
     'concurrent:dist',
-    'autoprefixer',
-    'concat',
-    'cssmin',
-    'uglify',
-    'copy:dist',
-    'rev',
-    'usemin',
-    'htmlmin'
+    // 'autoprefixer',
+    // 'cssmin',
+    // 'uglify',
+    'copy:wordpress',
+    'concat:build',
+    'copy:build',
+    // 'rev',
+    // 'usemin',
+    // 'htmlmin'
   ]);
 
   grunt.registerTask('default', [

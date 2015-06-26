@@ -20,9 +20,9 @@
 	<!--[if lt IE 9]>
 	<script src="<?php echo esc_url( get_template_directory_uri() ); ?>/js/html5.js"></script>
 	<![endif]-->
-	
+
 	<?php //wp_head(); ?>
-	<link rel=stylesheet href="/styles/b0e220be.main.css"> 
+	<link rel=stylesheet href="/styles/main.css"> 
 </head>
 
 <body>

@@ -10,8 +10,8 @@
  */
 ?>
 
-<script src=scripts/04a97af3.vendor.js></script>
-<script src=scripts/d29dc0c7.main.js></script>
+<script src="/scripts/vendor.js"></script>
+<script src="scripts/main.js"></script>
 <?php wp_footer(); ?>
 
 </body>
