@@ -69,6 +69,14 @@ module.exports = function (grunt) {
       react: {
         files: ['<%= config.app %>/scripts/{,*/}*.jsx'],
         tasks: ['react:dist']
+      },
+      wordpress: {
+        files: ['app/**/*', 'wordpress/**/*'],
+        tasks: ['build']
+      },
+      assets: {
+        files: ['app/**/*'],
+        tasks: ['buildAssets']
       }
     },
 
@@ -528,6 +536,23 @@ module.exports = function (grunt) {
     // 'cssmin',
     // 'uglify',
     'copy:wordpress',
+    'concat:build',
+    'copy:build',
+    // 'rev',
+    // 'usemin',
+    // 'htmlmin'
+  ]);
+
+  grunt.registerTask('buildAssets', [
+    // 'clean:dist',
+    // 'clean:build',
+    // 'wiredep',
+    // 'useminPrepare',
+    'concurrent:dist',
+    // 'autoprefixer',
+    // 'cssmin',
+    // 'uglify',
+    // 'copy:wordpress',
     'concat:build',
     'copy:build',
     // 'rev',

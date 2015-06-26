@@ -5,14 +5,20 @@ var RouteHandler = Router.RouteHandler;
 var Link = Router.Link;
 
 var executeQuery = function (queryOptions, callback) {
-  var query = queryOptions.query;
-  var licenses = queryOptions.licenses || [];
-  var fullQuery = query;
-  if (licenses.length > 0) {
-    var licensesQuery = licenses.join(' OR ');
-    fullQuery = fullQuery + 'AND (' + licensesQuery +')';
+  var licenses = {
+    'freely': ['license:creativecommons.org/publicdomain/', 'license:BY/', 'license:BY-SA/'],
+    'non-commercial': ['license:BY-NC', 'license:BY-NC_SA']
   }
-  $.getJSON('http://embedr.eu/search/?query='+fullQuery, function(data) {
+  var query = queryOptions.query;
+  var license = queryOptions.license;
+  var fullQuery = query;
+  if (license !== 'none') {
+    console.log(licenses);
+    console.log(license);
+    var licensesQuery = licenses[license].join(' OR ');
+    fullQuery = fullQuery + ' AND (' + licensesQuery +')';
+  }
+  $.getJSON('http://embedr.eu/search/?query='+encodeURIComponent(fullQuery), function(data) {
     callback(data);
   });
 }
@@ -20,12 +26,16 @@ var executeQuery = function (queryOptions, callback) {
 var SearchMixin = {
   getInitialState: function() {
     return {
-      results: []
+      results: [],
+      license: 'none'
     };
+  },
+  setLicense: function(license) {
+    this.setState({'license': license})
   },
   search: function(query) {
     var self = this;
-    executeQuery({query: query}, function(data) {
+    executeQuery({query: query, license: this.state.license}, function(data) {
       self.setState({results: data.hits});
     });
   }
@@ -55,7 +65,7 @@ var Search = React.createClass({
     return (
       <div className="search">
         <ResultList results={this.state.results}/>
-        <HomeHeader search={this.search} />
+        <HomeHeader setLicense={this.setLicense} license={this.state.license} search={this.search} />
       </div>
     );
   }
@@ -73,7 +83,7 @@ var HomeHeader = React.createClass({
           <li><a href="/about">about</a></li>
           <li><a href="#">contact</a></li>
         </ul>
-        <SearchBar search={this.props.search} />
+        <SearchBar setLicense={this.props.setLicense} license={this.props.license} search={this.props.search} />
       </div>
     )
   }
@@ -93,12 +103,13 @@ var SearchBar = React.createClass({
     this.props.search(query);
   },
   render: function() {
+    console.log(this.props.license);
     return (
       <div className="search_box">
         <div className="search__advanced" onClick={this.showAdvanced}>advanced search</div>
         <input className="search_bar" placeholder="Search" onChange={this.handleChange}/>
         <div className="search__button"></div>
-        { this.state.showAdvanced ? <AdvancedSearch close={this.showAdvanced} /> : null }
+        { this.state.showAdvanced ? <AdvancedSearch setLicense={this.props.setLicense} license={this.props.license} close={this.showAdvanced} /> : null }
       </div>
     );
   }
@@ -110,11 +121,9 @@ var AdvancedSearch = React.createClass({
       <div className="search__advanced__box">
         <div className="close_button" onClick={this.props.close}>X</div>
         <ul>
-          <AdvancedOption value="any">any license</AdvancedOption>
-          <AdvancedOption value="all">all creative commons</AdvancedOption>
-          <AdvancedOption value="commercial">commercial use allowed</AdvancedOption>
-          <AdvancedOption value="modification">commercial use and modifictions allowed</AdvancedOption>
-          <AdvancedOption value="unknown">no known copyright restrictions</AdvancedOption>
+          <AdvancedOption setLicense={this.props.setLicense} value="none" checked={this.props.license == 'none'}>no filter</AdvancedOption>
+          <AdvancedOption setLicense={this.props.setLicense} checked={this.props.license == 'freely'} value="freely">freely reusable</AdvancedOption>
+          <AdvancedOption setLicense={this.props.setLicense} checked={this.props.license == 'non-commercial'} value="non-commercial">non commercial use only</AdvancedOption>
         </ul>
       </div>
     )
@@ -122,12 +131,15 @@ var AdvancedSearch = React.createClass({
 });
 
 var AdvancedOption = React.createClass({
+  handleChange: function() {
+    this.props.setLicense(this.props.value);
+  },
   render: function() {
     var license = "license"+this.props.value;
     return (
       <li>
         <label>
-          <input type="radio" name="license" id={license} value={this.props.value} />
+          <input onChange={this.handleChange} type="radio" name="license" id={license} value={this.props.value} checked={this.props.checked}/>
           {this.props.children}
         </label>
       </li>
