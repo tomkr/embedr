@@ -365,6 +365,7 @@ module.exports = function (grunt) {
     copy: {
       wordpress: {
          expand: true,
+         dot: true,
          cwd: 'wordpress',
          src: '**',
          dest: 'build/'

@@ -57,7 +57,7 @@ var HomeHeader = React.createClass({
           <p className="header__title__text">High quality cultural heritage image embedding</p>
         </div>
         <ul className="header__navigation">
-          <li><a href="#">about</a></li>
+          <li><a href="/about">about</a></li>
           <li><a href="#">contact</a></li>
         </ul>
         <SearchBar search={this.props.search} />
