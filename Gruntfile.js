@@ -461,6 +461,21 @@ module.exports = function (grunt) {
           dest: 'build/scripts/main.js'
         }]
       }
+    },
+
+    rsync: {
+      options: {
+        args: ["--verbose"],
+        exclude: ["wp-config.php"],
+        recursive: true
+      },
+      dev: {
+        options: {
+          src: "build/",
+          dest: "/web",
+          host: "kennisland-dev"
+        }
+      }
     }
   });
 
