@@ -13,8 +13,6 @@ var executeQuery = function (queryOptions, callback) {
   var license = queryOptions.license;
   var fullQuery = query;
   if (license !== 'none') {
-    console.log(licenses);
-    console.log(license);
     var licensesQuery = licenses[license].join(' OR ');
     fullQuery = fullQuery + ' AND (' + licensesQuery +')';
   }
@@ -103,7 +101,6 @@ var SearchBar = React.createClass({
     this.props.search(query);
   },
   render: function() {
-    console.log(this.props.license);
     return (
       <div className="search_box">
         <div className="search__advanced" onClick={this.showAdvanced}>advanced search</div>
