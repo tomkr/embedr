@@ -5,6 +5,10 @@
   text-align: center;
   color: white;
   font-weight: bold;
+  a {
+    color: white;
+    font-weight: bold;
+  }
 }
 
 .rounded__button {
@@ -27,6 +31,10 @@
   left: 45px;
 }
 
+.button__zoom--out {
+  @extend .button__zoom;
+  left: 85px;
+}
 
 .button__copy {
   @extend .button;

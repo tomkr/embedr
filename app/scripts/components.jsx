@@ -279,14 +279,14 @@ var OpenSeaDragon = React.createClass({
     return {showPopup: false};
   },
   componentDidMount: function() {
-    $.getJSON('http://embedhawk.klokantech.com/'+this.props.id+'/manifest.json', function(result) {
+    $.getJSON('http://media.embedr.eu/'+this.props.id+'/manifest.json', function(result) {
       var canvas = result.sequences[0].canvases[0];
       var height = canvas.height;
       var width = canvas.width;
       var viewer = OpenSeadragon({
         id: 'detail__image',
-        showNavigationControl: false,
-        zoomInButton: 'button__zoom',
+        zoomInButton: 'zoom-in-button',
+        zoomOutButton: 'zoom-out-button',
         tileSources: [
           {
             "@context": "http://iiif.io/api/image/2/context.json",
@@ -311,13 +311,21 @@ var OpenSeaDragon = React.createClass({
     e.preventDefault();
     this.setState({showPopup: !this.state.showPopup});
   },
+  zoomIn: function(e) {
+    e.preventDefault();
+  },
   render: function() {
     return (
       <div className="detail__main">
         <div id="detail__image" />
         <EmbedButton togglePopup={this.togglePopup}/>
         { this.state.showPopup ? <EmbedPopup id={this.props.id} close={this.togglePopup}/> : null }
-        <a id="button__zoom" className="button__zoom">+</a>
+        <div className="button__zoom">
+          <a id="zoom-in-button" href="#">+</a>
+        </div>
+        <div className="button__zoom--out">
+          <a id="zoom-out-button" href="#">-</a>
+        </div>
       </div>
     )
   }
