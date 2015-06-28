@@ -36,6 +36,13 @@
   left: 85px;
 }
 
+.button__metadata {
+  @extend .rounded__button;
+  position: absolute;
+  top: 5px;
+  left: 125px;
+}
+
 .button__copy {
   @extend .button;
   padding: 4px;

@@ -276,7 +276,10 @@ var DetailHeader = React.createClass({
 
 var OpenSeaDragon = React.createClass({
   getInitialState: function() {
-    return {showPopup: false};
+    return {
+      showPopup: false,
+      showInfoPopup: false
+    };
   },
   componentDidMount: function() {
     $.getJSON('http://media.embedr.eu/'+this.props.id+'/manifest.json', function(result) {
@@ -311,6 +314,10 @@ var OpenSeaDragon = React.createClass({
     e.preventDefault();
     this.setState({showPopup: !this.state.showPopup});
   },
+  toggleInfoPopup: function(e) {
+    e.preventDefault();
+    this.setState({showInfoPopup: !this.state.showInfoPopup});
+  },
   zoomIn: function(e) {
     e.preventDefault();
   },
@@ -326,10 +333,29 @@ var OpenSeaDragon = React.createClass({
         <div className="button__zoom--out">
           <a id="zoom-out-button" href="#">-</a>
         </div>
+        <InformationButton togglePopup={this.toggleInfoPopup}/>
+        { this.state.showInfoPopup ? <InformationPopup id={this.props.id} close={this.toggleInfoPopup}/> : null }
       </div>
     )
   }
 })
+
+var InformationButton = React.createClass({
+  render: function() {
+    return (
+      <a className="button__metadata" href="#" onClick={this.props.togglePopup}>i</a>
+    )
+  }
+});
+
+var InformationPopup = React.createClass({
+  render: function() {
+    return (
+      <div className="metadata__popup">
+      </div>
+    )
+  }
+});
 
 var routes = (
   <Route path="/" handler={App}>
