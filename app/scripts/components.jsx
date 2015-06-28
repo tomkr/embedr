@@ -90,7 +90,8 @@ var HomeHeader = React.createClass({
 var SearchBar = React.createClass({
   getInitialState: function() {
     return {
-      showAdvanced: false
+      showAdvanced: false,
+      query: ''
     }
   },
   showAdvanced: function(e) {
@@ -98,14 +99,25 @@ var SearchBar = React.createClass({
   },
   handleChange: function(e) {
     var query = e.target.value;
-    this.props.search(query);
+    this.setState({query: query});
+  },
+  search: function() {
+    this.props.search(this.state.query);
+  },
+  handleKeyDown: function(e) {
+    var ENTER = 13;
+    if( e.keyCode == ENTER ) {
+        this.props.search(this.state.query);
+    }
   },
   render: function() {
     return (
       <div className="search_box">
         <div className="search__advanced" onClick={this.showAdvanced}>advanced search</div>
-        <input className="search_bar" placeholder="Search" onChange={this.handleChange}/>
-        <div className="search__button"></div>
+        <input className="search_bar" placeholder="Search" onChange={this.handleChange} onKeyDown={this.handleKeyDown}/>
+        <div className="search__button" onClick={this.search}>
+          <img src="/images/search.png" />
+        </div>
         { this.state.showAdvanced ? <AdvancedSearch setLicense={this.props.setLicense} license={this.props.license} close={this.showAdvanced} /> : null }
       </div>
     );
@@ -202,7 +214,9 @@ var Result = React.createClass({
 var EmbedButton = React.createClass({
   render: function() {
     return (
-      <a className="button__embed" href="#" onClick={this.props.togglePopup}>&lt;/&gt;</a>
+      <a className="button__embed" href="#" onClick={this.props.togglePopup}>
+        <img src="/images/embed.png" />
+      </a>
     )
   }
 });
@@ -328,10 +342,14 @@ var OpenSeaDragon = React.createClass({
         <EmbedButton togglePopup={this.togglePopup}/>
         { this.state.showPopup ? <EmbedPopup id={this.props.id} close={this.togglePopup}/> : null }
         <div className="button__zoom">
-          <a id="zoom-in-button" href="#">+</a>
+          <a id="zoom-in-button" href="#">
+            <img src="/images/zoom-in.png" />
+          </a>
         </div>
         <div className="button__zoom--out">
-          <a id="zoom-out-button" href="#">-</a>
+          <a id="zoom-out-button" href="#">
+            <img src="/images/zoom-out.png" />
+          </a>
         </div>
         <InformationButton togglePopup={this.toggleInfoPopup}/>
         { this.state.showInfoPopup ? <InformationPopup id={this.props.id} close={this.toggleInfoPopup}/> : null }
@@ -343,7 +361,9 @@ var OpenSeaDragon = React.createClass({
 var InformationButton = React.createClass({
   render: function() {
     return (
-      <a className="button__metadata" href="#" onClick={this.props.togglePopup}>i</a>
+      <a className="button__metadata" href="#" onClick={this.props.togglePopup}>
+        <img src="/images/metadata.png" />
+      </a>
     )
   }
 });

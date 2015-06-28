@@ -27,6 +27,10 @@
   margin-top: 2px;
   float: left;
   display: inline-block;
+  img {
+    margin-top: 10px;
+    margin-left: 10px;
+  }
 }
 
 .search__advanced {
@@ -64,6 +68,9 @@
   .search__button {
     height: 40px;
     width: 40px;
+    img: {
+      margin: 0;
+    }
   }
   .search__advanced {
     float: right;

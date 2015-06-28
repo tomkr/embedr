@@ -1,7 +1,7 @@
 .button {
   background-color: black;
-  height: 30px;
-  line-height: 30px;
+  height: 40px;
+  line-height: 40px;
   text-align: center;
   color: white;
   font-weight: bold;
@@ -13,8 +13,8 @@
 
 .rounded__button {
   @extend .button;
-  width: 30px;
-  border-radius: 30px;
+  width: 40px;
+  border-radius: 40px;
 }
 
 .button__embed {
@@ -28,19 +28,19 @@
   @extend .rounded__button;
   position: absolute;
   top: 5px;
-  left: 45px;
+  left: 55px;
 }
 
 .button__zoom--out {
   @extend .button__zoom;
-  left: 85px;
+  left: 105px;
 }
 
 .button__metadata {
   @extend .rounded__button;
   position: absolute;
   top: 5px;
-  left: 125px;
+  left: 155px;
 }
 
 .button__copy {
