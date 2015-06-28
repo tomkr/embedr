@@ -198,7 +198,7 @@ var Result = React.createClass({
   render: function() {
     return (
       <div className="result" onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}>
-        { this.state.showPopup ? <EmbedPopup id={this.props.result.id} close={this.togglePopup} /> : null }
+        { this.state.showPopup ? <EmbedPopup id={this.props.result.fields.id} close={this.togglePopup} /> : null }
         <div className={this.state.buttonClass}>
           <EmbedButton togglePopup={this.togglePopup}/>
         </div>
@@ -223,15 +223,19 @@ var EmbedButton = React.createClass({
 
 var EmbedPopup = React.createClass({
   render: function() {
+    var embedLink = "//media.embedr.eu/" + this.props.id;
+    var embedText = "<iframe src=\"" + embedLink + "\"></iframe>"
     return (
       <div className="embed__popup">
         <div className="close_button" onClick={this.props.close}>X</div>
-        <strong>Dit beeld embedden</strong>
-        <p>Kopieer onderstaande code naar je website of blog. <a href="#">Meer informatie.</a></p>
-        <textarea className="embed__box" rows="6"></textarea>
-        <a className="button__copy">kopieer</a>
+        <strong>Embed this image</strong>
+        <p>Copy the HTML code below to your website or blog. <a href="#">Click here for more information.</a></p>
+        <textarea className="embed__box" rows="6">
+          {embedText}
+        </textarea>
+        <a className="button__copy">Copy</a>
         <div>
-          <label>Toon preview</label>
+          <label>Show preview</label>
         </div>
         <IIIFImage server="http://iiifhawk.klokantech.com" id={this.props.id} size="400,150" />
       </div>
