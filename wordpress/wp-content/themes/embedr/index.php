@@ -16,7 +16,6 @@
 
 get_header(); ?>
 
-<div id="search">
-</div>
+<div id="search"></div>
 
 <?php get_footer(); ?>
