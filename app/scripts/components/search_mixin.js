@@ -18,6 +18,7 @@ var executeQuery = function (queryOptions, callback) {
 var SearchMixin = {
   getInitialState: function() {
     return {
+      searchQuery: '',
       results: [],
       license: 'none'
     };
@@ -26,6 +27,7 @@ var SearchMixin = {
     this.setState({'license': license})
   },
   search: function(query) {
+    this.setState({searchQuery: query})
     var self = this;
     executeQuery({query: query, license: this.state.license}, function(data) {
       self.setState({results: data.hits});

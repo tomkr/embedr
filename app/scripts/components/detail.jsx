@@ -1,17 +1,15 @@
-var SearchMixin = require('./search_mixin');
 var ResultList = require('./results.jsx');
 var SearchBar = require('./search_bar.jsx');
 var EmbedButton = require('./embed_button.jsx');
 var EmbedPopup = require('./embed_popup.jsx');
 
 var Detail = React.createClass({
-  mixins: [SearchMixin],
   render: function() {
     return (
       <div className="detail">
         <OpenSeaDragon id={this.props.params.id}/>
-        <ResultList results={this.state.results}/>
-        <DetailHeader search={this.search} />
+        <ResultList results={this.props.results}/>
+        <DetailHeader query={this.props.searchQuery} search={this.props.search} license={this.props.license} setLicense={this.props.setLicense} />
       </div>
     )
   }
@@ -28,7 +26,7 @@ var DetailHeader = React.createClass({
           <li><a href="#">about</a></li>
           <li><a href="#">contact</a></li>
         </ul>
-        <SearchBar search={this.props.search} />
+        <SearchBar query={this.props.query} search={this.props.search} />
       </div>
     )
   }

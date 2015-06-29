@@ -2,7 +2,7 @@ var SearchBar = React.createClass({
   getInitialState: function() {
     return {
       showAdvanced: false,
-      query: ''
+      query: this.props.query
     }
   },
   showAdvanced: function(e) {
@@ -25,7 +25,7 @@ var SearchBar = React.createClass({
     return (
       <div className="search_box">
         <div className="search__advanced" onClick={this.showAdvanced}>advanced search</div>
-        <input className="search_bar" placeholder="Search" onChange={this.handleChange} onKeyDown={this.handleKeyDown}/>
+        <input className="search_bar" placeholder="Search" onChange={this.handleChange} onKeyDown={this.handleKeyDown} defaultValue={this.props.query}/>
         <div className="search__button" onClick={this.search}>
           <img src="/images/search.png" />
         </div>

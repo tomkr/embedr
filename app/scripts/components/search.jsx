@@ -1,24 +1,13 @@
-var SearchMixin = require('./search_mixin');
 var ResultList = require('./results.jsx');
 var SearchBar = require('./search_bar.jsx');
 
 var Search = React.createClass({
-  mixins: [SearchMixin],
-  select: function(imageId) {
-    this.setState(
-      {
-        selected: true,
-        results: [],
-        id: imageId
-      }
-    )
-  },
   render: function() {
     var classes = "search";
     return (
       <div className="search">
-        <ResultList results={this.state.results}/>
-        <HomeHeader setLicense={this.setLicense} license={this.state.license} search={this.search} />
+        <ResultList results={this.props.results}/>
+        <HomeHeader setLicense={this.props.setLicense} license={this.props.license} search={this.props.search} query={this.props.searchQuery}/>
       </div>
     );
   }
@@ -36,7 +25,7 @@ var HomeHeader = React.createClass({
           <li><a href="/about">about</a></li>
           <li><a href="#">contact</a></li>
         </ul>
-        <SearchBar setLicense={this.props.setLicense} license={this.props.license} search={this.props.search} />
+        <SearchBar setLicense={this.props.setLicense} license={this.props.license} search={this.props.search} query={this.props.query} />
       </div>
     )
   }
