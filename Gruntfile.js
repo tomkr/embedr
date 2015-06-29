@@ -30,6 +30,19 @@ module.exports = function (grunt) {
     // Project settings
     config: config,
 
+    browserify:     {
+      options:      {
+        transform:  [ require('grunt-react').browserify ]
+      },
+      app:          {
+        src:        'app/scripts/main.js',
+        dest:       'build/scripts/main.js',
+        options: {
+          external: ['react-router'],
+        }
+      }
+    },
+
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       bower: {
@@ -68,7 +81,7 @@ module.exports = function (grunt) {
       },
       react: {
         files: ['<%= config.app %>/scripts/{,*/}*.jsx'],
-        tasks: ['react:dist']
+        tasks: ['browserify:app']
       },
       wordpress: {
         files: ['app/**/*', 'wordpress/**/*'],
