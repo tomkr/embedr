@@ -6,12 +6,19 @@ var InformationButton = require('./information_button.jsx')
 var InformationPopup = require('./information_popup.jsx')
 
 var Detail = React.createClass({
+  getInitialState: function() {
+    return {showResults: false};
+  },
+  search: function(query) {
+    this.props.search(query);
+    this.setState({showResults: true})
+  },
   render: function() {
     return (
       <div className="detail">
         <OpenSeaDragon id={this.props.params.id}/>
-        <ResultList results={this.props.results}/>
-        <DetailHeader query={this.props.searchQuery} search={this.props.search} license={this.props.license} setLicense={this.props.setLicense} />
+        { this.state.showResults ? <ResultList results={this.props.results}/> : null }
+        <DetailHeader query={this.props.searchQuery} search={this.search} license={this.props.license} setLicense={this.props.setLicense} />
       </div>
     )
   }
