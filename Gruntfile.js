@@ -35,8 +35,10 @@ module.exports = function (grunt) {
         transform:  [ require('grunt-react').browserify ]
       },
       app:          {
-        src:        'app/scripts/main.js',
-        dest:       'build/scripts/main.js',
+        files: {
+          'build/scripts/main.js': 'app/scripts/main.js',
+          'build/scripts/viewer.js': 'app/scripts/viewer.js'
+        },
         options: {
           external: ['react-router'],
         }

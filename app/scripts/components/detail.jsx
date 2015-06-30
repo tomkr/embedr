@@ -2,6 +2,8 @@ var ResultList = require('./results.jsx');
 var SearchBar = require('./search_bar.jsx');
 var EmbedButton = require('./embed_button.jsx');
 var EmbedPopup = require('./embed_popup.jsx');
+var InformationButton = require('./information_button.jsx')
+var InformationPopup = require('./information_popup.jsx')
 
 var Detail = React.createClass({
   render: function() {
@@ -97,25 +99,6 @@ var OpenSeaDragon = React.createClass({
         </div>
         <InformationButton togglePopup={this.toggleInfoPopup}/>
         { this.state.showInfoPopup ? <InformationPopup id={this.props.id} close={this.toggleInfoPopup}/> : null }
-      </div>
-    )
-  }
-});
-
-var InformationButton = React.createClass({
-  render: function() {
-    return (
-      <a className="button__metadata" href="#" onClick={this.props.togglePopup}>
-        <img src="/images/metadata.png" />
-      </a>
-    )
-  }
-});
-
-var InformationPopup = React.createClass({
-  render: function() {
-    return (
-      <div className="metadata__popup">
       </div>
     )
   }
