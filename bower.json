@@ -4,6 +4,8 @@
   "dependencies": {
     "react": "~0.13.3",
     "openseadragon": "~2.0.0",
-    "react-router": "~0.13.3"
+    "react-router": "~0.13.3",
+    "zeroclipboard": "~2.2.0",
+    "jquery": "~2.1.4"
   }
 }

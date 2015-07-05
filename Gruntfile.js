@@ -465,10 +465,10 @@ module.exports = function (grunt) {
       ]
     },
 
-    //Manually concat bower and own js
+    //Manually concat bower js
     concat: {
       options: {
-        separator: ';',
+        separator: ';\n',
       },
       build: {
         files: [{
@@ -476,12 +476,13 @@ module.exports = function (grunt) {
             'bower_components/jquery/dist/jquery.js',
             'bower_components/react/react.js',
             'bower_components/react-router/build/umd/ReactRouter.js',
-            'bower_components/openseadragon/built-openseadragon/openseadragon/openseadragon.min.js'
+            'bower_components/openseadragon/built-openseadragon/openseadragon/openseadragon.min.js',
+            'bower_components/zeroclipboard/dist/ZeroClipboard.min.js'
           ],
           dest: 'build/scripts/vendor.js',
-        }, {
-          src: '.tmp/scripts/*',
-          dest: 'build/scripts/main.js'
+        },{
+          src: 'bower_components/zeroclipboard/dist/ZeroClipboard.swf',
+          dest: 'build/scripts/ZeroClipboard.swf'
         }]
       }
     },
@@ -568,7 +569,7 @@ module.exports = function (grunt) {
     // 'cssmin',
     // 'uglify',
     // 'copy:wordpress',
-    'concat:build',
+    'browserify:app',
     'copy:build',
     // 'rev',
     // 'usemin',
