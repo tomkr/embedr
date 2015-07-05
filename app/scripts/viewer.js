@@ -1,6 +1,6 @@
 var Viewer = require('./components/viewer.jsx')
-
-React.render(<Viewer />, document.getElementById('viewer'));
+//Export to window so it can be called in a Flask template.
+window.Viewer = Viewer;
 
 $(function(){
   $('#map').on('mouseover', function(e) {

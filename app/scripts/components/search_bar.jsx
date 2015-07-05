@@ -39,7 +39,7 @@ var AdvancedSearch = React.createClass({
   render: function() {
     return (
       <div className="search__advanced__box">
-        <div className="close_button" onClick={this.props.close}>X</div>
+        <div className="button__close" onClick={this.props.close}>X</div>
         <ul>
           <AdvancedOption setLicense={this.props.setLicense} value="none" checked={this.props.license == 'none'}>no filter</AdvancedOption>
           <AdvancedOption setLicense={this.props.setLicense} checked={this.props.license == 'freely'} value="freely">freely reusable</AdvancedOption>

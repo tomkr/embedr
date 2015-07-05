@@ -6,7 +6,7 @@ var EmbedPopup = React.createClass({
     var embedText = "<iframe src=\"" + embedLink + "\"></iframe>"
     return (
       <div className="embed__popup">
-        <div className="close_button" onClick={this.props.close}>X</div>
+        <div className="button__close" onClick={this.props.close}>X</div>
         <strong>Embed this image</strong>
         <p>Copy the HTML code below to your website or blog. <a href="#">Click here for more information.</a></p>
         <textarea className="embed__box" rows="6" id="text-copy">
