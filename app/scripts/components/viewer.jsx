@@ -16,7 +16,9 @@ var Viewer = React.createClass({
   },
   toggleInfoPopup: function(e) {
     e.preventDefault();
-    this.setState({showInfoPopup: !this.state.showInfoPopup});
+    // Leaving this is in case we do switch to a React popup.
+    // this.setState({showInfoPopup: !this.state.showInfoPopup});
+    $('#title').toggle();
   },
   render: function() {
     return (
@@ -35,7 +37,7 @@ var Viewer = React.createClass({
           </div>
           <InformationButton togglePopup={this.toggleInfoPopup}/>
         </div>
-        { this.state.showEmbedPopup ? <EmbedPopup id={this.props.id} close={this.togglePopup}/> : null }
+        { this.state.showEmbedPopup ? <EmbedPopup id={this.props.id} close={this.toggleEmbedPopup}/> : null }
         { this.state.showInfoPopup ? <InformationPopup id={this.props.id} close={this.toggleInfoPopup}/> : null }
       </div>
     )

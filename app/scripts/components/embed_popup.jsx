@@ -1,9 +1,6 @@
 var IIIFImage = require('./iiif_image.jsx');
 
 var EmbedPopup = React.createClass({
-  componentDidMount: function() {
-    var client = new ZeroClipboard(document.getElementById("button-copy"));
-  },
   render: function() {
     var embedLink = "http://media.embedr.eu/" + this.props.id;
     var embedText = "<iframe src=\"" + embedLink + "\"></iframe>"
@@ -19,7 +16,7 @@ var EmbedPopup = React.createClass({
         <div>
           <label>Show preview</label>
         </div>
-        <IIIFImage server="http://iiifhawk.klokantech.com" id={this.props.id} size="400,150" />
+        <IIIFImage server="http://iiif.embedr.eu" id={this.props.id} size="400,150" />
       </div>
     )
   }
