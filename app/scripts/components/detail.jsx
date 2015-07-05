@@ -16,7 +16,9 @@ var Detail = React.createClass({
   render: function() {
     return (
       <div className="detail">
-        <OpenSeaDragon id={this.props.params.id}/>
+        <div id="detail__image">
+          <iframe src="http://127.0.0.1:8000/Clark.html"></iframe>
+        </div>
         { this.state.showResults ? <ResultList results={this.props.results}/> : null }
         <DetailHeader query={this.props.searchQuery} search={this.search} license={this.props.license} setLicense={this.props.setLicense} />
       </div>
