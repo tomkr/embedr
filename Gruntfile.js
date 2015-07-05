@@ -440,6 +440,10 @@ module.exports = function (grunt) {
         cwd: '<%= config.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
+      },
+      viewer: {
+        src: 'build/scripts/vendor.js',
+        dest: 'viewer/scripts/vendor.js'
       }
     },
 
@@ -479,7 +483,7 @@ module.exports = function (grunt) {
             'bower_components/openseadragon/built-openseadragon/openseadragon/openseadragon.min.js',
             'bower_components/zeroclipboard/dist/ZeroClipboard.min.js'
           ],
-          dest: 'build/scripts/vendor.js',
+          dest: 'build/scripts/vendor.js'
         },{
           src: 'bower_components/zeroclipboard/dist/ZeroClipboard.swf',
           dest: 'build/scripts/ZeroClipboard.swf'
