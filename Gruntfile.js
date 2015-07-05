@@ -37,7 +37,7 @@ module.exports = function (grunt) {
       app:          {
         files: {
           'build/scripts/main.js': 'app/scripts/main.js',
-          'build/scripts/viewer.js': 'app/scripts/viewer.js'
+          'viewer/scripts/viewer.js': 'app/scripts/viewer.js'
         },
         options: {
           external: ['react-router'],
