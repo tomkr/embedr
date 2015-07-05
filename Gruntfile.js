@@ -86,7 +86,7 @@ module.exports = function (grunt) {
         tasks: ['browserify:app']
       },
       wordpress: {
-        files: ['app/**/*', 'wordpress/**/*'],
+        files: ['wordpress/**/*'],
         tasks: ['build']
       },
       assets: {
