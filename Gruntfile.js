@@ -442,8 +442,25 @@ module.exports = function (grunt) {
         src: '{,*/}*.css'
       },
       viewer: {
-        src: 'build/scripts/vendor.js',
-        dest: 'viewer/scripts/vendor.js'
+        files: [{
+          expand: true,
+          cwd: '.tmp/styles',
+          src: 'viewer.css*',
+          dest: 'viewer/styles'
+        }, {
+          expand: true,
+          cwd: 'app',
+          src: 'images/**',
+          dest: 'viewer'
+        }, {
+          expand: true,
+          cwd: 'app',
+          src: 'styles/fonts/**',
+          dest: 'viewer'
+        }, {
+          src: 'build/scripts/vendor.js',
+          dest: 'viewer/scripts/vendor.js'
+        }]
       }
     },
 
