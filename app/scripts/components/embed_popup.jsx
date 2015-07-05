@@ -2,7 +2,7 @@ var IIIFImage = require('./iiif_image.jsx');
 
 var EmbedPopup = React.createClass({
   render: function() {
-    var embedLink = "//media.embedr.eu/" + this.props.id;
+    var embedLink = "http://media.embedr.eu/" + this.props.id;
     var embedText = "<iframe src=\"" + embedLink + "\"></iframe>"
     return (
       <div className="embed__popup">
