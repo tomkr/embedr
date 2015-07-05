@@ -41,3 +41,5 @@ var Viewer = React.createClass({
     )
   }
 });
+
+module.exports = Viewer;

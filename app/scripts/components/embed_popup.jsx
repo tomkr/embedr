@@ -1,6 +1,9 @@
 var IIIFImage = require('./iiif_image.jsx');
 
 var EmbedPopup = React.createClass({
+  componentDidMount: function() {
+    var client = new ZeroClipboard(document.getElementById("button-copy"));
+  },
   render: function() {
     var embedLink = "http://media.embedr.eu/" + this.props.id;
     var embedText = "<iframe src=\"" + embedLink + "\"></iframe>"
@@ -9,10 +12,10 @@ var EmbedPopup = React.createClass({
         <div className="close_button" onClick={this.props.close}>X</div>
         <strong>Embed this image</strong>
         <p>Copy the HTML code below to your website or blog. <a href="#">Click here for more information.</a></p>
-        <textarea className="embed__box" rows="6">
+        <textarea className="embed__box" rows="6" id="text-copy">
           {embedText}
         </textarea>
-        <a className="button__copy">Copy</a>
+        <a href="#" className="button__copy" id="button-copy" data-clipboard-target="text-copy">Copy</a>
         <div>
           <label>Show preview</label>
         </div>
