@@ -22,7 +22,7 @@ var Viewer = React.createClass({
     return (
       <div className="viewer">
         <div className="viewer__toolbar">
-          <EmbedButton togglePopup={this.togglePopup}/>
+          <EmbedButton togglePopup={this.toggleEmbedPopup}/>
           <div className="button__zoom">
             <a id="zoom-in-button" href="#">
               <img src="/images/zoom-in.png" />
@@ -35,7 +35,7 @@ var Viewer = React.createClass({
           </div>
           <InformationButton togglePopup={this.toggleInfoPopup}/>
         </div>
-        { this.state.showPopup ? <EmbedPopup id={this.props.id} close={this.togglePopup}/> : null }
+        { this.state.showEmbedPopup ? <EmbedPopup id={this.props.id} close={this.togglePopup}/> : null }
         { this.state.showInfoPopup ? <InformationPopup id={this.props.id} close={this.toggleInfoPopup}/> : null }
       </div>
     )
