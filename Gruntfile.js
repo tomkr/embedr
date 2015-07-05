@@ -497,13 +497,12 @@ module.exports = function (grunt) {
             'bower_components/jquery/dist/jquery.js',
             'bower_components/react/react.js',
             'bower_components/react-router/build/umd/ReactRouter.js',
-            'bower_components/openseadragon/built-openseadragon/openseadragon/openseadragon.min.js',
-            'bower_components/zeroclipboard/dist/ZeroClipboard.min.js'
+            // 'bower_components/zeroclipboard/dist/ZeroClipboard.min.js'
           ],
           dest: 'build/scripts/vendor.js'
-        },{
-          src: 'bower_components/zeroclipboard/dist/ZeroClipboard.swf',
-          dest: 'build/scripts/ZeroClipboard.swf'
+        // },{
+        //   src: 'bower_components/zeroclipboard/dist/ZeroClipboard.swf',
+        //   dest: 'build/scripts/ZeroClipboard.swf'
         }]
       }
     },
