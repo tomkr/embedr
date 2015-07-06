@@ -6,10 +6,8 @@ var executeQuery = function (queryOptions, callback) {
   var query = queryOptions.query;
   var license = queryOptions.license;
   var fullQuery = query;
-  if (license !== 'none') {
-    var licensesQuery = licenses[license].join(' OR ');
-    fullQuery = fullQuery + ' AND (' + licensesQuery +')';
-  }
+  var licensesQuery = licenses[license].join(' OR ');
+  fullQuery = fullQuery + ' AND (' + licensesQuery +')';
   $.getJSON('http://embedr.eu/search/?query='+encodeURIComponent(fullQuery), function(data) {
     callback(data);
   });
@@ -20,7 +18,7 @@ var SearchMixin = {
     return {
       searchQuery: '',
       results: [],
-      license: 'none'
+      license: 'freely'
     };
   },
   setLicense: function(license) {

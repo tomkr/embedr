@@ -43,7 +43,6 @@ var AdvancedSearch = React.createClass({
       <div className="search__advanced__box">
         <CloseButton onClick={this.props.close} />
         <ul>
-          <AdvancedOption setLicense={this.props.setLicense} value="none" checked={this.props.license == 'none'}>no filter</AdvancedOption>
           <AdvancedOption setLicense={this.props.setLicense} checked={this.props.license == 'freely'} value="freely">freely reusable</AdvancedOption>
           <AdvancedOption setLicense={this.props.setLicense} checked={this.props.license == 'non-commercial'} value="non-commercial">non commercial use only</AdvancedOption>
         </ul>
