@@ -49,37 +49,15 @@ module.exports = function (grunt) {
     watch: {
       bower: {
         files: ['bower.json'],
-        tasks: ['wiredep']
-      },
-      coffee: {
-        files: ['<%= config.app %>/scripts/{,*/}*.{coffee,litcoffee,coffee.md}'],
-        tasks: ['coffee:dist']
-      },
-      coffeeTest: {
-        files: ['test/spec/{,*/}*.{coffee,litcoffee,coffee.md}'],
-        tasks: ['coffee:test', 'test:watch']
-      },
-      gruntfile: {
-        files: ['Gruntfile.js']
+        tasks: ['concat:bower', 'copy:viewerjs']
       },
       sass: {
         files: ['<%= config.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['sass:server', 'autoprefixer']
+        tasks: ['sass', 'copy:build', 'copy:viewer']
       },
       styles: {
         files: ['<%= config.app %>/styles/{,*/}*.css'],
         tasks: ['newer:copy:styles', 'autoprefixer']
-      },
-      livereload: {
-        options: {
-          livereload: '<%= connect.options.livereload %>'
-        },
-        files: [
-          '<%= config.app %>/{,*/}*.html',
-          '.tmp/styles/{,*/}*.css',
-          '.tmp/scripts/{,*/}*.js',
-          '<%= config.app %>/images/{,*/}*'
-        ]
       },
       react: {
         files: ['<%= config.app %>/scripts/{,*/}*.jsx'],
@@ -89,51 +67,9 @@ module.exports = function (grunt) {
         files: ['wordpress/**/*'],
         tasks: ['build']
       },
-      assets: {
-        files: ['app/**/*'],
-        tasks: ['buildAssets']
-      }
-    },
-
-    // The actual grunt server settings
-    connect: {
-      options: {
-        port: 9000,
-        open: true,
-        livereload: 35729,
-        // Change this to '0.0.0.0' to access the server from outside
-        hostname: 'localhost'
-      },
-      livereload: {
-        options: {
-          middleware: function(connect) {
-            return [
-              connect.static('.tmp'),
-              connect().use('/bower_components', connect.static('./bower_components')),
-              connect.static(config.app)
-            ];
-          }
-        }
-      },
-      test: {
-        options: {
-          open: false,
-          port: 9001,
-          middleware: function(connect) {
-            return [
-              connect.static('.tmp'),
-              connect.static('test'),
-              connect().use('/bower_components', connect.static('./bower_components')),
-              connect.static(config.app)
-            ];
-          }
-        }
-      },
-      dist: {
-        options: {
-          base: '<%= config.dist %>',
-          livereload: false
-        }
+      images: {
+        files: ['app/images/*'],
+        tasks: ['copy:images']
       }
     },
 
@@ -187,41 +123,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // Compiles CoffeeScript to JavaScript
-    coffee: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= config.app %>/scripts',
-          src: '{,*/}*.{coffee,litcoffee,coffee.md}',
-          dest: '.tmp/scripts',
-          ext: '.js'
-        }]
-      },
-      test: {
-        files: [{
-          expand: true,
-          cwd: 'test/spec',
-          src: '{,*/}*.{coffee,litcoffee,coffee.md}',
-          dest: '.tmp/spec',
-          ext: '.js'
-        }]
-      }
-    },
-
-    // Compiles jsx to JavaScript
-    react: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= config.app %>/scripts',
-          src: '{,*/}*.jsx',
-          dest: '.tmp/scripts',
-          ext: '.js'
-        }]
-      }
-    },
-
     // Compiles Sass to CSS and generates necessary files if requested
     sass: {
       options: {
@@ -244,34 +145,6 @@ module.exports = function (grunt) {
           dest: '.tmp/styles',
           ext: '.css'
         }]
-      }
-    },
-
-    // Add vendor prefixed styles
-    autoprefixer: {
-      options: {
-        browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1']
-      },
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '.tmp/styles/',
-          src: '{,*/}*.css',
-          dest: '.tmp/styles/'
-        }]
-      }
-    },
-
-    // Automatically inject Bower components into the HTML file
-    wiredep: {
-      app: {
-        ignorePath: /^\/|\.\.\//,
-        src: ['<%= config.app %>/index.html'],
-        exclude: ['bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js']
-      },
-      sass: {
-        src: ['<%= config.app %>/styles/{,*/}*.{scss,sass}'],
-        ignorePath: /(\.\.\/){1,2}bower_components\//
       }
     },
 
@@ -313,77 +186,6 @@ module.exports = function (grunt) {
       css: ['<%= config.dist %>/styles/{,*/}*.css']
     },
 
-    // The following *-min tasks produce minified files in the dist folder
-    imagemin: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= config.app %>/images',
-          src: '{,*/}*.{gif,jpeg,jpg,png}',
-          dest: '<%= config.dist %>/images'
-        }]
-      }
-    },
-
-    svgmin: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= config.app %>/images',
-          src: '{,*/}*.svg',
-          dest: '<%= config.dist %>/images'
-        }]
-      }
-    },
-
-    htmlmin: {
-      dist: {
-        options: {
-          collapseBooleanAttributes: true,
-          collapseWhitespace: true,
-          conservativeCollapse: true,
-          removeAttributeQuotes: true,
-          removeCommentsFromCDATA: true,
-          removeEmptyAttributes: true,
-          removeOptionalTags: true,
-          removeRedundantAttributes: true,
-          useShortDoctype: true
-        },
-        files: [{
-          expand: true,
-          cwd: '<%= config.dist %>',
-          src: '{,*/}*.html',
-          dest: '<%= config.dist %>'
-        }]
-      }
-    },
-
-    // By default, your `index.html`'s <!-- Usemin block --> will take care
-    // of minification. These next options are pre-configured if you do not
-    // wish to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       '<%= config.dist %>/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css',
-    //         '<%= config.app %>/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   }
-    // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= config.dist %>/scripts/scripts.js': [
-    //         '<%= config.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
-    // concat: {
-    //   dist: {}
-    // },
-
     // Copies remaining files to places other tasks can use
     copy: {
       wordpress: {
@@ -411,36 +213,6 @@ module.exports = function (grunt) {
           dest: 'build'
         }]
       },
-      dist: {
-        files: [{
-          expand: true,
-          dot: true,
-          cwd: '<%= config.app %>',
-          dest: '<%= config.dist %>',
-          src: [
-            '*.{ico,png,txt}',
-            'images/{,*/}*.webp',
-            '{,*/}*.html',
-            'styles/fonts/{,*/}*.*'
-          ]
-        }, {
-          src: 'node_modules/apache-server-configs/dist/.htaccess',
-          dest: '<%= config.dist %>/.htaccess'
-        }, {
-          expand: true,
-          dot: true,
-          cwd: '.',
-          src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
-          dest: '<%= config.dist %>'
-        }]
-      },
-      styles: {
-        expand: true,
-        dot: true,
-        cwd: '<%= config.app %>/styles',
-        dest: '.tmp/styles/',
-        src: '{,*/}*.css'
-      },
       viewer: {
         files: [{
           expand: true,
@@ -450,17 +222,24 @@ module.exports = function (grunt) {
         }, {
           expand: true,
           cwd: 'app',
-          src: 'images/**',
+          src: [
+            'images/close.png',
+            'images/embed.png',
+            'images/metadata.png',
+            'images/zoom-in.png',
+            'images/zoom-out.png'
+          ],
           dest: 'viewer'
         }, {
           expand: true,
           cwd: 'app',
           src: 'styles/fonts/**',
           dest: 'viewer'
-        }, {
-          src: 'build/scripts/vendor.js',
-          dest: 'viewer/scripts/vendor.js'
         }]
+      },
+      viewerjs: {
+        src: 'build/scripts/vendor.js',
+        dest: 'viewer/scripts/vendor.js'
       }
     },
 
@@ -469,20 +248,13 @@ module.exports = function (grunt) {
       server: [
         'sass:server',
         'coffee:dist',
-        'react:dist',
-        'copy:styles'
+        'react:dist'
       ],
       test: [
-        'coffee',
-        'copy:styles'
+        'coffee'
       ],
       dist: [
-        'coffee',
-        'react',
-        'sass',
-        'copy:styles',
-        'imagemin',
-        'svgmin'
+        'sass'
       ]
     },
 
@@ -491,7 +263,7 @@ module.exports = function (grunt) {
       options: {
         separator: ';\n',
       },
-      build: {
+      bower: {
         files: [{
           src: [
             'bower_components/jquery/dist/jquery.js',
@@ -563,20 +335,12 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('build', [
-    // 'clean:dist',
     'clean:build',
-    // 'wiredep',
-    // 'useminPrepare',
-    'concurrent:dist',
-    // 'autoprefixer',
-    // 'cssmin',
-    // 'uglify',
     'copy:wordpress',
-    'concat:build',
-    'copy:build',
-    // 'rev',
-    // 'usemin',
-    // 'htmlmin'
+    'sass',
+    'concat:bower',
+    'browserify:app',
+    'copy:build'
   ]);
 
   grunt.registerTask('buildAssets', [
@@ -594,6 +358,14 @@ module.exports = function (grunt) {
     // 'rev',
     // 'usemin',
     // 'htmlmin'
+  ]);
+
+  grunt.registerTask('buildViewer', [
+    'browserify:app',
+    'sass',
+    'concat:bower',
+    'copy:viewerjs',
+    'copy:viewer'
   ]);
 
   grunt.registerTask('default', [
