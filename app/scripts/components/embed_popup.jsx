@@ -1,3 +1,4 @@
+var CloseButton = require('./close_button.jsx')
 var IIIFImage = require('./iiif_image.jsx');
 
 var EmbedPopup = React.createClass({
@@ -6,7 +7,7 @@ var EmbedPopup = React.createClass({
     var embedText = "<iframe src=\"" + embedLink + "\"></iframe>"
     return (
       <div className="embed__popup">
-        <div className="button__close" onClick={this.props.close}>X</div>
+        <CloseButton onClick={this.props.close} />
         <strong>Embed this image</strong>
         <p>Copy the HTML code below to your website or blog. <a href="#">Click here for more information.</a></p>
         <textarea className="embed__box" rows="6" id="text-copy">
