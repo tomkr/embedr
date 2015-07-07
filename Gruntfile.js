@@ -45,6 +45,17 @@ module.exports = function (grunt) {
       }
     },
 
+    replace: {
+      viewerjs: {
+        src: 'viewer/scripts/viewer.js',
+        overwrite: true,
+        replacements: [{
+          from: /\/images\//g,
+          to: "/static/img/"
+        }]
+      }
+    },
+
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       bower: {
