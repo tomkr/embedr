@@ -21,11 +21,13 @@ var HomeHeader = React.createClass({
           <h1 className="header__title__name"><a href="/">embedr</a></h1>
           <p className="header__title__text">High quality cultural heritage image embedding</p>
         </div>
-        <ul className="header__navigation">
-          <li><a href="/about">about</a></li>
-          <li><a href="#">contact</a></li>
-        </ul>
-        <SearchBar setLicense={this.props.setLicense} license={this.props.license} search={this.props.search} query={this.props.query} />
+        <div className="header__search">
+          <ul className="header__navigation">
+            <li><a href="/about">about</a></li>
+            <li><a href="#">contact</a></li>
+          </ul>
+          <SearchBar setLicense={this.props.setLicense} license={this.props.license} search={this.props.search} query={this.props.query} />
+        </div>
       </div>
     )
   }

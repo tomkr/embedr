@@ -59,7 +59,7 @@ var AdvancedOption = React.createClass({
     var license = "license"+this.props.value;
     return (
       <li>
-        <label>
+        <label className="search__advanced__option">
           <input onChange={this.handleChange} type="radio" name="license" id={license} value={this.props.value} checked={this.props.checked}/>
           {this.props.children}
         </label>
