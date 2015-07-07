@@ -5,6 +5,7 @@
   text-align: center;
   color: white;
   font-weight: bold;
+  text-decoration: none;
   a {
     color: white;
     font-weight: bold;
@@ -45,11 +46,17 @@
 
 .button__copy {
   @extend .button;
-  padding: 4px;
+  padding: {
+    top:  4px;
+    bottom:  4px;
+    left: 8px;
+    right: 8px;
+  }
 }
 
 .button__close {
   position: absolute;
   right: 0;
   top: 0;
+  line-height: 0;
 }
