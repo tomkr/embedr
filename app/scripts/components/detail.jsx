@@ -6,18 +6,26 @@ var InformationButton = require('./information_button.jsx')
 var InformationPopup = require('./information_popup.jsx')
 
 var Detail = React.createClass({
+  componentWillReceiveProps: function(nextProps) {
+    if (nextProps.params.id !== this.props.params.id) {
+      this.setState({showResults: false});
+    }
+},
   getInitialState: function() {
-    return {showResults: false};
+    return {
+      showResults: false
+    };
   },
   search: function(query) {
     this.props.search(query);
     this.setState({showResults: true})
   },
   render: function() {
+    var iframe = "http://media.embedr.eu/"+this.props.params.id;
     return (
       <div className="detail">
         <div id="detail__image">
-          <iframe src="http://127.0.0.1:8000/Clark.html"></iframe>
+          <iframe src={iframe}></iframe>
         </div>
         { this.state.showResults ? <ResultList results={this.props.results}/> : null }
         <DetailHeader query={this.props.searchQuery} search={this.search} license={this.props.license} setLicense={this.props.setLicense} />
