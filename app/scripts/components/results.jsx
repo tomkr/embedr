@@ -15,7 +15,9 @@ var ResultList = React.createClass({
       <div className="results__wrapper">
         <div className="results__overlay"></div>
         <div className="results">
-          {resultNodes}
+          <div className="results__collection">
+            {resultNodes}
+          </div>
         </div>
       </div>
     )
@@ -50,7 +52,7 @@ var Result = React.createClass({
           <EmbedButton togglePopup={this.togglePopup}/>
         </div>
         <Link to="detail" params={{id: this.props.result.fields.id}}>
-          <IIIFImage server="http://iiifhawk.klokantech.com" id={this.props.result.fields.id} size="150,150" />
+          <IIIFImage server="http://iiifhawk.klokantech.com" id={this.props.result.fields.id} size="204,204" />
         </Link>
         <p className="result__description">{this.props.result.fields.title[0]}</p>
       </div>

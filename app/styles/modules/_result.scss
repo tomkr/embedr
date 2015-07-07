@@ -1,11 +1,18 @@
 .results {
-  width: 990px;
+  width: 90%;
   margin: auto;
   position: absolute;
-  top: 250px;
+  top: 187px+82px;
+  left: 50px;
+  right: 50px;
   left: 0;
   right: 0;
   z-index: 20;
+}
+
+.results__collection {
+  width: 100%;
+  margin: auto;
 }
 
 .results__overlay {
@@ -14,21 +21,22 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0,0,0,0.8);
   z-index: 10;
 }
 
 .result {
   margin: 5px;
-  width: 150px;
+  width: 204px;
   float: left;
   position: relative;
 }
 
 .result__description {
-  font-size: 14px;
+  font-family: Ubuntu;
+  font-size: 12;
   color: white;
-  line-height: 20px;
-  height: 40px;
+  line-height: 24px;
+  height: 30px;
   overflow: hidden;
 }
