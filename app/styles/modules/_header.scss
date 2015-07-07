@@ -54,7 +54,7 @@
 .detail {
   .header {
     background-color: black;
-    height: 50px;
+    height: 41px;
     top: 0;
     left: 0;
     width: 100%;
@@ -63,13 +63,14 @@
     margin: 0;
   }
   .header__title__name {
-    font-size: 30px;
+    font-size: 27px;
     padding-left: 20px;
-    line-height: 50px;
+    line-height: 41px;
   }
   .header__navigation {
     margin: 0;
-    line-height: 50px;
+    font-size: 18px;
+    line-height: 41px;
     margin-left: 200px;
   }
 }

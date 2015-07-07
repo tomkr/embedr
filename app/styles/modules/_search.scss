@@ -67,26 +67,33 @@
 
 .detail {
   .search_box {
-    margin: 0;
-    margin-left: 100px;
+    padding: 0;
+    margin-left: 550px;
     width: 620px;
     top: 0;
   }
   .search_bar {
+    padding-top: 5px;
+    padding-bottom: 4px;
     line-height: 21px;
     font-size: 16px;
-    margin-top: 4px;
+    margin-top: 3px;
   }
   .search__button {
     height: 40px;
     width: 40px;
     img {
       margin: 0;
+      padding-left: 8px;
+      margin-top: 5px;
+      width: 28px;
+      height: 28px;
     }
   }
   .search__advanced {
     float: right;
     color: white;
-    line-height: 50px;
+    font-size: 13px;
+    line-height: 41px;
   }
 }

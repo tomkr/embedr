@@ -42,7 +42,7 @@ var DetailHeader = React.createClass({
           <h1 className="header__title__name"><a href="/">embedr</a></h1>
         </div>
         <ul className="header__navigation">
-          <li><a href="#">about</a></li>
+          <li><a href="/about">about</a></li>
           <li><a href="#">contact</a></li>
         </ul>
         <SearchBar query={this.props.query} search={this.props.search} />
