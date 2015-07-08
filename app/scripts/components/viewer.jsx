@@ -1,7 +1,6 @@
 var EmbedButton = require('./embed_button.jsx')
 var EmbedPopup = require('./embed_popup.jsx')
 var InformationButton = require('./information_button.jsx')
-var InformationPopup = require('./information_popup.jsx')
 
 var Viewer = React.createClass({
   getInitialState: function() {
@@ -13,12 +12,6 @@ var Viewer = React.createClass({
   toggleEmbedPopup: function(e) {
     e.preventDefault();
     this.setState({showEmbedPopup: !this.state.showEmbedPopup});
-  },
-  toggleInfoPopup: function(e) {
-    e.preventDefault();
-    // Leaving this is in case we do switch to a React popup.
-    // this.setState({showInfoPopup: !this.state.showInfoPopup});
-    $('#title').toggle();
   },
   render: function() {
     return (
@@ -35,10 +28,8 @@ var Viewer = React.createClass({
               <img src="/images/zoom-out.png" />
             </a>
           </div>
-          <InformationButton togglePopup={this.toggleInfoPopup}/>
         </div>
         { this.state.showEmbedPopup ? <EmbedPopup id={this.props.id} close={this.toggleEmbedPopup}/> : null }
-        { this.state.showInfoPopup ? <InformationPopup id={this.props.id} close={this.toggleInfoPopup}/> : null }
       </div>
     )
   }
