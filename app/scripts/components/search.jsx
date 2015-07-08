@@ -19,7 +19,7 @@ var HomeHeader = React.createClass({
       <div className="header">
         <div className="header__title">
           <h1 className="header__title__name"><a href="/">embedr</a></h1>
-          <p className="header__title__text">High quality cultural heritage image embedding</p>
+          <p className="header__title__text">Image embedding done right</p>
         </div>
         <div className="header__search">
           <ul className="header__navigation">
