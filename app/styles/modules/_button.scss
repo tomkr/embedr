@@ -46,9 +46,9 @@
 
 .button__copy {
   @extend .button;
+  display: inline-block;
+  margin-top: 6px;
   padding: {
-    top:  4px;
-    bottom:  4px;
     left: 8px;
     right: 8px;
   }
