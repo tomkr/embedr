@@ -376,7 +376,8 @@ module.exports = function (grunt) {
     'sass',
     'concat:bower',
     'copy:viewerjs',
-    'copy:viewer'
+    'copy:viewer',
+    'replace:viewerjs'
   ]);
 
   grunt.registerTask('default', [
