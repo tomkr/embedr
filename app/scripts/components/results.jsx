@@ -47,7 +47,7 @@ var Result = React.createClass({
   render: function() {
     return (
       <div className="result" onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}>
-        { this.state.showPopup ? <EmbedPopup id={this.props.result.fields.id} close={this.togglePopup} /> : null }
+        { this.state.showPopup ? <EmbedPopup result={this.props.result.fields} close={this.togglePopup} /> : null }
         <div className={this.state.buttonClass}>
           <EmbedButton togglePopup={this.togglePopup}/>
         </div>
