@@ -29,7 +29,7 @@ var Viewer = React.createClass({
             </a>
           </div>
         </div>
-        { this.state.showEmbedPopup ? <EmbedPopup id={this.props.id} close={this.toggleEmbedPopup}/> : null }
+        { this.state.showEmbedPopup ? <EmbedPopup width={this.props.width} height={this.props.height} id={this.props.id} close={this.toggleEmbedPopup}/> : null }
       </div>
     )
   }
