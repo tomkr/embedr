@@ -234,9 +234,11 @@ module.exports = function (grunt) {
           expand: true,
           cwd: 'app',
           src: [
+            'images/cc.png',
             'images/close.png',
             'images/embed.png',
             'images/metadata.png',
+            'images/pd.png',
             'images/zoom-in.png',
             'images/zoom-out.png'
           ],
