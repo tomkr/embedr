@@ -3,10 +3,20 @@ var EmbedPopup = require('./embed_popup.jsx')
 var InformationButton = require('./information_button.jsx')
 
 var Viewer = React.createClass({
+  componentDidMount: function() {
+    var apiUrl = "http://iiif.embedr.eu/"+this.props.id+"/info.json";
+    $.getJSON(apiUrl, function(res) {
+      this.setState({
+        height: res.height,
+        width: res.width
+      });
+    }.bind(this));
+  },
   getInitialState: function() {
     return {
       showEmbedPopup: false,
-      showInfoPopup: false
+      height: 100,
+      width: 100
     };
   },
   toggleEmbedPopup: function(e) {
@@ -29,7 +39,7 @@ var Viewer = React.createClass({
             </a>
           </div>
         </div>
-        { this.state.showEmbedPopup ? <EmbedPopup width={this.props.width} height={this.props.height} id={this.props.id} close={this.toggleEmbedPopup}/> : null }
+        { this.state.showEmbedPopup ? <EmbedPopup width={this.state.width} height={this.state.height} id={this.props.id} close={this.toggleEmbedPopup}/> : null }
       </div>
     )
   }
