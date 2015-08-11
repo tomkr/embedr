@@ -1,3 +1,4 @@
+var SearchMixin = require('./search_mixin.js');
 var ResultList = require('./results.jsx');
 var SearchBar = require('./search_bar.jsx');
 var EmbedButton = require('./embed_button.jsx');
@@ -5,6 +6,7 @@ var EmbedPopup = require('./embed_popup.jsx');
 var InformationButton = require('./information_button.jsx')
 
 var Detail = React.createClass({
+  mixins: [SearchMixin],
   componentWillReceiveProps: function(nextProps) {
     if (nextProps.params.id !== this.props.params.id) {
       this.setState({showResults: false});
@@ -15,19 +17,19 @@ var Detail = React.createClass({
       showResults: false
     };
   },
-  search: function(query) {
-    this.props.search(query);
-    this.setState({showResults: true})
+  doSearch: function(query) {
+    this.search(query);
+    this.setState({showResults: true});
   },
   render: function() {
-    var iframe = "http://media.embedr.eu/"+this.props.params.id;
+    var iframe = "http://media.embedr.eu/"+"moma_45309";
     return (
       <div className="detail">
         <div id="detail__image">
           <iframe src={iframe}></iframe>
         </div>
-        { this.state.showResults ? <ResultList results={this.props.results}/> : null }
-        <DetailHeader query={this.props.searchQuery} search={this.search} license={this.props.license} setLicense={this.props.setLicense} />
+        { this.state.showResults ? <ResultList results={this.state.results}/> : null }
+        <DetailHeader query={this.props.searchQuery} search={this.doSearch} license={this.props.license} setLicense={this.props.setLicense} />
       </div>
     )
   }

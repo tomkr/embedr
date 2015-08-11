@@ -37,6 +37,7 @@ module.exports = function (grunt) {
       app:          {
         files: {
           'build/scripts/main.js': 'app/scripts/main.js',
+          'build/scripts/detail.js': 'app/scripts/detail.js',
           'viewer/scripts/viewer.js': 'app/scripts/viewer.js'
         },
         options: {

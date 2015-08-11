@@ -45,15 +45,16 @@ var Result = React.createClass({
     this.setState({showPopup: !this.state.showPopup});
   },
   render: function() {
+    var link = "/"+this.props.result.fields.id;
     return (
       <div className="result" onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}>
         { this.state.showPopup ? <EmbedPopup result={this.props.result.fields} close={this.togglePopup} /> : null }
         <div className={this.state.buttonClass}>
           <EmbedButton togglePopup={this.togglePopup}/>
         </div>
-        <Link to="detail" params={{id: this.props.result.fields.id}}>
+        <a href={link}>
           <IIIFImage server="http://iiifhawk.klokantech.com" id={this.props.result.fields.id} size="204,204" />
-        </Link>
+        </a>
         <p className="result__description">{this.props.result.fields.title[0]}</p>
       </div>
     );

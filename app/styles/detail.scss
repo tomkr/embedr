@@ -1,0 +1,39 @@
+@import "modules/_fonts";
+@import "modules/_button";
+@import "modules/_content";
+@import "modules/_detail";
+@import "modules/_embed";
+@import "modules/_header";
+@import "modules/_result";
+@import "modules/_search";
+
+html{
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Raleway';
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: underline;
+  color: black;
+}
+
+iframe {
+  border: none;
+}
+
+.is_hidden {
+  display: none;
+}
+
+.is_shown {
+  display: block;
+}
