@@ -357,17 +357,16 @@ require get_template_directory() . '/inc/customizer.php';
 /**
  * Allow routing to a detail page.
  */
-add_action( 'init', 'iiif_detail_rewrites_init' );
 function iiif_detail_rewrites_init(){
   add_rewrite_rule(
-      '(.+?)/?$',
+      '([^/]*)/?$',
       'index.php?pagename=viewer&image_id=$matches[1]',
       'top' );
 }
+add_action( 'init', 'iiif_detail_rewrites_init' );
 
-add_filter( 'query_vars', 'iiif_detail_query_vars' );
 function iiif_detail_query_vars( $query_vars ){
     $query_vars[] = 'image_id';
     return $query_vars;
 }
-
+add_filter( 'query_vars', 'iiif_detail_query_vars' );

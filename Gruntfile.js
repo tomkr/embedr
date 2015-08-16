@@ -72,7 +72,7 @@ module.exports = function (grunt) {
         tasks: ['newer:copy:styles', 'autoprefixer']
       },
       react: {
-        files: ['<%= config.app %>/scripts/{,*/}*.jsx'],
+        files: ['<%= config.app %>/scripts/{,*/}*.jsx','<%= config.app %>/scripts/*.js'],
         tasks: ['browserify:app']
       },
       wordpress: {

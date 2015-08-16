@@ -28,7 +28,11 @@
   <body>
     <div id="detail"></div>
     <script src="/scripts/vendor.js"></script>
+    <script>
+      window.imageId = '<?php echo(get_query_var( "image_id", "" )) ?>';
+    </script>
     <script src="/scripts/detail.js"></script>
+
     <?php wp_footer(); ?>
   </body>
 </html>
