@@ -1,7 +1,6 @@
 var EmbedButton = require('./embed_button.jsx');
 var EmbedPopup = require('./embed_popup.jsx');
 var IIIFImage = require('./iiif_image.jsx');
-var Link = ReactRouter.Link;
 
 var ResultList = React.createClass({
   render: function() {
