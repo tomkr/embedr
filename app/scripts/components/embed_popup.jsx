@@ -23,9 +23,6 @@ var EmbedPopup = React.createClass({
         <textarea className="embed__box" rows="6" id="text-copy">
           {embedText}
         </textarea>
-        <textarea className="embed__box" rows="3" id="text-copy">
-          {embedLink}
-        </textarea>
         <a href="#" className="button__copy" id="button-copy" data-clipboard-target="text-copy">copy</a>
       </div>
     )
