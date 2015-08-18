@@ -39,9 +39,6 @@ module.exports = function (grunt) {
           'build/scripts/main.js': 'app/scripts/main.js',
           'build/scripts/detail.js': 'app/scripts/detail.js',
           'viewer/scripts/viewer.js': 'app/scripts/viewer.js'
-        },
-        options: {
-          external: ['react-router'],
         }
       }
     },
@@ -282,7 +279,6 @@ module.exports = function (grunt) {
           src: [
             'bower_components/jquery/dist/jquery.js',
             'bower_components/react/react.js',
-            'bower_components/react-router/build/umd/ReactRouter.js',
             // 'bower_components/zeroclipboard/dist/ZeroClipboard.min.js'
           ],
           dest: 'build/scripts/vendor.js'
