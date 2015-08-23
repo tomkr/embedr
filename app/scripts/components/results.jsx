@@ -1,16 +1,21 @@
 var EmbedButton = require('./embed_button.jsx');
 var EmbedPopup = require('./embed_popup.jsx');
 var IIIFImage = require('./iiif_image.jsx');
-var Link = ReactRouter.Link;
 
 var ResultList = React.createClass({
   render: function() {
-    if (this.props.results.length == 0) return null;
-    var resultNodes = this.props.results.map(function (result) {
-      return (
-        <Result key={result.id} result={result} />
-      );
-    }.bind(this));
+    var resultNodes;
+    if (this.props.results.length == 0) {
+      resultNodes = <p className="results__empty">No results could be found.</p>
+    }
+    else {
+      resultNodes = this.props.results.map(function (result) {
+        return (
+          <Result key={result.id} result={result} />
+        );
+      }.bind(this));
+    }
+
     return (
       <div className="results__wrapper">
         <div className="results__overlay"></div>

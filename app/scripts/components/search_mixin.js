@@ -18,7 +18,7 @@ var SearchMixin = {
   getInitialState: function() {
     return {
       searchQuery: '',
-      results: [],
+      results: null,
       license: 'freely'
     };
   },
