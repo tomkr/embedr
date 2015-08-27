@@ -1,6 +1,7 @@
 var EmbedButton = require('./embed_button.jsx')
 var EmbedPopup = require('./embed_popup.jsx')
 var RegionButton = require('./region_button.jsx')
+var RegionPopup = require('./region_popup.jsx')
 
 var Viewer = React.createClass({
   componentDidMount: function() {
@@ -15,13 +16,23 @@ var Viewer = React.createClass({
   getInitialState: function() {
     return {
       showEmbedPopup: false,
+      showRegionPopup: false,
       height: 100,
-      width: 100
+      width: 100,
+      region: 'full'
     };
   },
   toggleEmbedPopup: function(e) {
     e.preventDefault();
     this.setState({showEmbedPopup: !this.state.showEmbedPopup});
+  },
+  setRegion: function(region) {
+    this.setState({region: region});
+    this.setState({showRegionPopup: !this.state.showRegionPopup});
+  },
+  toggleRegionPopup: function(e) {
+    e.preventDefault();
+    this.setState({showRegionPopup: !this.state.showRegionPopup});
   },
   render: function() {
     return (
@@ -38,9 +49,10 @@ var Viewer = React.createClass({
               <img src="/images/zoom-out.png" />
             </a>
           </div>
-          <RegionButton togglePopup={null}/>
+          <RegionButton setRegion={this.setRegion}/>
         </div>
         { this.state.showEmbedPopup ? <EmbedPopup width={this.state.width} height={this.state.height} id={this.props.id} close={this.toggleEmbedPopup}/> : null }
+        { this.state.showRegionPopup ? <RegionPopup region={this.state.region} id={this.props.id} close={this.toggleRegionPopup}/> : null }
       </div>
     )
   }

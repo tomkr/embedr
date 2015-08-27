@@ -1,21 +1,20 @@
-var EmbedButton = React.createClass({
+var RegionButton = React.createClass({
   makeIIIF: function(rect) {
-    console.log(rect.x+','+rect.y+','+rect.width+','+rect.height);
-    boxDrawer.exitEditMode();
+    this.props.setRegion(rect.x+','+rect.y+','+rect.width+','+rect.height);
+    this.boxDrawer.exitEditMode();
+    document.body.style.cursor = "cursor";
   },
   startSelection: function() {
     var self = this;
+    if (!self.boxDrawer) {
+      self.boxDrawer = osdRegionRectTool({
+        osd: OpenSeadragon,
+        viewer: viewer,
+        onDrawFinish: function(rect) { self.makeIIIF(rect) }
+      });
+    }
     document.body.style.cursor = "crosshair";
-    var boxDrawer = osdRegionRectTool({
-      osd: OpenSeadragon,
-      viewer: viewer,
-      onDrawFinish: function(rect) { self.makeIIIF(rect) },
-      onDrawStart: function() { console.log('starting rectangle!') },
-      onModeEnter: function() { console.log('entering edit mode!') },
-      onModeExit: function() { console.log('exiting edit mode!') },
-      onDraw: function() { console.log('Drahwrin!') }
-    });
-    boxDrawer.enterEditMode();
+    this.boxDrawer.enterEditMode();
   },
   render: function() {
     return (
@@ -26,4 +25,4 @@ var EmbedButton = React.createClass({
   }
 });
 
-module.exports = EmbedButton;
+module.exports = RegionButton;
