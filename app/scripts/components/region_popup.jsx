@@ -4,8 +4,7 @@ var IIIFImage = require('./iiif_image.jsx');
 var RegionPopup = React.createClass({
   render: function() {
     var id = this.props.id ? this.props.id : this.props.result.id;
-    var embedLink = "http://media.embedr.eu/" + id;
-    var embedText = 'Test'
+    var embedText = "http://iiifhawk.klokantech.com/"+this.props.id+"/"+this.props.region+"/204,204/0/native.jpg";
     return (
       <div className="embed__popup">
         <CloseButton onClick={this.props.close} />
