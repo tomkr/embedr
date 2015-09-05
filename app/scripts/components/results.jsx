@@ -3,6 +3,17 @@ var EmbedPopup = require('./embed_popup.jsx');
 var IIIFImage = require('./iiif_image.jsx');
 
 var ResultList = React.createClass({
+  componentDidMount: function () {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  componentWillUnmount: function () {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
+  handleScroll: function () {
+    if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+      this.props.nextPage();
+    }
+  },
   render: function() {
     var resultNodes;
     if (this.props.results.length == 0) {
@@ -41,9 +52,6 @@ var Result = React.createClass({
   },
   mouseOut: function () {
     this.setState({buttonClass: 'is_hidden'});
-  },
-  click: function () {
-    this.props.select(this.props.id);
   },
   togglePopup: function(e) {
     e.preventDefault();

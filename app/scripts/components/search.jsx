@@ -8,8 +8,8 @@ var Search = React.createClass({
     var classes = "search";
     return (
       <div className="search">
-        { this.state.results ? <ResultList results={this.state.results}/> : null }
-        <HomeHeader setLicense={this.setLicense} license={this.state.license} search={this.search} query={this.state.searchQuery}/>
+        { this.state.results ? <ResultList results={this.state.results} nextPage={this.nextPage}/> : null }
+        <HomeHeader setLicense={this.setLicense} license={this.state.license} search={this.search} query={this.state.searchQuery} />
       </div>
     );
   }
