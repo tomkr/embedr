@@ -10,7 +10,7 @@ var ResultList = React.createClass({
     window.removeEventListener('scroll', this.handleScroll);
   },
   handleScroll: function () {
-    if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+    if(!this.props.loading && $(window).scrollTop() + $(window).height() > $(document).height() - 100) {
       this.props.nextPage();
     }
   },
@@ -34,6 +34,7 @@ var ResultList = React.createClass({
           <div className="results__collection">
             {resultNodes}
           </div>
+          { this.props.loading ? <div className="results__loading">Loading more images.</div> : null }
         </div>
       </div>
     )

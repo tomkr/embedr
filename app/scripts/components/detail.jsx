@@ -28,7 +28,7 @@ var Detail = React.createClass({
         <div id="detail__image">
           <iframe src={iframe}></iframe>
         </div>
-        { this.state.results ? <ResultList results={this.state.results}/> : null }
+        { this.state.results ? <ResultList results={this.state.results}  nextPage={this.nextPage} loading={this.state.loading}/> : null }
         <DetailHeader query={this.state.searchQuery} search={this.search} license={this.state.license} setLicense={this.setLicense} />
       </div>
     )

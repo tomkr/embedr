@@ -13,6 +13,7 @@
 .results__collection {
   width: 1080px;
   margin: auto;
+  overflow: auto;
 }
 
 .results__empty {
@@ -53,4 +54,11 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.results__loading {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  color: white;
+  text-align: center;
 }

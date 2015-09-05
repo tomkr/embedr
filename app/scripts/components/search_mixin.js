@@ -21,7 +21,8 @@ var SearchMixin = {
       results: null,
       license: 'freely',
       start: 0,
-      total: 0
+      total: 0,
+      loading: false
     };
   },
   setLicense: function(license) {
@@ -32,10 +33,11 @@ var SearchMixin = {
     if (this.state.start >= this.state.total) {
       return;
     }
-    this.setState({'start': this.state.start+120});
+    this.setState({'loading': true});
     var self = this;
     executeQuery({query: this.state.searchQuery, license: this.state.license, start: this.state.start}, function(data) {
       self.setState({results: self.state.results.concat(data.hits)});
+      self.setState({'loading': false})
     });
   },
   search: function(query, start) {
