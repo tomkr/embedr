@@ -17,10 +17,21 @@ a {
   text-align: center;
   width: 100%;
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: black;
+  font-family: 'Ubuntu';
+  font-weight: 100;
+  font-size: 14px;
+  line-height: 20px;
+  color: white;
   z-index: 10;
   bottom: 0px;
   padding: 10px 0 7px 0;
+  a {
+    color: white;
+  }
+  img {
+    vertical-align: text-bottom;
+  }
 }
 
 #map {
