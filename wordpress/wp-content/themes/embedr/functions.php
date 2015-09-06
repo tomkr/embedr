@@ -365,6 +365,15 @@ function iiif_detail_rewrites_init(){
 }
 add_action( 'init', 'iiif_detail_rewrites_init' );
 
+function iiif_content_rewrites_init(){
+  add_rewrite_rule(
+      'content/([^/]*)/?$',
+      'index.php?pagename=$matches[1]',
+      'top' );
+}
+add_action( 'init', 'iiif_content_rewrites_init' );
+
+
 function iiif_detail_query_vars( $query_vars ){
     $query_vars[] = 'image_id';
     return $query_vars;
