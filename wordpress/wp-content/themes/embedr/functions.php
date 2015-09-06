@@ -367,7 +367,7 @@ add_action( 'init', 'iiif_detail_rewrites_init' );
 
 function iiif_content_rewrites_init(){
   add_rewrite_rule(
-      'content/([^/]*)/?$',
+      'content/(.?.+?)/?$',
       'index.php?pagename=$matches[1]',
       'top' );
 }
