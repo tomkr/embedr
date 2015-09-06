@@ -2,7 +2,7 @@
 // provided callbacks at different stages
 // of a rectangle creation event.
 
-var osdRegionRectTool = function(options) {
+window.osdRegionRectTool = function(options) {
   var osdRectTool,
   osd = options.osd,
   osdViewer = options.viewer,
