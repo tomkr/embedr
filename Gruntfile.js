@@ -38,7 +38,8 @@ module.exports = function (grunt) {
         files: {
           'build/scripts/main.js': 'app/scripts/main.js',
           'build/scripts/detail.js': 'app/scripts/detail.js',
-          'viewer/scripts/viewer.js': 'app/scripts/viewer.js'
+          'viewer/scripts/viewer.js': 'app/scripts/viewer.js',
+          'viewer/scripts/osdregionselect.js': 'app/scripts/osdregionselect.js'
         }
       }
     },
