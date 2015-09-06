@@ -3,6 +3,7 @@ var RegionButton = React.createClass({
     this.props.setRegion(rect.x+','+rect.y+','+rect.width+','+rect.height);
     this.boxDrawer.exitEditMode();
     document.body.style.cursor = "cursor";
+    $('.osd-select-rectangle').remove();
   },
   startSelection: function() {
     var self = this;
