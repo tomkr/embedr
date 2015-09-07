@@ -8,6 +8,6 @@ $(function(){
   });
   $('#map').on('mouseout', function(e) {
     if ($(e.toElement).closest('#viewer').length > 0) return;
-    // $('#viewer').hide();
+    $('#viewer').hide();
   });
 });
