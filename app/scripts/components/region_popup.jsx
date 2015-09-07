@@ -4,13 +4,13 @@ var IIIFImage = require('./iiif_image.jsx');
 var RegionPopup = React.createClass({
   render: function() {
     var id = this.props.id ? this.props.id : this.props.result.id;
-    var embedText = "http://iiifhawk.klokantech.com/"+this.props.id+"/"+this.props.region+"/204,204/0/native.jpg";
+    var embedText = "http://iiif.embedr.eu/"+this.props.id+"/"+this.props.region+"/204,204/0/native.jpg";
     return (
       <div className="embed__popup">
         <CloseButton onClick={this.props.close} />
         <p className="embed__title">Embed this image</p>
         <p>Copy the HTML code below to your website or blog. <a href="#">Click here for more information.</a></p>
-        <IIIFImage id={id} region={this.props.region} server="http://iiifhawk.klokantech.com" size="204,204"/>
+        <IIIFImage id={id} region={this.props.region} server="http://iiif.embedr.eu" size="204,204"/>
         <div>
           <label for="embed_height">Height</label>
           <input id="emded_height"/>

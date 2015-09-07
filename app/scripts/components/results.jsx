@@ -67,7 +67,7 @@ var Result = React.createClass({
           <EmbedButton togglePopup={this.togglePopup}/>
         </div>
         <a href={link}>
-          <IIIFImage server="http://iiifhawk.klokantech.com" id={this.props.result.fields.id} size="204,204" />
+          <IIIFImage server="http://iiif.embedr.eu" id={this.props.result.fields.id} size="204,204" />
         </a>
         <p className="result__description">{this.props.result.fields.title[0]}</p>
       </div>
