@@ -42,6 +42,7 @@ window.osdRegionRectTool = function(options) {
       }
 
       if ( options.onDrawFinish ) options.onDrawFinish(canvasRect);
+      osdViewer.removeOverlay(osdOverlay);
   }
 
   function exitEditMode(event) {
