@@ -10,4 +10,7 @@ $(function(){
     if ($(e.toElement).closest('#viewer').length > 0) return;
     $('#viewer').hide();
   });
+  $('#close').on('click', function(e){
+    $('#title').hide();
+  });
 });
