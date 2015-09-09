@@ -79,7 +79,7 @@ module.exports = function (grunt) {
       },
       images: {
         files: ['app/images/*'],
-        tasks: ['copy:images']
+        tasks: ['build']
       }
     },
 
