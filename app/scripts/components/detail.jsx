@@ -22,7 +22,8 @@ var Detail = React.createClass({
     this.setState({showResults: true});
   },
   render: function() {
-    var iframe = "http://media.embedr.eu/"+this.props.imageId;
+    // var iframe = "http://media.embedr.eu/"+this.props.imageId;
+    var iframe = "http://dev.embedr.eu/viewer/Clark.html";
     return (
       <div className="detail">
         <div id="detail__image">
