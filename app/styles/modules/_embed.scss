@@ -3,13 +3,16 @@
   left: 10px;
   top: 50px;
   width: 400px;
-  padding: 20px;
+  padding: 14px 20px;
   background-color: white;
   z-index: 30;
   font-weight: normal;
   font-family: Ubuntu;
   font-size: 18px;
   line-height: 24px;
+  p {
+    margin-top: 0;
+  }
 }
 
 .viewer .embed__popup {
