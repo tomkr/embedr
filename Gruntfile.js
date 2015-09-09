@@ -303,6 +303,13 @@ module.exports = function (grunt) {
           dest: "/web",
           host: "kennisland-dev"
         }
+      },
+      viewer: {
+        options: {
+          src: "viewer/",
+          dest: "/web/viewer",
+          host: "kennisland-dev"
+        }
       }
     }
   });
