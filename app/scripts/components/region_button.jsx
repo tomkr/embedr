@@ -20,7 +20,7 @@ var RegionButton = React.createClass({
   render: function() {
     return (
       <a className="button__region" href="#" onClick={this.startSelection}>
-        <img src="/images/embed.png" />
+        <img src="/images/crop.png" />
       </a>
     )
   }
