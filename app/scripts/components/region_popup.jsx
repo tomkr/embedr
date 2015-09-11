@@ -2,9 +2,29 @@ var CloseButton = require('./close_button.jsx')
 var IIIFImage = require('./iiif_image.jsx');
 
 var RegionPopup = React.createClass({
+  getInitialState: function() {
+    var region = this.props.region.split(',')
+    return {
+      height: region[2],
+      width: region[3]
+    };
+  },
+  validateValue: function(value) {
+    if (value > 2056) {
+      return 2056;
+    }
+    return value;
+  },
+  setHeight: function(e) {
+    var value = this.validateValue(event.target.value);
+    this.setState({height: value});
+  },
+  setWidth: function(e) {
+    var value = this.validateValue(event.target.value);
+    this.setState({width: value});
+  },
   render: function() {
     var id = this.props.id ? this.props.id : this.props.result.id;
-    var embedText = "http://iiif.embedr.eu/"+this.props.id+"/"+this.props.region+"/204,204/0/native.jpg";
     return (
       <div className="embed__popup">
         <CloseButton onClick={this.props.close} />
@@ -12,17 +32,25 @@ var RegionPopup = React.createClass({
         <p>Copy the HTML code below to your website or blog. <a href="#">Click here for more information.</a></p>
         <IIIFImage id={id} region={this.props.region} server="http://iiif.embedr.eu" size="204,204"/>
         <div>
-          <label for="embed_height">Height</label>
-          <input id="emded_height"/>
-          <label for="embed_width">Width</label>
-          <input id="emded_width"/>
+          <label htmlFor="embed_height">Height</label>
+          <input id="emded_height" value={this.state.height} onChange={this.setHeight}/>
+          <label htmlFor="embed_width">Width</label>
+          <input id="emded_width" value={this.state.width} onChange={this.setWidth}/>
           <p>The width and height have a maximum of 2056 pixels</p>
         </div>
-        <textarea className="embed__box" rows="6" id="text-copy">
-          {embedText}
-        </textarea>
+        <RegionBox height={this.state.height} width={this.state.width} region={this.props.region} id={this.props.id}/>
         <a href="#" className="button__copy" id="button-copy" data-clipboard-target="text-copy">copy</a>
       </div>
+    )
+  }
+});
+
+var RegionBox = React.createClass({
+  render: function() {
+    var embedText = "http://iiif.embedr.eu/"+this.props.id+"/"+this.props.region+"/"+this.props.height+","+this.props.width+"/0/native.jpg";
+    return (
+      <textarea className="embed__box" rows="6" id="text-copy" value={embedText} readOnly={true}>
+      </textarea>
     )
   }
 });
