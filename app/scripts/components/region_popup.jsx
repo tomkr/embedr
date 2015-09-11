@@ -56,7 +56,7 @@ var RegionPopup = React.createClass({
 
 var RegionBox = React.createClass({
   render: function() {
-    var embedText = "http://iiif.embedr.eu/"+this.props.id+"/"+this.props.region+"/"+this.props.width+","+this.props.height+"/0/native.jpg";
+    var embedText = "<img src='http://iiif.embedr.eu/"+this.props.id+"/"+this.props.region+"/"+this.props.width+","+this.props.height+"/0/native.jpg' class='embedr_image'/>";
     return (
       <textarea className="embed__box" rows="6" id="text-copy" value={embedText} readOnly={true}>
       </textarea>
