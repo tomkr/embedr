@@ -5,23 +5,32 @@ var RegionPopup = React.createClass({
   getInitialState: function() {
     var region = this.props.region.split(',')
     return {
-      height: region[2],
-      width: region[3]
+      width: region[2],
+      height: region[3],
+      ratio: region[2]/region[3]
     };
   },
-  validateValue: function(value) {
-    if (value > 2056) {
-      return 2056;
+  validateSize: function(height, width) {
+    var ratio = this.state.ratio;
+    if (height > width && height > 2056) {
+      height = 2056;
+      width = height * ratio;
     }
-    return value;
+    else if (width > height && width > 2056) {
+      width = 2056;
+      height = width / ratio;
+    }
+    return {height: Math.round(height), width: Math.round(width)};
   },
-  setHeight: function(e) {
-    var value = this.validateValue(event.target.value);
-    this.setState({height: value});
+  setHeight: function(event) {
+    var height = event.target.value;
+    var width = height * this.state.ratio;
+    this.setState(this.validateSize(height,width));
   },
-  setWidth: function(e) {
-    var value = this.validateValue(event.target.value);
-    this.setState({width: value});
+  setWidth: function(event) {
+    var width = event.target.value;
+    var height = width / this.state.ratio;
+    this.setState(this.validateSize(height,width));
   },
   render: function() {
     var id = this.props.id ? this.props.id : this.props.result.id;
@@ -47,7 +56,7 @@ var RegionPopup = React.createClass({
 
 var RegionBox = React.createClass({
   render: function() {
-    var embedText = "http://iiif.embedr.eu/"+this.props.id+"/"+this.props.region+"/"+this.props.height+","+this.props.width+"/0/native.jpg";
+    var embedText = "http://iiif.embedr.eu/"+this.props.id+"/"+this.props.region+"/"+this.props.width+","+this.props.height+"/0/native.jpg";
     return (
       <textarea className="embed__box" rows="6" id="text-copy" value={embedText} readOnly={true}>
       </textarea>
