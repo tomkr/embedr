@@ -47,7 +47,7 @@ var DetailHeader = React.createClass({
           <li><a href="/about">about</a></li>
           <li><a href="#">contact</a></li>
         </ul>
-        <SearchBar query={this.props.query} search={this.props.search} license={this.props.license}/>
+        <SearchBar query={this.props.query} search={this.props.search} license={this.props.license} setLicense={this.props.setLicense}/>
       </div>
     )
   }
