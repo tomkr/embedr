@@ -4,13 +4,10 @@ window.Viewer = Viewer;
 
 $(function(){
   $('#map').on('mouseover', function(e) {
-    $('#viewer').show();
+    $('.viewer__toolbar').show();
   });
   $('#map').on('mouseout', function(e) {
-    if ($(e.toElement).closest('#viewer').length > 0) return;
-    $('#viewer').hide();
-  });
-  $('#close').on('click', function(e){
-    $('#title').hide();
+    if ($(e.toElement).closest('.viewer__toolbar').length > 0) return;
+    $('.viewer__toolbar').hide();
   });
 });

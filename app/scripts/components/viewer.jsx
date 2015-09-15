@@ -3,14 +3,52 @@ var EmbedPopup = require('./embed_popup.jsx')
 var RegionButton = require('./region_button.jsx')
 var RegionPopup = require('./region_popup.jsx')
 
+var makeLicenseHtml = function(license) {
+  if (license.indexOf('publicdomain') > 0) {
+    return "<img src='/static/img/pd.png' /> <a href='"+license+"'>No rights reserved.</a>"
+  } else {
+    return "<img src='/static/img/cc.png' /> <a href='"+license+"'>Some rights reserved.</a>"
+  }
+}
+
 var Viewer = React.createClass({
+  processMetadata: function(res) {
+    var imageData = res.sequences[0].canvases[0];
+    var height = imageData.height;
+    var width = imageData.width;
+    var title = res.label;
+    var author = '';
+    var institution = '';
+    var institutionUrl = '';
+    res.metadata.forEach(function(metadata) {
+      if (metadata.label == 'Author') {
+        author = metadata.value;
+      }
+      else if (metadata.label == 'Institution') {
+        institution = metadata.value;
+      }
+      else if (metadata.label == 'Institution link') {
+        institutionUrl = metadata.value;
+      }
+    });
+    var institutionLink = "<a href='"+institutionUrl+"' target='_blank'>"+institution+"</a>";
+    var license = res.license;
+    var licenseHtml = makeLicenseHtml(license);
+    var metadataText = "'"+title+"' | ";
+    var metadataText = metadataText+author+" | ";
+    var metadataText = metadataText+institutionLink+" | ";
+    var metadataText = metadataText+licenseHtml;
+    console.log(metadataText);
+    this.setState({
+      height: height,
+      width: width,
+      metadataText: metadataText
+    });
+  },
   componentDidMount: function() {
-    var apiUrl = "http://iiif.embedr.eu/"+this.props.id+"/info.json";
+    var apiUrl = "http://media.embedr.eu/"+this.props.id+"/manifest.json";
     $.getJSON(apiUrl, function(res) {
-      this.setState({
-        height: res.height,
-        width: res.width
-      });
+      this.processMetadata(res);
     }.bind(this));
   },
   getInitialState: function() {
@@ -53,6 +91,29 @@ var Viewer = React.createClass({
         </div>
         { this.state.showEmbedPopup ? <EmbedPopup width={this.state.width} height={this.state.height} id={this.props.id} close={this.toggleEmbedPopup}/> : null }
         { this.state.showRegionPopup ? <RegionPopup region={this.state.region} id={this.props.id} close={this.toggleRegionPopup}/> : null }
+        <MetadataField text={this.state.metadataText}/>
+      </div>
+    )
+  }
+});
+
+var MetadataField = React.createClass({
+  getInitialState: function() {
+    return {
+      hidden: false
+    }
+  },
+  hide: function() {
+    this.setState({hidden: true})
+  },
+  render: function() {
+    if (this.state.hidden) {
+      return null;
+    }
+    return (
+      <div id="title">
+        <span dangerouslySetInnerHTML={{__html: this.props.text}} />
+        <a href="#" id="close" onClick={this.hide}></a>
       </div>
     )
   }
