@@ -7,11 +7,6 @@ var InformationButton = require('./information_button.jsx')
 
 var Detail = React.createClass({
   mixins: [SearchMixin],
-  componentWillReceiveProps: function(nextProps) {
-    if (nextProps.params.id !== this.props.params.id) {
-      this.setState({showResults: false});
-    }
-  },
   getInitialState: function() {
     return {
       showResults: false
