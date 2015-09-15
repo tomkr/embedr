@@ -47,7 +47,7 @@ var RegionPopup = React.createClass({
           <input id="emded_width" value={this.state.width} onChange={this.setWidth}/>
           <p>The width and height have a maximum of 2056 pixels</p>
         </div>
-        <RegionBox height={this.state.height} width={this.state.width} region={this.props.region} id={this.props.id}/>
+        <RegionBox height={this.state.height} width={this.state.width} region={this.props.region} id={this.props.id} metadataText={this.props.metadataText}/>
         <a href="#" className="button__copy" id="button-copy" data-clipboard-target="text-copy">copy</a>
       </div>
     )
@@ -56,7 +56,7 @@ var RegionPopup = React.createClass({
 
 var RegionBox = React.createClass({
   render: function() {
-    var embedText = "<div id='embedr_img'><img src='http://iiif.embedr.eu/"+this.props.id+"/"+this.props.region+"/"+this.props.width+","+this.props.height+"/0/native.jpg'/><p><title>|<creator with link>|<organisation with link>|<license with URL></p></div>";
+    var embedText = "<div id='embedr_img'><img src='http://iiif.embedr.eu/"+this.props.id+"/"+this.props.region+"/"+this.props.width+","+this.props.height+"/0/native.jpg'/><p>"+this.props.metadataText+"</div>";
     return (
       <textarea className="embed__box" rows="6" id="text-copy" value={embedText} readOnly={true}>
       </textarea>

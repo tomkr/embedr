@@ -89,8 +89,10 @@ var Viewer = React.createClass({
           </div>
           <RegionButton setRegion={this.setRegion}/>
         </div>
+
         { this.state.showEmbedPopup ? <EmbedPopup width={this.state.width} height={this.state.height} id={this.props.id} close={this.toggleEmbedPopup}/> : null }
-        { this.state.showRegionPopup ? <RegionPopup region={this.state.region} id={this.props.id} close={this.toggleRegionPopup}/> : null }
+
+        { this.state.showRegionPopup ? <RegionPopup region={this.state.region} id={this.props.id} close={this.toggleRegionPopup} metadataText={this.state.metadataText}/> : null }
         <MetadataField text={this.state.metadataText}/>
       </div>
     )
