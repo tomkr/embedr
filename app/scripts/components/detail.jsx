@@ -4,6 +4,7 @@ var SearchBar = require('./search_bar.jsx');
 var EmbedButton = require('./embed_button.jsx');
 var EmbedPopup = require('./embed_popup.jsx');
 var InformationButton = require('./information_button.jsx')
+var Navigation = require('./navigation.jsx')
 
 var Detail = React.createClass({
   mixins: [SearchMixin],
@@ -38,10 +39,7 @@ var DetailHeader = React.createClass({
         <div className="header__title">
           <h1 className="header__title__name"><a href="/">embedr</a></h1>
         </div>
-        <ul className="header__navigation">
-          <li><a href="/about">about</a></li>
-          <li><a href="#">contact</a></li>
-        </ul>
+        <Navigation />
         <SearchBar query={this.props.query} search={this.props.search} license={this.props.license} setLicense={this.props.setLicense}/>
       </div>
     )

@@ -1,6 +1,7 @@
 var SearchMixin = require('./search_mixin.js');
 var ResultList = require('./results.jsx');
 var SearchBar = require('./search_bar.jsx');
+var Navigation = require('./navigation.jsx');
 
 var Search = React.createClass({
   mixins: [SearchMixin],
@@ -24,10 +25,7 @@ var HomeHeader = React.createClass({
           <p className="header__title__text">Image embedding done right</p>
         </div>
         <div className="header__search">
-          <ul className="header__navigation">
-            <li><a href="/about">about</a></li>
-            <li><a href="#">contact</a></li>
-          </ul>
+          <Navigation />
           <SearchBar setLicense={this.props.setLicense} license={this.props.license} search={this.props.search} query={this.props.query} />
         </div>
       </div>
