@@ -11,6 +11,11 @@
  * @since Twenty Fifteen 1.0
  */
  add_filter('show_admin_bar', '__return_false');
+ $imageId = get_query_var( 'image_id', '' );
+ $url = 'http://media.embedr.eu/'.$imageId.'/manifest.json';
+ $json = file_get_contents($url);
+ $metadata = json_decode($json);
+
  ?>
 <!DOCTYPE html>
 <html class="no-js">
@@ -21,6 +26,30 @@
     <!--[if lt IE 9]>
     <script src="<?php echo esc_url( get_template_directory_uri() ); ?>/js/html5.js"></script>
     <![endif]-->
+    <meta name="dc:title" content="<?php echo($metadata->label)?>"/>
+    <?php foreach ($metadata->metadata as $item) {
+      if($item->label == 'Author') {
+        $name = "dc:creator";
+      }
+      elseif($item->label == 'Source') {
+        $name = "dc:source";
+      }
+      elseif($item->label == 'Institution') {
+        $name = "dc:publisher";
+      }
+      elseif($item->label == 'Institution link') {
+        break;
+      }
+      echo('<meta name="'.$name.'" content="'.$item->value.'"/>');
+    }
+    ?>
+    <meta name="dc:rights" content="<?php echo($metadata->license)?>"/>
+    <meta name="dc:description" content="<?php echo($metadata->description)?>"/>
+
+    <link rel="alternate" type="<?php echo('application/json+oembed" href="http://media.embedr.eu/oembed?url=http%3A//media.embedr.eu/'.$imageId.'/0&format=json')?>" title="<?php echo($metadata->label)?>" />
+    <link rel="alternate" type="text/xml+oembed" href="<?php echo('application/json+oembed" href="http://media.embedr.eu/oembed?url=http%3A//media.embedr.eu/'.$imageId.'0&format=xml')?>" title="<?php echo($metadata->label)?>" />
+
+    <title><?php echo($metadata->label)?></title>
 
     <link rel=stylesheet href="/styles/detail.css">
   </head>
