@@ -294,7 +294,7 @@ module.exports = function (grunt) {
     rsync: {
       options: {
         args: ["--verbose"],
-        exclude: ["wp-config.php", "index.php"],
+        exclude: ["wp-config.php"],
         recursive: true
       },
       dev: {
