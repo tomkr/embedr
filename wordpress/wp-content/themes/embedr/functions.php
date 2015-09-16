@@ -373,6 +373,15 @@ function iiif_content_rewrites_init(){
 }
 add_action( 'init', 'iiif_content_rewrites_init' );
 
+function change_author_permalinks() {
+	global $wp_rewrite;
+	// Change the value of the author permalink base to whatever you want here
+	$wp_rewrite->author_base = '';
+	// Change the value of the page permalink base to whatever you want here
+	$wp_rewrite->page_structure = 'content/%pagename%';
+	$wp_rewrite->flush_rules();
+}
+add_action('init','change_author_permalinks');
 
 function iiif_detail_query_vars( $query_vars ){
     $query_vars[] = 'image_id';

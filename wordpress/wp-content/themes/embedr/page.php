@@ -14,7 +14,22 @@
 get_header(); ?>
 
 	<div id="search"></div>
-	<div class="content__page">
+	<div class="content__wrapper">
+		<div class="content__left">
+			<aside>
+				<?php
+					if($post->post_parent)
+						$children = wp_list_pages("title_li=&child_of=".$post->post_parent."&echo=0");
+					else
+						$children = wp_list_pages("title_li=&child_of=".$post->ID."&echo=0");
+					if ($children) { ?>
+						<ul>
+							<?php echo $children; ?>
+						</ul>
+				<?php } ?>
+			</aside>
+		</div>
+		<div class="content__page">
 
 		<?php
 		// Start the loop.
@@ -31,7 +46,7 @@ get_header(); ?>
 		// End the loop.
 		endwhile;
 		?>
-
+		</div>
 	</div>
 
 <?php get_footer(); ?>
