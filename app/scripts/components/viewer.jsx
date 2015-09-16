@@ -38,7 +38,6 @@ var Viewer = React.createClass({
     var metadataText = metadataText+author+" | ";
     var metadataText = metadataText+institutionLink+" | ";
     var metadataText = metadataText+licenseHtml;
-    console.log(metadataText);
     this.setState({
       height: height,
       width: width,
