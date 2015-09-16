@@ -294,7 +294,7 @@ module.exports = function (grunt) {
     rsync: {
       options: {
         args: ["--verbose"],
-        exclude: ["wp-config.php"],
+        exclude: ["wp-config.php", "index.php"],
         recursive: true
       },
       dev: {
@@ -302,6 +302,13 @@ module.exports = function (grunt) {
           src: "build/",
           dest: "/web",
           host: "kennisland-dev"
+        }
+      },
+      prod: {
+        options: {
+          src: "build/",
+          dest: "/web",
+          host: "kennisland"
         }
       },
       viewer: {
