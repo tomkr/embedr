@@ -46,8 +46,8 @@
     <meta name="dc:rights" content="<?php echo($metadata->license)?>"/>
     <meta name="dc:description" content="<?php echo($metadata->description)?>"/>
 
-    <link rel="alternate" type="application/json+oembed" href="<?php echo('application/json+oembed" href="http://media.embedr.eu/oembed?url=http%3A//media.embedr.eu/'.$imageId.'/0&format=json')?>" title="<?php echo($metadata->label)?>" />
-    <link rel="alternate" type="text/xml+oembed" href="<?php echo('application/json+oembed" href="http://media.embedr.eu/oembed?url=http%3A//media.embedr.eu/'.$imageId.'/0&format=xml')?>" title="<?php echo($metadata->label)?>" />
+    <link rel="alternate" type="application/json+oembed" href="<?php echo('http://media.embedr.eu/oembed?url=http%3A//media.embedr.eu/'.$imageId.'/0&format=json')?>" title="<?php echo($metadata->label)?>" />
+    <link rel="alternate" type="text/xml+oembed" href="<?php echo('http://media.embedr.eu/oembed?url=http%3A//media.embedr.eu/'.$imageId.'/0&format=xml')?>" title="<?php echo($metadata->label)?>" />
 
     <title><?php echo($metadata->label)?></title>
 
