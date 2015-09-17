@@ -18,7 +18,8 @@
 
  ?>
 <!DOCTYPE html>
-<html class="no-js">
+<html class="no-js" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" 
+      xmlns:fb="https://www.facebook.com/2008/fbml" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width">
@@ -45,6 +46,27 @@
     ?>
     <meta name="dc:rights" content="<?php echo($metadata->license)?>"/>
     <meta name="dc:description" content="<?php echo($metadata->description)?>"/>
+    <!-- Open Graph Integrations -->
+    <meta name="og:title" content="<?php echo($metadata->label)?>"/>
+    <meta property="og:type" content="image/jpeg" />
+    <meta property="og:site_name" content="Embedr.eu | Image Embedding Done Right"/>
+    <meta property="og:image" content="http://iiif.embedr.eu/<?php echo $imageId; ?>/full/1200,/0/native.jpg"/>
+    <meta property="og:url" content="http://embedr.eu/<?php echo $imageId; ?>/"/>
+    <meta property="og:description" content="Licensing information available at: <?echo($metadata->license)?>"/>
+    
+    <?php foreach ($metadata->metadata as $item) {
+      if($item->label == 'Author') {
+        $name = "og:creator";
+      }
+      elseif($item->label == 'Institution') {
+        $name = "article:publisher";
+      }
+      elseif($item->label == 'Institution link') {
+        break;
+      }
+      echo('<meta name="'.$name.'" content="'.$item->value.'"/>');
+    }
+    ?>
 
     <link rel="alternate" type="application/json+oembed" href="<?php echo('http://media.embedr.eu/oembed?url=http%3A//media.embedr.eu/'.$imageId.'/0&format=json')?>" title="<?php echo($metadata->label)?>" />
     <link rel="alternate" type="text/xml+oembed" href="<?php echo('http://media.embedr.eu/oembed?url=http%3A//media.embedr.eu/'.$imageId.'/0&format=xml')?>" title="<?php echo($metadata->label)?>" />
