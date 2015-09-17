@@ -38,15 +38,15 @@ module.exports = function (grunt) {
         files: {
           'build/scripts/main.js': 'app/scripts/main.js',
           'build/scripts/detail.js': 'app/scripts/detail.js',
-          'viewer/scripts/viewer.js': 'app/scripts/viewer.js',
-          'viewer/scripts/osdregionselect.js': 'app/scripts/osdregionselect.js'
+          'viewer/static/js/viewer.js': 'app/scripts/viewer.js',
+          'viewer/static/js/osdregionselect.js': 'app/scripts/osdregionselect.js'
         }
       }
     },
 
     replace: {
       viewerjs: {
-        src: 'viewer/scripts/viewer.js',
+        src: 'viewer/static/js/viewer.js',
         overwrite: true,
         replacements: [{
           from: /\/images\//g,
@@ -228,31 +228,31 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '.tmp/styles',
           src: 'viewer.css*',
-          dest: 'viewer/styles'
+          dest: 'viewer/static/css'
         }, {
           expand: true,
-          cwd: 'app',
+          cwd: 'app/images',
           src: [
-            'images/cc.png',
-            'images/close.png',
-            'images/close_dark.png',
-            'images/embed.png',
-            'images/metadata.png',
-            'images/pd.png',
-            'images/zoom-in.png',
-            'images/zoom-out.png'
+            'cc.png',
+            'close.png',
+            'close_dark.png',
+            'embed.png',
+            'metadata.png',
+            'pd.png',
+            'zoom-in.png',
+            'zoom-out.png'
           ],
-          dest: 'viewer'
+          dest: 'viewer/static/img'
         }, {
           expand: true,
-          cwd: 'app',
-          src: 'styles/fonts/**',
-          dest: 'viewer'
+          cwd: 'app/styles/fonts',
+          src: '**',
+          dest: 'viewer/static/css/fonts'
         }]
       },
       viewerjs: {
         src: 'build/scripts/vendor.js',
-        dest: 'viewer/scripts/vendor.js'
+        dest: 'viewer/static/js/vendor.js'
       }
     },
 
