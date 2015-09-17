@@ -20,7 +20,14 @@
 	<!--[if lt IE 9]>
 	<script src="<?php echo esc_url( get_template_directory_uri() ); ?>/js/html5.js"></script>
 	<![endif]-->
-
+	
+	<!-- Open Graph for generic site -->
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Embedr.eu | Image Embedding Done Right"/>
+	<meta property="og:image" content=""/>
+	<meta property="og:site_name" content="Embedr.eu"/>
+	<meta property="og:description" content="Embedr.eu is an image embedding platform that allows easy embedding of reusable cultural heritage images."/>
+	
 	<?php //wp_head(); ?>
 	<link rel=stylesheet href="/styles/main.css">
 </head>
