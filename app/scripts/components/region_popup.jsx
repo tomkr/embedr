@@ -37,18 +37,20 @@ var RegionPopup = React.createClass({
     return (
       <div className="embed__popup">
         <CloseButton onClick={this.props.close} />
-        <p className="embed__title">Embed this image</p>
-        <p>Copy the HTML code below to your website or blog. <a href="#">Click here for more information.</a></p>
-        <IIIFImage id={id} region={this.props.region} server="http://iiif.embedr.eu" size="204,204"/>
-        <div>
-          <label htmlFor="embed_height">Height</label>
-          <input id="emded_height" value={this.state.height} onChange={this.setHeight}/>
-          <label htmlFor="embed_width">Width</label>
-          <input id="emded_width" value={this.state.width} onChange={this.setWidth}/>
-          <p>The width and height have a maximum of 2056 pixels</p>
-        </div>
+        <p className="embed__title">Embed this selection</p>
+        <p>Copy the code below to your website or blog</p>
         <RegionBox height={this.state.height} width={this.state.width} region={this.props.region} id={this.props.id} metadataText={this.props.metadataText}/>
-        <a href="#" className="button__copy" id="button-copy" data-clipboard-target="text-copy">copy</a>
+        <div className="embed__option">
+          <p className="embed__resize">
+            Adjust the size of the image
+            <input id="emded_height" value={this.state.height} onChange={this.setHeight}/>
+            x
+            <input id="emded_width" value={this.state.width} onChange={this.setWidth}/>
+          </p>
+          <p className="embed__resize">The width and height have a maximum of 2056 pixels</p>
+        </div>
+        <IIIFImage id={id} region={this.props.region} server="http://iiif.embedr.eu" size="400,"/>
+        <p><a href="#">Click here for more information.</a></p>
       </div>
     )
   }
