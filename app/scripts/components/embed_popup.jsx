@@ -19,11 +19,20 @@ var EmbedPopup = React.createClass({
       <div className="embed__popup">
         <CloseButton onClick={this.props.close} />
         <p className="embed__title">Embed this image</p>
-        <p>Copy the HTML code below to your website or blog. <a href="#">Click here for more information.</a></p>
-        <textarea className="embed__box" rows="6" id="text-copy">
-          {embedText}
-        </textarea>
-        <a href="#" className="button__copy" id="button-copy" data-clipboard-target="text-copy">copy</a>
+        <p>First choose your platform:</p>
+        <div className="embed__option">
+          <p className="embed__subtitle">Embed on social media</p>
+          <p className="embed__callout"><img src="/images/share_small.png" className="embed__icon"/>Copy the URL in the address bar.</p>
+
+        </div>
+        <div className="embed__option">
+          <p className="embed__subtitle">Embed on website or blog</p>
+          <p className="embed__callout"><img src="/images/embed_small.png" className="embed__icon"/>Copy the HTML code below</p>
+          <textarea className="embed__box" rows="6" id="text-copy">
+            {embedText}
+          </textarea>
+        </div>
+        <a href="http://embedr.eu/content/how-to-embed">More information about embedding</a>
       </div>
     )
   }

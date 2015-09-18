@@ -71,7 +71,7 @@ module.exports = function (grunt) {
       },
       react: {
         files: ['<%= config.app %>/scripts/{,*/}*.jsx','<%= config.app %>/scripts/*.js'],
-        tasks: ['browserify:app']
+        tasks: ['browserify:app', 'replace:viewerjs']
       },
       wordpress: {
         files: ['wordpress/**/*'],
