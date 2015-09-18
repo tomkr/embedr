@@ -50,7 +50,7 @@ module.exports = function (grunt) {
         overwrite: true,
         replacements: [{
           from: /\/images\//g,
-          to: "/static/img/"
+          to: "static/img/"
         }]
       }
     },

@@ -20,14 +20,20 @@
 	<!--[if lt IE 9]>
 	<script src="<?php echo esc_url( get_template_directory_uri() ); ?>/js/html5.js"></script>
 	<![endif]-->
-	
+
+	<!--Twitter integration-->
+	<meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@embedr_eu" />
+  <meta name="twitter:title" content="Embedr.eu" />
+  <meta name="twitter:description" content="Embed high quality cultural heritage images" />
+
 	<!-- Open Graph for generic site -->
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="Embedr.eu | Image Embedding Done Right"/>
 	<meta property="og:image" content=""/>
 	<meta property="og:site_name" content="Embedr.eu"/>
 	<meta property="og:description" content="Embedr.eu is an image embedding platform that allows easy embedding of reusable cultural heritage images."/>
-	
+
 	<?php //wp_head(); ?>
 	<link rel=stylesheet href="/styles/main.css">
 </head>
