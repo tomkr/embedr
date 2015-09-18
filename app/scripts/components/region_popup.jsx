@@ -35,7 +35,6 @@ var RegionPopup = React.createClass({
   render: function() {
     var id = this.props.id ? this.props.id : this.props.result.id;
     var metadataText = "Detail of "+this.props.metadataText;
-    var previewSize = this.previewSize();
     return (
       <div className="embed__popup">
         <CloseButton onClick={this.props.close} />
