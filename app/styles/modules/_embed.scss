@@ -40,8 +40,10 @@
   margin-bottom: 10px;
 }
 
-.embed__resize {
+p.embed__resize {
   font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   input {
     margin-left: 5px;
     margin-right: 5px;
@@ -56,6 +58,11 @@
 
 .embed__callout {
   line-height: 30px;
+}
+
+.embed__image {
+  max-height: 250px;
+  overflow: hidden;
 }
 
 .embed__icon {

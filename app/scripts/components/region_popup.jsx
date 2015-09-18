@@ -50,7 +50,7 @@ var RegionPopup = React.createClass({
           <p className="embed__resize">The width and height have a maximum of 2056 pixels</p>
         </div>
         <IIIFImage id={id} region={this.props.region} server="http://iiif.embedr.eu" size="400,"/>
-        <p><a href="#">Click here for more information.</a></p>
+        <a href="http://embedr.eu/content/how-to-embed">More information about embedding</a>
       </div>
     )
   }
