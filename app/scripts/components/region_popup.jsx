@@ -34,12 +34,14 @@ var RegionPopup = React.createClass({
   },
   render: function() {
     var id = this.props.id ? this.props.id : this.props.result.id;
+    var metadataText = "Detail of "+this.props.metadataText;
+    var previewSize = this.previewSize();
     return (
       <div className="embed__popup">
         <CloseButton onClick={this.props.close} />
         <p className="embed__title">Embed this selection</p>
         <p>Copy the code below to your website or blog</p>
-        <RegionBox height={this.state.height} width={this.state.width} region={this.props.region} id={this.props.id} metadataText={this.props.metadataText}/>
+        <RegionBox height={this.state.height} width={this.state.width} region={this.props.region} id={this.props.id} metadataText={metadataText}/>
         <div className="embed__option">
           <p className="embed__resize">
             Adjust the size of the image
@@ -49,8 +51,8 @@ var RegionPopup = React.createClass({
           </p>
           <p className="embed__resize">The width and height have a maximum of 2056 pixels</p>
         </div>
-        <IIIFImage id={id} region={this.props.region} server="http://iiif.embedr.eu" size="400,"/>
-        <a href="http://embedr.eu/content/how-to-embed">More information about embedding</a>
+        <IIIFImage id={id} region={this.props.region} server="http://iiif.embedr.eu" size="!400,300"/>
+        <p><a href="http://embedr.eu/content/how-to-embed">More information about embedding</a></p>
       </div>
     )
   }
