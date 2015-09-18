@@ -22,7 +22,7 @@ var EmbedPopup = React.createClass({
         <p>First choose your platform:</p>
         <div className="embed__option">
           <p className="embed__subtitle">Embed on social media</p>
-          <p className="embed__callout"><img src="/images/share_small.png" className="embed__icon"/>Copy the URL in the address bar.</p>
+          <p className="embed__callout"><img src="/images/share_small.png" className="embed__icon"/>Copy the URL in the address bar above</p>
 
         </div>
         <div className="embed__option">
