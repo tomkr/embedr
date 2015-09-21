@@ -49,18 +49,18 @@
     <meta name="dc:description" content="<?php echo($metadata->description)?>"/>
     <!-- Open Graph Integrations -->
     <meta name="og:title" content="<?php echo($metadata->label)?>"/>
-    <meta property="og:type" content="image/jpeg" />
+    <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Embedr.eu | Image Embedding Done Right"/>
     <meta property="og:image" content="http://iiif.embedr.eu/<?php echo($imageId); ?>/full/1200,/0/native.jpg"/>
     <meta property="og:url" content="http://embedr.eu/<?php echo($imageId); ?>/"/>
-    <meta property="og:description" content="<?php echo($metadata->label)?> | <?echo($creator)?> | available under: <?echo($metadata->license)?>"/>
-    <meta property="article:publisher" content="<?echo($publisher)?>"/>
+    <meta property="og:description" content="<?php echo($metadata->label); ?> | <?php echo($creator); ?> | available under: <?php echo($metadata->license)?>"/>
 
+    <!-- Twitter Integrations -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@embedr_eu">
-    <meta name="twitter:creator" content="<?echo($creator)?>">
+    <meta name="twitter:creator" content="<?php echo($creator); ?>">
     <meta name="twitter:title" content="<?php echo($metadata->label)?>">
-    <meta name="twitter:description" content="<?php echo($metadata->label)?> | <?echo($creator)?> | available under: <?echo($metadata->license)?>">
+    <meta name="twitter:description" content="<?php echo($metadata->label); ?> | <?php echo($creator); ?> | available under: <?php echo($metadata->license); ?>">
     <meta name="twitter:image" content="http://iiif.embedr.eu/<?php echo($imageId); ?>/full/1200,/0/native.jpg"/>
 
     <link rel="alternate" type="application/json+oembed" href="<?php echo('http://media.embedr.eu/oembed?url=http%3A//media.embedr.eu/'.$imageId.'/0&format=json')?>" title="<?php echo($metadata->label)?>" />
