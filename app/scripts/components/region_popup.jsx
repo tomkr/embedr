@@ -43,12 +43,11 @@ var RegionPopup = React.createClass({
         <RegionBox height={this.state.height} width={this.state.width} region={this.props.region} id={this.props.id} metadataText={metadataText}/>
         <div className="embed__option">
           <p className="embed__resize">
-            Adjust the size of the image
+            Adjust the size of the image<span title="The maximum width and height are 2056px."><sup>?</sup></span>
             <input id="emded_height" value={this.state.height} onChange={this.setHeight}/>
             x
             <input id="emded_width" value={this.state.width} onChange={this.setWidth}/>
           </p>
-          <p className="embed__resize">The maximum width and height are 2056</p>
         </div>
         <IIIFImage id={id} region={this.props.region} server="http://iiif.embedr.eu" size="!400,300"/>
         <p><a href="http://embedr.eu/content/how-to-embed">More information about embedding</a></p>
