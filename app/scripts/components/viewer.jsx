@@ -22,7 +22,7 @@ var Viewer = React.createClass({
     var institutionUrl = false;
     res.metadata.forEach(function(metadata) {
       if (!metadata.value) {
-        continue;
+        return;
       }
       if (metadata.label == 'Author') {
         author = metadata.value;
