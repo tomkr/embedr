@@ -16,8 +16,8 @@ var Viewer = React.createClass({
     var imageData = res.sequences[0].canvases[0];
     var height = imageData.height;
     var width = imageData.width;
-    var title = res.label || 'Untitled';
-    var author = 'Creator unknown';
+    var title = res.label || 'untitled';
+    var author = 'creator unknown';
     var institution = '';
     var institutionUrl = false;
     res.metadata.forEach(function(metadata) {
