@@ -44,9 +44,9 @@ var RegionPopup = React.createClass({
         <div className="embed__option">
           <p className="embed__resize">
             Adjust the size of the image<span title="The maximum width and height are 2056px."><sup>?</sup></span>
-            <input id="emded_height" value={this.state.height} onChange={this.setHeight}/>
-            x
             <input id="emded_width" value={this.state.width} onChange={this.setWidth}/>
+            x
+            <input id="emded_height" value={this.state.height} onChange={this.setHeight}/>
           </p>
         </div>
         <IIIFImage id={id} region={this.props.region} server="http://iiif.embedr.eu" size="!400,300"/>
