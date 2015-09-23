@@ -21,6 +21,12 @@
     font-size: 24px;
     line-height: 30px;
   }
+  
+  ul, ol {
+    font-family: 'Ubuntu';
+    font-size: 24px;
+    line-height: 30px;
+  }
 
   a {
     text-decoration: underline;
@@ -40,6 +46,7 @@ aside {
   padding-right: 10px;
   margin-right: 20px;
   font-family: 'Ubuntu';
+  font-size: 16px;
 
   a {
     text-decoration: none;
@@ -53,7 +60,7 @@ aside {
 
   li:before {
     color: white;
-    content: "\00BB";
+    content: "\003E";
     padding-right: 5px;
   }
 
