@@ -54,7 +54,7 @@
     <meta name="dc:rights" content="<?php echo($metadata->license)?>"/>
     <meta name="dc:description" content="<?php echo($metadata->description)?>"/>
     <!-- Open Graph Integrations -->
-    <meta name="og:title" content="<?php echo($metadata->label)?>"/>
+    <meta property="og:title" content="<?php echo($metadata->label)?>"/>
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Embedr.eu | Image Embedding Done Right"/>
     <meta property="og:image" content="http://iiif.embedr.eu/<?php echo($imageId); ?>/full/1200,/0/native.jpg"/>
