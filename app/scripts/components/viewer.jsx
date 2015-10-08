@@ -11,6 +11,14 @@ var makeLicenseHtml = function(license) {
   }
 }
 
+var makeLicenseHtmlNoImage = function(license) {
+  if (license.indexOf('publicdomain') > 0) {
+    return "<a href='"+license+"'>No rights reserved.</a>"
+  } else {
+    return "<a href='"+license+"'>Some rights reserved.</a>"
+  }
+}
+
 var Viewer = React.createClass({
   processMetadata: function(res) {
     var imageData = res.sequences[0].canvases[0];
@@ -34,14 +42,17 @@ var Viewer = React.createClass({
     var institutionLink = "<a href='"+institutionUrl+"' target='_blank'>"+institution+"</a>";
     var license = res.license;
     var licenseHtml = makeLicenseHtml(license);
+    var licenseHtmlNoImage = makeLicenseHtmlNoImage(license);
     var metadataText = "'"+title+"' | ";
     var metadataText = metadataText+author+" | ";
     var metadataText = metadataText+institutionLink+" | ";
     var metadataText = metadataText+licenseHtml;
+    var metadataTextNoImage = metadataText+licenseHtmlNoImage;
     this.setState({
       height: height,
       width: width,
-      metadataText: metadataText
+      metadataText: metadataText,
+      metadataTextNoImage: metadataTextNoImage
     });
   },
   componentDidMount: function() {
@@ -91,7 +102,7 @@ var Viewer = React.createClass({
 
         { this.state.showEmbedPopup ? <EmbedPopup width={this.state.width} height={this.state.height} id={this.props.id} close={this.toggleEmbedPopup}/> : null }
 
-        { this.state.showRegionPopup ? <RegionPopup region={this.state.region} id={this.props.id} close={this.toggleRegionPopup} metadataText={this.state.metadataText}/> : null }
+        { this.state.showRegionPopup ? <RegionPopup region={this.state.region} id={this.props.id} close={this.toggleRegionPopup} metadataText={this.state.metadataTextNoImage}/> : null }
         <MetadataField text={this.state.metadataText}/>
       </div>
     )
