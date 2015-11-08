@@ -1,6 +1,6 @@
 var executeQuery = function (queryOptions, callback) {
   var licenses = {
-    'freely': ['license:creativecommons.org/publicdomain/', 'license:BY/', 'license:BY-SA/'],
+    'freely': ['license:creativecommons.org/publicdomain/', 'license:creativecommons.org/licenses/by/3.0/', 'license:BY/', 'license:BY-SA/'],
     'non-commercial': ['license:BY-NC', 'license:BY-NC_SA']
   }
   var query = queryOptions.query;

@@ -24,11 +24,14 @@ var Viewer = React.createClass({
     var imageData = res.sequences[0].canvases[0];
     var height = imageData.height;
     var width = imageData.width;
-    var title = res.label;
-    var author = '';
+    var title = res.label || 'untitled';
+    var author = 'creator unknown';
     var institution = '';
-    var institutionUrl = '';
+    var institutionUrl = false;
     res.metadata.forEach(function(metadata) {
+      if (!metadata.value) {
+        return;
+      }
       if (metadata.label == 'Author') {
         author = metadata.value;
       }
@@ -39,13 +42,14 @@ var Viewer = React.createClass({
         institutionUrl = metadata.value;
       }
     });
-    var institutionLink = "<a href='"+institutionUrl+"' target='_blank'>"+institution+"</a>";
+      
+    var institutionHtml = institutionUrl ? ("<a href='"+institutionUrl+"' target='_blank'>"+institution+"</a>") : institution;
     var license = res.license;
     var licenseHtml = makeLicenseHtml(license);
     var licenseHtmlNoImage = makeLicenseHtmlNoImage(license);
     var metadataText = "'"+title+"' | ";
     var metadataText = metadataText+author+" | ";
-    var metadataText = metadataText+institutionLink+" | ";
+    var metadataText = metadataText+institutionHtml+" | ";
     var metadataText = metadataText+licenseHtml;
     var metadataTextNoImage = metadataText+licenseHtmlNoImage;
     this.setState({

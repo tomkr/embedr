@@ -7,7 +7,7 @@ $(function(){
     $('.viewer__toolbar').show();
   });
   $('#map').on('mouseout', function(e) {
-    if ($(e.toElement).closest('.viewer__toolbar').length > 0) return;
+    if ($(e.toElement).parents('#viewer').length > 0) return;
     $('.viewer__toolbar').hide();
   });
 });
