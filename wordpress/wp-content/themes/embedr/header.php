@@ -4,9 +4,9 @@
  *
  * Displays all of the head element and everything up until the "site-content" div.
  *
- * @package WordPress
- * @subpackage Twenty_Fifteen
- * @since Twenty Fifteen 1.0
+ * @package Embedr.eu
+ * @subpackage Embedr.eu
+ * @since Embedr.eu 1.0
  */
  add_filter('show_admin_bar', '__return_false');
 ?>

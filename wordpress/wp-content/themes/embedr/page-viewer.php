@@ -6,9 +6,9 @@
  * Please note that this is the WordPress construct of pages and that
  * other "pages" on your WordPress site will use a different template.
  *
- * @package WordPress
- * @subpackage Twenty_Fifteen
- * @since Twenty Fifteen 1.0
+ * @package Embedr.eu
+ * @subpackage Embedr.eu
+ * @since Embedr.eu 1.0
  */
  add_filter('show_admin_bar', '__return_false');
  $imageId = get_query_var( 'image_id', '' );

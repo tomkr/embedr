@@ -3,12 +3,12 @@
  */
 
 ( function( $ ) {
-	var $style = $( '#twentyfifteen-color-scheme-css' ),
+	var $style = $( '#embedr-color-scheme-css' ),
 		api = wp.customize;
 
 	if ( ! $style.length ) {
-		$style = $( 'head' ).append( '<style type="text/css" id="twentyfifteen-color-scheme-css" />' )
-		                    .find( '#twentyfifteen-color-scheme-css' );
+		$style = $( 'head' ).append( '<style type="text/css" id="embedr-color-scheme-css" />' )
+		                    .find( '#embedr-color-scheme-css' );
 	}
 
 	// Site title.
