@@ -1,3 +1,4 @@
+var React = require('react');
 var InformationButton = React.createClass({
   render: function() {
     return (
