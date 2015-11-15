@@ -20,7 +20,7 @@ var RegionPopup = React.createClass({
       height = max;
       width = height * ratio;
     }
-    else if (width > height && width > max) {
+    else if (width >= height && width > max) {
       width = max;
       height = width / ratio;
     }
