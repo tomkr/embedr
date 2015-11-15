@@ -5,7 +5,7 @@
  */
 
 ( function( api ) {
-	var cssTemplate = wp.template( 'twentyfifteen-color-scheme' ),
+	var cssTemplate = wp.template( 'embedr-color-scheme' ),
 		colorSchemeKeys = [
 			'background_color',
 			'header_background_color',

@@ -4,9 +4,9 @@
  *
  * Contains the closing of the "site-content" div and all content after.
  *
- * @package WordPress
- * @subpackage Twenty_Fifteen
- * @since Twenty Fifteen 1.0
+ * @package Embedr.eu
+ * @subpackage Embedr.eu
+ * @since Embedr.eu 1.0
  */
 ?>
 

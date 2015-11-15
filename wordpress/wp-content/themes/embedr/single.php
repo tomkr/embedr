@@ -2,9 +2,9 @@
 /**
  * The template for displaying all single posts and attachments
  *
- * @package WordPress
- * @subpackage Twenty_Fifteen
- * @since Twenty Fifteen 1.0
+ * @package Embedr.eu
+ * @subpackage Embedr.eu
+ * @since Embedr.eu 1.0
  */
 
 get_header(); ?>
@@ -30,11 +30,11 @@ get_header(); ?>
 
 			// Previous/next post navigation.
 			the_post_navigation( array(
-				'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next', 'twentyfifteen' ) . '</span> ' .
-					'<span class="screen-reader-text">' . __( 'Next post:', 'twentyfifteen' ) . '</span> ' .
+				'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next', 'embedr' ) . '</span> ' .
+					'<span class="screen-reader-text">' . __( 'Next post:', 'embedr' ) . '</span> ' .
 					'<span class="post-title">%title</span>',
-				'prev_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Previous', 'twentyfifteen' ) . '</span> ' .
-					'<span class="screen-reader-text">' . __( 'Previous post:', 'twentyfifteen' ) . '</span> ' .
+				'prev_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Previous', 'embedr' ) . '</span> ' .
+					'<span class="screen-reader-text">' . __( 'Previous post:', 'embedr' ) . '</span> ' .
 					'<span class="post-title">%title</span>',
 			) );
 

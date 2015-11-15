@@ -46,7 +46,7 @@
 			return;
 		}
 
-		button.on( 'click.twentyfifteen', function() {
+		button.on( 'click.embedr', function() {
 			secondary.toggleClass( 'toggled-on' );
 			secondary.trigger( 'resize' );
 			$( this ).toggleClass( 'toggled-on' );
@@ -64,7 +64,7 @@
 	 * @summary Add or remove ARIA attributes.
 	 * Uses jQuery's width() function to determine the size of the window and add
 	 * the default ARIA attributes for the menu toggle if it's visible.
-	 * @since Twenty Fifteen 1.1
+	 * @since Embedr.eu 1.0
 	 */
 	function onResizeARIA() {
 		if ( 955 > $window.width() ) {
@@ -143,14 +143,14 @@
 		adminbarOffset = $body.is( '.admin-bar' ) ? $( '#wpadminbar' ).height() : 0;
 
 		$window
-			.on( 'scroll.twentyfifteen', scroll )
-			.on( 'load.twentyfifteen', onResizeARIA )
-			.on( 'resize.twentyfifteen', function() {
+			.on( 'scroll.embedr', scroll )
+			.on( 'load.embedr', onResizeARIA )
+			.on( 'resize.embedr', function() {
 				clearTimeout( resizeTimer );
 				resizeTimer = setTimeout( resizeAndScroll, 500 );
 				onResizeARIA();
 			} );
-		$sidebar.on( 'click.twentyfifteen keydown.twentyfifteen', 'button', resizeAndScroll );
+		$sidebar.on( 'click.embedr keydown.embedr', 'button', resizeAndScroll );
 
 		resizeAndScroll();
 
