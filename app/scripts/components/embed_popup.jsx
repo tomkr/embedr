@@ -1,5 +1,5 @@
+var React = require('react');
 var CloseButton = require('./close_button.jsx')
-var IIIFImage = require('./iiif_image.jsx');
 
 var EmbedPopup = React.createClass({
   getProportion: function() {

@@ -1,3 +1,4 @@
+var React = require('react');
 var IIIFImage = React.createClass({
   makeSource: function() {
     var server = this.props.server;

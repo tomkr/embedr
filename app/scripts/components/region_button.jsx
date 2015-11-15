@@ -1,3 +1,5 @@
+var React = require('react');
+var $ = require('jquery');
 var RegionButton = React.createClass({
   makeIIIF: function(rect) {
     this.props.setRegion(rect.x+','+rect.y+','+rect.width+','+rect.height);

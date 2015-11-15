@@ -9,10 +9,6 @@
 // 'test/spec/**/*.js'
 
 module.exports = function (grunt) {
-
-  // Time how long tasks take. Can help when optimizing build times
-  require('time-grunt')(grunt);
-
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
 
@@ -40,6 +36,20 @@ module.exports = function (grunt) {
           'build/scripts/detail.js': 'app/scripts/detail.js',
           'viewer/static/js/viewer.js': 'app/scripts/viewer.js',
           'viewer/static/js/osdregionselect.js': 'app/scripts/osdregionselect.js'
+        }
+      }
+    },
+
+    mochify: {
+      options: {
+        reporter: 'spec'
+      },
+      myTarget: {
+        src: [
+          'test/**/*spec.js.jsx'
+        ],
+        options: {
+          transform:  [ "reactify" ]
         }
       }
     },
@@ -107,30 +117,6 @@ module.exports = function (grunt) {
         }]
       },
       server: '.tmp'
-    },
-
-    // Make sure code styles are up to par and there are no obvious mistakes
-    jshint: {
-      options: {
-        jshintrc: '.jshintrc',
-        reporter: require('jshint-stylish')
-      },
-      all: [
-        'Gruntfile.js',
-        '<%= config.app %>/scripts/{,*/}*.js',
-        '!<%= config.app %>/scripts/vendor/*',
-        'test/spec/{,*/}*.js'
-      ]
-    },
-
-    // Mocha testing framework configuration options
-    mocha: {
-      all: {
-        options: {
-          run: true,
-          urls: ['http://<%= connect.test.options.hostname %>:<%= connect.test.options.port %>/index.html']
-        }
-      }
     },
 
     // Compiles Sass to CSS and generates necessary files if requested
@@ -271,26 +257,6 @@ module.exports = function (grunt) {
       ]
     },
 
-    //Manually concat bower js
-    concat: {
-      options: {
-        separator: ';\n',
-      },
-      bower: {
-        files: [{
-          src: [
-            'bower_components/jquery/dist/jquery.js',
-            'bower_components/react/react.js',
-            // 'bower_components/zeroclipboard/dist/ZeroClipboard.min.js'
-          ],
-          dest: 'build/scripts/vendor.js'
-        // },{
-        //   src: 'bower_components/zeroclipboard/dist/ZeroClipboard.swf',
-        //   dest: 'build/scripts/ZeroClipboard.swf'
-        }]
-      }
-    },
-
     rsync: {
       options: {
         args: ["--verbose"],
@@ -345,26 +311,10 @@ module.exports = function (grunt) {
     grunt.task.run([target ? ('serve:' + target) : 'serve']);
   });
 
-  grunt.registerTask('test', function (target) {
-    if (target !== 'watch') {
-      grunt.task.run([
-        'clean:server',
-        'concurrent:test',
-        'autoprefixer'
-      ]);
-    }
-
-    grunt.task.run([
-      'connect:test',
-      'mocha'
-    ]);
-  });
-
   grunt.registerTask('build', [
     'clean:build',
     'copy:wordpress',
     'sass',
-    'concat:bower',
     'browserify:app',
     'copy:build'
   ]);
@@ -389,7 +339,6 @@ module.exports = function (grunt) {
   grunt.registerTask('buildViewer', [
     'browserify:app',
     'sass',
-    'concat:bower',
     'copy:viewerjs',
     'copy:viewer',
     'replace:viewerjs'
@@ -400,4 +349,6 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
+  grunt.registerTask('test', 'mochify');
 };

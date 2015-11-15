@@ -1,3 +1,4 @@
+var React = require('react');
 var CloseButton = require('./close_button.jsx');
 
 var SearchBar = React.createClass({

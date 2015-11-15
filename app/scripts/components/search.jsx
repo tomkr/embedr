@@ -1,3 +1,4 @@
+var React = require('react');
 var SearchMixin = require('./search_mixin.js');
 var ResultList = require('./results.jsx');
 var SearchBar = require('./search_bar.jsx');
