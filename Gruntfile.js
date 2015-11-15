@@ -119,20 +119,6 @@ module.exports = function (grunt) {
       server: '.tmp'
     },
 
-    // Make sure code styles are up to par and there are no obvious mistakes
-    jshint: {
-      options: {
-        jshintrc: '.jshintrc',
-        reporter: require('jshint-stylish')
-      },
-      all: [
-        'Gruntfile.js',
-        '<%= config.app %>/scripts/{,*/}*.js',
-        '!<%= config.app %>/scripts/vendor/*',
-        'test/spec/{,*/}*.js'
-      ]
-    },
-
     // Compiles Sass to CSS and generates necessary files if requested
     sass: {
       options: {
@@ -271,26 +257,6 @@ module.exports = function (grunt) {
       ]
     },
 
-    //Manually concat bower js
-    concat: {
-      options: {
-        separator: ';\n',
-      },
-      bower: {
-        files: [{
-          src: [
-            'bower_components/jquery/dist/jquery.js',
-            'bower_components/react/react.js',
-            // 'bower_components/zeroclipboard/dist/ZeroClipboard.min.js'
-          ],
-          dest: 'build/scripts/vendor.js'
-        // },{
-        //   src: 'bower_components/zeroclipboard/dist/ZeroClipboard.swf',
-        //   dest: 'build/scripts/ZeroClipboard.swf'
-        }]
-      }
-    },
-
     rsync: {
       options: {
         args: ["--verbose"],
@@ -345,26 +311,10 @@ module.exports = function (grunt) {
     grunt.task.run([target ? ('serve:' + target) : 'serve']);
   });
 
-  grunt.registerTask('test', function (target) {
-    if (target !== 'watch') {
-      grunt.task.run([
-        'clean:server',
-        'concurrent:test',
-        'autoprefixer'
-      ]);
-    }
-
-    grunt.task.run([
-      'connect:test',
-      'mocha'
-    ]);
-  });
-
   grunt.registerTask('build', [
     'clean:build',
     'copy:wordpress',
     'sass',
-    'concat:bower',
     'browserify:app',
     'copy:build'
   ]);
@@ -389,7 +339,6 @@ module.exports = function (grunt) {
   grunt.registerTask('buildViewer', [
     'browserify:app',
     'sass',
-    'concat:bower',
     'copy:viewerjs',
     'copy:viewer',
     'replace:viewerjs'

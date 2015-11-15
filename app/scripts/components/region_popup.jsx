@@ -1,23 +1,27 @@
-var CloseButton = require('./close_button.jsx')
+var React = require('react');
+var CloseButton = require('./close_button.jsx');
 var IIIFImage = require('./iiif_image.jsx');
 
 var RegionPopup = React.createClass({
   getInitialState: function() {
-    var region = this.props.region.split(',')
+    var region = this.props.region.split(',');
+    var initialWidth = region[2];
+    var initialHeight = region[3];
+    var ratio = region[2]/region[3];
+    var validatedSize = this.validateSize(initialHeight, initialWidth, ratio, 1000);
     return {
-      width: region[2],
-      height: region[3],
-      ratio: region[2]/region[3]
+      width: validatedSize.width,
+      height: validatedSize.height,
+      ratio: ratio
     };
   },
-  validateSize: function(height, width) {
-    var ratio = this.state.ratio;
-    if (height > width && height > 2056) {
-      height = 2056;
+  validateSize: function(height, width, ratio, max) {
+    if (height > width && height > max) {
+      height = max;
       width = height * ratio;
     }
-    else if (width > height && width > 2056) {
-      width = 2056;
+    else if (width > height && width > max) {
+      width = max;
       height = width / ratio;
     }
     return {height: Math.round(height), width: Math.round(width)};
@@ -25,12 +29,12 @@ var RegionPopup = React.createClass({
   setHeight: function(event) {
     var height = event.target.value;
     var width = height * this.state.ratio;
-    this.setState(this.validateSize(height,width));
+    this.setState(this.validateSize(height, width, this.state.ratio, 2056));
   },
   setWidth: function(event) {
     var width = event.target.value;
     var height = width / this.state.ratio;
-    this.setState(this.validateSize(height,width));
+    this.setState(this.validateSize(height, width, this.state.ratio, 2056));
   },
   render: function() {
     var id = this.props.id ? this.props.id : this.props.result.id;

@@ -1,3 +1,4 @@
+var $ = require('jquery');
 var Viewer = require('./components/viewer.jsx')
 //Export to window so it can be called in a Flask template.
 window.Viewer = Viewer;

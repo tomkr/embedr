@@ -1,3 +1,5 @@
+window.React = require('react');
+var $ = require('jquery');
 var EmbedButton = require('./embed_button.jsx')
 var EmbedPopup = require('./embed_popup.jsx')
 var RegionButton = require('./region_button.jsx')

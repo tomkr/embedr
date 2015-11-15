@@ -1,3 +1,4 @@
+var $ = require('jquery');
 var executeQuery = function (queryOptions, callback) {
   var licenses = {
     'freely': ['license:creativecommons.org/publicdomain/', 'license:creativecommons.org/licenses/by/3.0/', 'license:BY/', 'license:BY-SA/'],
