@@ -1,3 +1,5 @@
+var React = require('react');
+
 var CloseButton = React.createClass({
   render: function() {
     if (this.props.dark) {

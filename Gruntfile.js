@@ -9,10 +9,6 @@
 // 'test/spec/**/*.js'
 
 module.exports = function (grunt) {
-
-  // Time how long tasks take. Can help when optimizing build times
-  require('time-grunt')(grunt);
-
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
 
@@ -40,6 +36,20 @@ module.exports = function (grunt) {
           'build/scripts/detail.js': 'app/scripts/detail.js',
           'viewer/static/js/viewer.js': 'app/scripts/viewer.js',
           'viewer/static/js/osdregionselect.js': 'app/scripts/osdregionselect.js'
+        }
+      }
+    },
+
+    mochify: {
+      options: {
+        reporter: 'spec'
+      },
+      myTarget: {
+        src: [
+          'test/**/*spec.js.jsx'
+        ],
+        options: {
+          transform:  [ "reactify" ]
         }
       }
     },
@@ -121,16 +131,6 @@ module.exports = function (grunt) {
         '!<%= config.app %>/scripts/vendor/*',
         'test/spec/{,*/}*.js'
       ]
-    },
-
-    // Mocha testing framework configuration options
-    mocha: {
-      all: {
-        options: {
-          run: true,
-          urls: ['http://<%= connect.test.options.hostname %>:<%= connect.test.options.port %>/index.html']
-        }
-      }
     },
 
     // Compiles Sass to CSS and generates necessary files if requested
@@ -400,4 +400,6 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
+  grunt.registerTask('test', 'mochify');
 };

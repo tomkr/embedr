@@ -3,9 +3,6 @@
   "private": true,
   "dependencies": {
     "react": "~0.13.3",
-    "openseadragon": "~2.0.0",
-    "zeroclipboard": "~2.2.0",
-    "jquery": "~2.1.4",
-    "osd-canvas-selector": "https://github.com/IIIF/osd-canvas-selector.git"
+    "jquery": "~2.1.4"
   }
 }
