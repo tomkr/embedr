@@ -1,7 +1,7 @@
 var React = require('react');
 var EmbedButton = require('./embed_button.jsx');
 var EmbedPopup = require('./embed_popup.jsx');
-var IIIFImage = require('./iiif_image.jsx');
+var IIIFImage = require('iiifimage-component');
 
 var ResultList = React.createClass({
   componentDidMount: function () {

@@ -6,7 +6,14 @@
     ]
   },
   "babel": {
-    "presets": ["react"]
+    "presets": [
+      "react"
+    ]
+  },
+  "dependencies": {
+    "grunt-browserify": "^3.8.0",
+    "grunt-rsync": "^0.6.2",
+    "iiifimage-component": "file:../iiifimage-component"
   },
   "devDependencies": {
     "apache-server-configs": "^2.7.1",
@@ -48,10 +55,6 @@
   },
   "engines": {
     "node": ">=0.10.0"
-  },
-  "dependencies": {
-    "grunt-browserify": "^3.8.0",
-    "grunt-rsync": "^0.6.2"
   },
   "scripts": {
     "test": "grunt test"
