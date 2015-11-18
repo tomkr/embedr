@@ -49,10 +49,10 @@ module.exports = function (grunt) {
       },
       myTarget: {
         src: [
-          'test/**/*spec.js.jsx'
+          'test/**/*spec.jsx'
         ],
         options: {
-          transform:  [ "reactify" ]
+          transform:  [ 'reactify' ]
         }
       }
     },
