@@ -3,7 +3,7 @@
 var expect = require('chai').expect;
 var React = require("React");
 var ReactTestUtils = require("react-addons-test-utils");
-var RegionPopup = require("../../app/scripts/components/region_popup.jsx");
+var RegionPopup = require("../../src/scripts/components/region_popup.jsx");
 
 var shallowRenderer = ReactTestUtils.createRenderer();
 
@@ -12,7 +12,7 @@ describe("RegionPopup", function () {
     shallowRenderer.render(<RegionPopup region="0,0,2000,2000" id="1"/>);
     this.result = shallowRenderer.getRenderOutput();
   });
-  
+
   it("renders an div tag as its root element", function () {
     expect(this.result.type).to.equal("div");
   });
