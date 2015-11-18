@@ -44,7 +44,7 @@ var Viewer = React.createClass({
         institutionUrl = metadata.value;
       }
     });
-      
+
     var institutionHtml = institutionUrl ? ("<a href='"+institutionUrl+"' target='_blank'>"+institution+"</a>") : institution;
     var license = res.license;
     var licenseHtml = makeLicenseHtml(license);
@@ -93,16 +93,7 @@ var Viewer = React.createClass({
       <div className="viewer">
         <div className="viewer__toolbar">
           <EmbedButton togglePopup={this.toggleEmbedPopup}/>
-          <div className="button__zoom">
-            <a id="zoom-in-button" href="#">
-              <img src="/images/zoom-in.png" />
-            </a>
-          </div>
-          <div className="button__zoom--out">
-            <a id="zoom-out-button" href="#">
-              <img src="/images/zoom-out.png" />
-            </a>
-          </div>
+          { this.props.type !== 'nozoom' ? <ZoomButtons /> : null }
           <RegionButton setRegion={this.setRegion}/>
         </div>
 
@@ -136,5 +127,24 @@ var MetadataField = React.createClass({
     )
   }
 });
+
+var ZoomButtons = React.createClass({
+  render: function() {
+    return (
+      <div>
+        <div className="button__zoom">
+          <a id="zoom-in-button" href="#">
+            <img src="/images/zoom-in.png" />
+          </a>
+        </div>
+        <div className="button__zoom--out">
+          <a id="zoom-out-button" href="#">
+            <img src="/images/zoom-out.png" />
+          </a>
+        </div>
+      </div>
+    )
+  }
+})
 
 module.exports = Viewer;
