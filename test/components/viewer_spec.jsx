@@ -33,6 +33,7 @@ describe("Viewer", function () {
     before(function() {
       shallowRenderer.render(<Viewer id="1" type="nozoom"/>);
       this.result = shallowRenderer.getRenderOutput();
+      this.toolbar = this.result.props.children[0];
     });
 
     it("renders an div tag as its root element", function () {
@@ -40,8 +41,11 @@ describe("Viewer", function () {
     });
 
     it("doesn't show zoom buttons", function() {
-      var toolbar = this.result.props.children[0];
-      expect(toolbar.props.children[1]).to.equal(null);
+      expect(this.toolbar.props.children[1]).to.equal(null);
+    });
+
+    it("doesn't show the region button", function() {
+      expect(this.toolbar.props.children[2]).to.equal(null);
     });
   });
 });

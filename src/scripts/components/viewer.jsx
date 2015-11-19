@@ -94,7 +94,7 @@ var Viewer = React.createClass({
         <div className="viewer__toolbar">
           <EmbedButton togglePopup={this.toggleEmbedPopup}/>
           { this.props.type !== 'nozoom' ? <ZoomButtons /> : null }
-          <RegionButton setRegion={this.setRegion}/>
+          { this.props.type === 'full' ? <RegionButton setRegion={this.setRegion}/> : null }
         </div>
 
         { this.state.showEmbedPopup ? <EmbedPopup width={this.state.width} height={this.state.height} id={this.props.id} close={this.toggleEmbedPopup}/> : null }
