@@ -76,7 +76,7 @@ module.exports = function (grunt) {
       },
       sass: {
         files: ['<%= config.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['sass', 'copy:build', 'copy:viewer']
+        tasks: ['sass', 'copy:app', 'copy:viewer']
       },
       styles: {
         files: ['<%= config.app %>/styles/{,*/}*.css'],

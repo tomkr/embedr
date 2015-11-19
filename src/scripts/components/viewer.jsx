@@ -131,18 +131,18 @@ var MetadataField = React.createClass({
 var ZoomButtons = React.createClass({
   render: function() {
     return (
-      <div>
-        <div className="button__zoom">
+      <span>
+        <div className="button__rounded">
           <a id="zoom-in-button" href="#">
             <img src="/images/zoom-in.png" />
           </a>
         </div>
-        <div className="button__zoom--out">
+        <div className="button__rounded">
           <a id="zoom-out-button" href="#">
             <img src="/images/zoom-out.png" />
           </a>
         </div>
-      </div>
+      </span>
     )
   }
 })

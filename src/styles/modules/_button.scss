@@ -12,46 +12,13 @@
   }
 }
 
-.rounded__button {
-  @extend .button;
-  width: 40px;
-  border-radius: 40px;
-}
-
-.button__embed {
-  @extend .rounded__button;
-  position: absolute;
-  top: 5px;
-  left: 5px;
-}
-
-.button__region {
-  @extend .rounded__button;
-  position: absolute;
-  top: 5px;
-  left: 155px;
-}
-
-.button__zoom {
-  @extend .rounded__button;
-  position: absolute;
-  top: 5px;
-  left: 55px;
-}
-
-.button__zoom--out {
-  @extend .button__zoom;
-  left: 105px;
-}
-
-.button__copy {
+.button__rounded {
   @extend .button;
   display: inline-block;
-  margin-top: 6px;
-  padding: {
-    left: 8px;
-    right: 8px;
-  }
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  margin-right: 10px;
 }
 
 .button__close {
