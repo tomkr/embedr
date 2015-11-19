@@ -92,7 +92,7 @@ var Viewer = React.createClass({
     return (
       <div className="viewer">
         <div className="viewer__toolbar">
-          <EmbedButton togglePopup={this.toggleEmbedPopup}/>
+          { this.props.type === 'full' ? <EmbedButton togglePopup={this.toggleEmbedPopup}/> : <SimpleEmbedButton id={this.props.id}/> }
           { this.props.type !== 'nozoom' ? <ZoomButtons /> : null }
           { this.props.type === 'full' ? <RegionButton setRegion={this.setRegion}/> : null }
         </div>
@@ -124,7 +124,18 @@ var MetadataField = React.createClass({
         <span dangerouslySetInnerHTML={{__html: this.props.text}} />
         <a href="#" id="close" onClick={this.hide}></a>
       </div>
-    )
+    );
+  }
+});
+
+var SimpleEmbedButton = React.createClass({
+  render: function() {
+    var url = "http://embedr.eu/"+this.props.id;
+    return (
+      <a className="button__rounded" href={this.url} target="_blank">
+        <img src="/images/embed.png" />
+      </a>
+    );
   }
 });
 
@@ -143,7 +154,7 @@ var ZoomButtons = React.createClass({
           </a>
         </div>
       </span>
-    )
+    );
   }
 })
 
