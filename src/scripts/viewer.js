@@ -4,7 +4,7 @@ var Viewer = require('./components/viewer.jsx')
 
 var viewerType = function(params) {
   if(params.nozoom === '1') { return 'nozoom' }
-  if(params.full === '1') { return 'embeddable' }
+  if(params.full === '1') { return 'full' }
   return 'default'
 }
 

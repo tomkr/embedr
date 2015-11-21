@@ -132,7 +132,7 @@ var SimpleEmbedButton = React.createClass({
   render: function() {
     var url = "http://embedr.eu/"+this.props.id;
     return (
-      <a className="button__rounded" href={this.url} target="_blank">
+      <a className="button__rounded" href={url} target="_blank">
         <img src="/images/embed.png" />
       </a>
     );

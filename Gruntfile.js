@@ -225,7 +225,7 @@ module.exports = function (grunt) {
       },
       viewer: {
         options: {
-          src: "viewer/",
+          src: "build/viewer/",
           dest: "/web/viewer",
           host: "kennisland-dev"
         }
