@@ -158,9 +158,9 @@ module.exports = function (grunt) {
       wordpress: {
          expand: true,
          dot: true,
-         cwd: 'wordpress',
+         cwd: 'wordpress-theme',
          src: '**',
-         dest: 'build/'
+         dest: 'build'
       },
       app: {
         files: [{
@@ -235,9 +235,9 @@ module.exports = function (grunt) {
 
   // Run all the build steps
   grunt.registerTask('build', [
+    'buildWordpress',
     'buildApp',
-    'buildViewer',
-    'buildWordpress'
+    'buildViewer'
   ]);
 
   // Build the React app

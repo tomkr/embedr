@@ -1,6 +1,6 @@
 var React = require('react');
 var CloseButton = require('./close_button.jsx');
-var IIIFImage = require('./iiif_image.jsx');
+var IIIFImage = require('react-iiif-image');
 
 var RegionPopup = React.createClass({
   getInitialState: function() {
