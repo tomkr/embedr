@@ -87,8 +87,8 @@ module.exports = function (grunt) {
         tasks: ['browserify:app', 'browserify:viewer', 'replace:viewer']
       },
       wordpress: {
-        files: ['wordpress/**/*'],
-        tasks: ['build']
+        files: ['wordpress-theme/**/*'],
+        tasks: ['buildWordpress']
       },
       images: {
         files: ['app/images/*'],
@@ -156,11 +156,18 @@ module.exports = function (grunt) {
     // Copies remaining files to places other tasks can use
     copy: {
       wordpress: {
-         expand: true,
-         dot: true,
-         cwd: 'wordpress-theme',
-         src: '**',
-         dest: 'build'
+        files: [{
+          expand: true,
+          dot: true,
+          cwd: 'wordpress-theme',
+          src: '**',
+          dest: 'build'
+        }, {
+          expand: true,
+          cwd: 'src/styles/fonts',
+          src: '**',
+          dest: 'build/embedr/css/fonts'
+        }]
       },
       app: {
         files: [{

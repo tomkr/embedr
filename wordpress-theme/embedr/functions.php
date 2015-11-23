@@ -229,6 +229,10 @@ function embedr_scripts() {
 	// Add Genericons, used in the main stylesheet.
 	wp_enqueue_style( 'genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.2' );
 
+  // Load the embedr styles
+  wp_enqueue_style( 'main-style', get_template_directory_uri() . '/css/main.css' );
+  wp_enqueue_style( 'detail-style', get_template_directory_uri() . '/css/detail.css' );
+
 	// Load our main stylesheet.
 	wp_enqueue_style( 'embedr-style', get_stylesheet_uri() );
 

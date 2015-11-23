@@ -35,7 +35,7 @@
   <meta property="og:site_name" content="Embedr.eu"/>
   <meta property="og:description" content="Embedr.eu is an image embedding platform that allows easy embedding of reusable cultural heritage images."/>
 
-  <link rel=stylesheet href="/styles/main.css">
+  <?php wp_head(); ?>
 </head>
 
 <body>
