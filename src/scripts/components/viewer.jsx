@@ -91,7 +91,7 @@ var Viewer = React.createClass({
   render: function() {
     return (
       <div className="viewer">
-        <div className="viewer__toolbar">
+      	{ this.props.type === 'full' ? <div className="viewer__toolbar"> : <div className="iframe__viewer__toolbar"> }
           { this.props.type === 'full' ? <EmbedButton togglePopup={this.toggleEmbedPopup}/> : <SimpleEmbedButton id={this.props.id}/> }
           { this.props.type !== 'nozoom' ? <ZoomButtons /> : null }
           { this.props.type === 'full' ? <RegionButton setRegion={this.setRegion}/> : null }
