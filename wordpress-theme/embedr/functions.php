@@ -70,7 +70,7 @@ function embedr_setup() {
 	 * hard-coded <title> tag in the document head, and expect WordPress to
 	 * provide it for us.
 	 */
-	add_theme_support( 'title-tag' );
+	// add_theme_support( 'title-tag' );
 
 	/*
 	 * Enable support for Post Thumbnails on posts and pages.
@@ -253,6 +253,10 @@ function embedr_scripts() {
 	if ( is_singular() && wp_attachment_is_image() ) {
 		wp_enqueue_script( 'embedr-keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array( 'jquery' ), '20141010' );
 	}
+
+  // Embedr scripts
+  wp_enqueue_script( 'embedr-script', get_template_directory_uri() . '/js/main.js' );
+  wp_enqueue_script( 'embedr-script', get_template_directory_uri() . '/js/detail.js' );
 
 	wp_enqueue_script( 'embedr-script', get_template_directory_uri() . '/js/functions.js', array( 'jquery' ), '20150330', true );
 	wp_localize_script( 'embedr-script', 'screenReaderText', array(

@@ -15,7 +15,6 @@
  $url = 'http://media.embedr.eu/'.$imageId.'/manifest.json';
  $json = file_get_contents($url);
  $metadata = json_decode($json);
-
  ?>
 <!DOCTYPE html>
 <html class="no-js" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml" xmlns:dc="http://purl.org/dc/elements/1.1/">
@@ -74,12 +73,11 @@
 
     <title><?php echo($metadata->label)?></title>
 
-    <link rel=stylesheet href="/styles/detail.css">
+    <?php wp_head(); ?>
   </head>
 
   <body>
     <div id="detail"></div>
-    <script src="/scripts/vendor.js"></script>
     <script>
       window.imageId = '<?php echo(get_query_var( "image_id", "" )) ?>';
     </script>
