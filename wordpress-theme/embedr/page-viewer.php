@@ -9,6 +9,7 @@
  * @package Embedr.eu
  * @subpackage Embedr.eu
  * @since Embedr.eu 1.0
+ * Template Name: Viewer
  */
  add_filter('show_admin_bar', '__return_false');
  $imageId = get_query_var( 'image_id', '' );

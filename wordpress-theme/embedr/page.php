@@ -9,6 +9,7 @@
  * @package Embedr.eu
  * @subpackage Embedr.eu
  * @since Embedr.eu 1.0
+ * Template: Page
  */
 
 get_header(); ?>

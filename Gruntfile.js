@@ -213,20 +213,19 @@ module.exports = function (grunt) {
     rsync: {
       options: {
         args: ["--verbose"],
-        exclude: ["wp-config.php"],
         recursive: true
       },
       dev: {
         options: {
-          src: "build/",
-          dest: "/web",
+          src: "build/embedr",
+          dest: "/web/wp-content/themes",
           host: "kennisland-dev"
         }
       },
       prod: {
         options: {
-          src: "build/",
-          dest: "/web",
+          src: "build/embedr",
+          dest: "/web/wp-content/themes",
           host: "kennisland"
         }
       },
