@@ -79,10 +79,10 @@
 
   <body>
     <div id="detail"></div>
+    <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/detail.js"></script>
     <script>
       window.imageId = '<?php echo(get_query_var( "image_id", "" )) ?>';
     </script>
-    <script src="/scripts/detail.js"></script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

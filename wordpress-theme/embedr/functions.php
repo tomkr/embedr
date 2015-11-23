@@ -254,10 +254,6 @@ function embedr_scripts() {
 		wp_enqueue_script( 'embedr-keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array( 'jquery' ), '20141010' );
 	}
 
-  // Embedr scripts
-  wp_enqueue_script( 'embedr-script', get_template_directory_uri() . '/js/main.js' );
-  wp_enqueue_script( 'embedr-script', get_template_directory_uri() . '/js/detail.js' );
-
 	wp_enqueue_script( 'embedr-script', get_template_directory_uri() . '/js/functions.js', array( 'jquery' ), '20150330', true );
 	wp_localize_script( 'embedr-script', 'screenReaderText', array(
 		'expand'   => '<span class="screen-reader-text">' . __( 'expand child menu', 'embedr' ) . '</span>',
@@ -373,6 +369,21 @@ function iiif_detail_rewrites_init(){
 }
 add_action( 'init', 'iiif_detail_rewrites_init' );
 
+function iiif_detail_query_vars( $query_vars ){
+    $query_vars[] = 'image_id';
+    return $query_vars;
+}
+add_filter( 'query_vars', 'iiif_detail_query_vars' );
+
+function detail_page($template){
+    if(get_query_var('pagename') == 'viewer'){
+        $new_template = WP_CONTENT_DIR.'/themes/embedr/viewer.php';
+        if(file_exists($new_template)) $template = $new_template;
+    }
+    return $template;
+}
+add_filter('template_include', 'detail_page', 1000, 1);
+
 function iiif_content_rewrites_init(){
   add_rewrite_rule(
       'content/(.?.+?)/?$',
@@ -380,6 +391,32 @@ function iiif_content_rewrites_init(){
       'top' );
 }
 add_action( 'init', 'iiif_content_rewrites_init' );
+
+/**
+ * Allow routing to a results page.
+ */
+function iiif_results_rewrites_init(){
+  add_rewrite_rule(
+      'results/(.?.+?)/?$',
+      'index.php?pagename=results&query=$matches[1]',
+      'top' );
+}
+add_action( 'init', 'iiif_results_rewrites_init' );
+
+function iiif_results_query_vars( $query_vars ){
+    $query_vars[] = 'query';
+    return $query_vars;
+}
+add_filter( 'query_vars', 'iiif_results_query_vars' );
+
+function results_page($template){
+    if(get_query_var('pagename') == 'results'){
+        $new_template = WP_CONTENT_DIR.'/themes/embedr/results.php';
+        if(file_exists($new_template)) $template = $new_template;
+    }
+    return $template;
+}
+add_filter('template_include', 'results_page', 1000, 1);
 
 function change_author_permalinks() {
 	global $wp_rewrite;
@@ -390,9 +427,3 @@ function change_author_permalinks() {
 	$wp_rewrite->flush_rules();
 }
 add_action('init','change_author_permalinks');
-
-function iiif_detail_query_vars( $query_vars ){
-    $query_vars[] = 'image_id';
-    return $query_vars;
-}
-add_filter( 'query_vars', 'iiif_detail_query_vars' );
