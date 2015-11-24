@@ -33,7 +33,8 @@ module.exports = function (grunt) {
       app: {
         files: {
           'build/embedr/js/main.js': 'src/scripts/main.js',
-          'build/embedr/js/detail.js': 'src/scripts/detail.js'
+          'build/embedr/js/detail.js': 'src/scripts/detail.js',
+          'build/embedr/js/results.js': 'src/scripts/results.js'
         }
       },
       viewer: {

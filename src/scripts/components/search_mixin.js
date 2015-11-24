@@ -18,9 +18,9 @@ var executeQuery = function (queryOptions, callback) {
 var SearchMixin = {
   getInitialState: function() {
     return {
-      searchQuery: '',
+      searchQuery: this.props.query || '',
       results: null,
-      license: 'freely',
+      license: this.props.license || 'freely',
       start: 0,
       total: 0,
       loading: false
@@ -38,9 +38,9 @@ var SearchMixin = {
       self.setState({'loading': false})
     });
   },
-  search: function(query, start) {
+  search: function() {
     var start = this.state.start;
-    this.setState({searchQuery: query})
+    var query = this.state.searchQuery;
     var self = this;
     executeQuery({query: query, license: this.state.license, start: start}, function(data) {
       self.setState({results: data.hits});

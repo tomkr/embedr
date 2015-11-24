@@ -1,3 +1,4 @@
+var $ = require('jquery');
 var React = require('react');
 var EmbedButton = require('./embed_button.jsx');
 var EmbedPopup = require('./embed_popup.jsx');

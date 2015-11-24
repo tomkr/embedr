@@ -405,6 +405,7 @@ add_action( 'init', 'iiif_results_rewrites_init' );
 
 function iiif_results_query_vars( $query_vars ){
     $query_vars[] = 'query';
+    $query_vars[] = 'license';
     return $query_vars;
 }
 add_filter( 'query_vars', 'iiif_results_query_vars' );
