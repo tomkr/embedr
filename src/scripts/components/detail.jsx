@@ -13,7 +13,7 @@ var Detail = React.createClass({
     this.setState({showResults: true});
   },
   render: function() {
-    var iframe = "http://media.embedr.eu/"+this.props.imageId;
+    var iframe = "http://media.embedr.eu/"+this.props.imageId+"?full=1";
     return (
       <div className="detail">
         <div id="detail__image">
