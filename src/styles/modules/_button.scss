@@ -21,8 +21,7 @@
   margin-right: 10px;
 }
 
-.button__embed {
-  @extend .button__rounded;
+.result .button__rounded {
   position: absolute;
   top: 5px;
   left: 10px;

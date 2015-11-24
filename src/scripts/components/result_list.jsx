@@ -33,8 +33,8 @@ var ResultList = React.createClass({
       <div className="results">
         <div className="results__collection">
           {resultNodes}
+          { this.props.loading ? <div className="results__loading">Loading more images.</div> : null }
         </div>
-        { this.props.loading ? <div className="results__loading">Loading more images.</div> : null }
       </div>
     )
   }

@@ -26,11 +26,11 @@ var SearchBar = React.createClass({
     }
   },
   setLicense: function(license) {
-    this.setState({'license': license});
-    if (this.state.query === '') {
-      return;
-    }
-    this.search();
+    this.setState({'license': license}, function() {
+      if (this.state.query !== '') {
+        this.search();
+      }
+    });
   },
   render: function() {
     return (
