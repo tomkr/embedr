@@ -56,7 +56,7 @@ var RegionPopup = React.createClass({
           </p>
         </div>
         <IIIFImage id={id} region={this.props.region} server="http://iiif.embedr.eu" size="!400,300"/>
-        <p><a href="http://embedr.eu/content/how-to-embed">More information about embedding</a></p>
+        <p><a href="http://embedr.eu/content/how-to-embed" target="_blank">More information about embedding</a></p>
       </div>
     )
   }

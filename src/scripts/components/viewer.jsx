@@ -15,9 +15,9 @@ var makeLicenseHtml = function(license) {
 
 var makeLicenseHtmlNoImage = function(license) {
   if (license.indexOf('publicdomain') > 0) {
-    return "<a href='"+license+"'>No rights reserved.</a>"
+    return "<a href='"+license+"' target='_blank'>No rights reserved.</a>"
   } else {
-    return "<a href='"+license+"'>Some rights reserved.</a>"
+    return "<a href='"+license+"' target='_blank'>Some rights reserved.</a>"
   }
 }
 
