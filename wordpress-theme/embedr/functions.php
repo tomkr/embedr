@@ -359,6 +359,33 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/customizer.php';
 
 /**
+ * Allow routing to a results page.
+ */
+function iiif_results_rewrites_init(){
+  add_rewrite_rule(
+      'results/?$',
+      'index.php?pagename=results&query=$matches[1]',
+      'top' );
+}
+add_action( 'init', 'iiif_results_rewrites_init' );
+
+function iiif_results_query_vars( $query_vars ){
+    $query_vars[] = 'query';
+    $query_vars[] = 'license';
+    return $query_vars;
+}
+add_filter( 'query_vars', 'iiif_results_query_vars' );
+
+function results_page($template){
+    if(get_query_var('pagename') == 'results'){
+        $new_template = WP_CONTENT_DIR.'/themes/embedr/results.php';
+        if(file_exists($new_template)) $template = $new_template;
+    }
+    return $template;
+}
+add_filter('template_include', 'results_page', 1000, 1);
+
+/**
  * Allow routing to a detail page.
  */
 function iiif_detail_rewrites_init(){
@@ -391,33 +418,6 @@ function iiif_content_rewrites_init(){
       'top' );
 }
 add_action( 'init', 'iiif_content_rewrites_init' );
-
-/**
- * Allow routing to a results page.
- */
-function iiif_results_rewrites_init(){
-  add_rewrite_rule(
-      'results/(.?.+?)/?$',
-      'index.php?pagename=results&query=$matches[1]',
-      'top' );
-}
-add_action( 'init', 'iiif_results_rewrites_init' );
-
-function iiif_results_query_vars( $query_vars ){
-    $query_vars[] = 'query';
-    $query_vars[] = 'license';
-    return $query_vars;
-}
-add_filter( 'query_vars', 'iiif_results_query_vars' );
-
-function results_page($template){
-    if(get_query_var('pagename') == 'results'){
-        $new_template = WP_CONTENT_DIR.'/themes/embedr/results.php';
-        if(file_exists($new_template)) $template = $new_template;
-    }
-    return $template;
-}
-add_filter('template_include', 'results_page', 1000, 1);
 
 function change_author_permalinks() {
 	global $wp_rewrite;

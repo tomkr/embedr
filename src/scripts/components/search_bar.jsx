@@ -17,7 +17,8 @@ var SearchBar = React.createClass({
     this.setState({query: query});
   },
   search: function() {
-    window.location = '/results/'+this.state.query+'/?license=' + this.state.license;
+    var query = encodeURIComponent(this.state.query);
+    window.location = '/results/?query='+query+'&license=' + this.state.license;
   },
   handleKeyDown: function(e) {
     var ENTER = 13;
