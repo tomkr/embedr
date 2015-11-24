@@ -26,17 +26,6 @@ var SearchMixin = {
       loading: false
     };
   },
-  setLicense: function(license) {
-    this.setState({'license': license});
-    if (this.state.searchQuery == '') {
-      return;
-    }
-    var self = this;
-    executeQuery({query: this.state.searchQuery, license: license, start: 0}, function(data) {
-      self.setState({results: data.hits});
-      self.setState({total: data.total});
-    });
-  },
   nextPage: function() {
     this.setState({'start': this.state.start+120});
     if (this.state.start >= this.state.total) {

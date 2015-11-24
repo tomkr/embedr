@@ -5,7 +5,8 @@ var SearchBar = React.createClass({
   getInitialState: function() {
     return {
       showAdvanced: false,
-      query: this.props.query
+      query: this.props.query || '',
+      license: this.props.license || 'freely'
     }
   },
   showAdvanced: function(e) {
@@ -16,13 +17,20 @@ var SearchBar = React.createClass({
     this.setState({query: query});
   },
   search: function() {
-    window.location = '/results/'+this.state.query;
+    window.location = '/results/'+this.state.query+'/?license=' + this.state.license;
   },
   handleKeyDown: function(e) {
     var ENTER = 13;
     if( e.keyCode == ENTER ) {
       this.search();
     }
+  },
+  setLicense: function(license) {
+    this.setState({'license': license});
+    if (this.state.query === '') {
+      return;
+    }
+    this.search();
   },
   render: function() {
     return (
@@ -32,7 +40,7 @@ var SearchBar = React.createClass({
         <div className="search__button" onClick={this.search}>
           <img src="/images/search.png" />
         </div>
-        { this.state.showAdvanced ? <AdvancedSearch setLicense={this.props.setLicense} license={this.props.license} close={this.showAdvanced} /> : null }
+        { this.state.showAdvanced ? <AdvancedSearch setLicense={this.setLicense} license={this.state.license} close={this.showAdvanced} /> : null }
       </div>
     );
   }
