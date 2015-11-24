@@ -32,7 +32,7 @@ var EmbedPopup = React.createClass({
             {embedText}
           </textarea>
         </div>
-        <a href="http://embedr.eu/content/how-to-embed">More information about embedding</a>
+        <a href="http://embedr.eu/content/how-to-embed" target="_blank">More information about embedding</a>
       </div>
     )
   }
