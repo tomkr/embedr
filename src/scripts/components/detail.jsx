@@ -1,10 +1,5 @@
 var React = require('react');
-var SearchMixin = require('./search_mixin.js');
-var ResultList = require('./results.jsx');
 var SearchBar = require('./search_bar.jsx');
-var EmbedButton = require('./embed_button.jsx');
-var EmbedPopup = require('./embed_popup.jsx');
-var InformationButton = require('./information_button.jsx')
 var Navigation = require('./navigation.jsx')
 
 var Detail = React.createClass({
