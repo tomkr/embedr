@@ -16,12 +16,12 @@ var SearchBar = React.createClass({
     this.setState({query: query});
   },
   search: function() {
-    this.props.search(this.state.query);
+    window.location = '/results/'+this.state.query;
   },
   handleKeyDown: function(e) {
     var ENTER = 13;
     if( e.keyCode == ENTER ) {
-        this.props.search(this.state.query);
+      this.search();
     }
   },
   render: function() {

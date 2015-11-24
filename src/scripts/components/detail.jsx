@@ -8,7 +8,6 @@ var InformationButton = require('./information_button.jsx')
 var Navigation = require('./navigation.jsx')
 
 var Detail = React.createClass({
-  mixins: [SearchMixin],
   getInitialState: function() {
     return {
       showResults: false
@@ -25,7 +24,6 @@ var Detail = React.createClass({
         <div id="detail__image">
           <iframe src={iframe}></iframe>
         </div>
-        { this.state.results ? <ResultList results={this.state.results}  nextPage={this.nextPage} loading={this.state.loading}/> : null }
         <DetailHeader query={this.state.searchQuery} search={this.search} license={this.state.license} setLicense={this.setLicense} />
       </div>
     )
