@@ -1,4 +1,4 @@
 var React = require('react');
-var Search = require('./components/search.jsx');
+var HomeHeader = require('./components/home_header.jsx');
 
-React.render(<Search/>, document.getElementById('search'))
+React.render(<HomeHeader/>, document.getElementById('search'))
