@@ -1,5 +1,5 @@
 var $ = require('jquery');
-var executeQuery = function (queryOptions, callback) {
+var executeQuery = function (queryOptions, callback, errorCallback) {
   var licenses = {
     'freely': ['license:creativecommons.org/publicdomain/', 'license:creativecommons.org/licenses/by/3.0/', 'license:BY/', 'license:BY-SA/'],
     'non-commercial': ['license:BY-NC', 'license:BY-NC_SA']
@@ -10,8 +10,15 @@ var executeQuery = function (queryOptions, callback) {
   var fullQuery = query;
   var licensesQuery = licenses[license].join(' OR ');
   fullQuery = fullQuery + ' AND (' + licensesQuery +')';
-  $.getJSON('http://embedr.eu/search/?query='+encodeURIComponent(fullQuery)+'&start='+start, function(data) {
-    callback(data);
+  $.ajax({
+    dataType: 'json',
+    url: 'http://embedr.eu/search/?query='+encodeURIComponent(fullQuery)+'&start='+start,
+    success: function(data) {
+      callback(data);
+    },
+    error: function(error) {
+      errorCallback();
+    }
   });
 };
 
@@ -23,7 +30,8 @@ var SearchMixin = {
       license: this.props.license || 'freely',
       start: 0,
       total: 0,
-      loading: false
+      loading: false,
+      error: false
     };
   },
   nextPage: function() {
@@ -45,6 +53,8 @@ var SearchMixin = {
     executeQuery({query: query, license: this.state.license, start: start}, function(data) {
       self.setState({results: data.hits});
       self.setState({total: data.total});
+    }, function() {
+      self.setState({error: true});
     });
   }
 };
