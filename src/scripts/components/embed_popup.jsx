@@ -44,7 +44,7 @@ var EmbedPopup = React.createClass({
             <input type="checkbox" id="zoomable" onChange={this.toggleZoomable} checked={this.state.zoomable}/>
             Make embedded image zoomable
           </label>
-          <textarea className="embed__box" rows="6" id="text-copy" value={this.embedText(this.state.zoomable)}></textarea>
+          <textarea className="embed__box" rows="6" id="text-copy" value={this.embedText(this.state.zoomable)} readOnly={true}></textarea>
         </div>
         <a href="http://embedr.eu/content/how-to-embed" target="_blank">More information about embedding</a>
       </div>

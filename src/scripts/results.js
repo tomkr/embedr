@@ -1,3 +1,4 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Results = require('./components/results.jsx');
-React.render(<Results query={window.query} license={window.license} />, document.getElementById('results'));
+ReactDOM.render(<Results query={window.query} license={window.license} />, document.getElementById('results'));
