@@ -9,7 +9,7 @@ var shallowRenderer = ReactTestUtils.createRenderer();
 
 describe("EmbedPopup", function () {
   before(function() {
-    shallowRenderer.render(<EmbedPopup zoomable={true} id='test'/>);
+    shallowRenderer.render(<EmbedPopup id='test'/>);
     this.instance = shallowRenderer._instance._instance;
     this.result = shallowRenderer.getRenderOutput();
   });
@@ -20,11 +20,15 @@ describe("EmbedPopup", function () {
 
   describe("embedLink", function() {
     it("contains the id", function() {
-      expect(this.instance.embedLink()).to.contain('test');
+      expect(this.instance.embedLink(true)).to.contain('test');
     });
 
-    it("contains nozoom", function() {
-      expect(this.instance.embedLink()).to.contain('nozoom=1');
+    it("contains nozoom if not zoomable", function() {
+      expect(this.instance.embedLink(false)).to.contain('nozoom=1');
+    });
+
+    it("does not contain no zoom if zoomable", function() {
+      expect(this.instance.embedLink(true)).to.not.contain('nozoom=1');
     });
   });
 });
