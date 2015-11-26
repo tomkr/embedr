@@ -14,40 +14,40 @@
 
 get_header(); ?>
 
-	<div id="search"></div>
-	<div class="content__wrapper">
-		<div class="content__left">
-			<aside>
-				<?php
-					if($post->post_parent)
-						$children = wp_list_pages("title_li=&child_of=".$post->post_parent."&echo=0");
-					else
-						$children = wp_list_pages("title_li=&child_of=".$post->ID."&echo=0");
-					if ($children) { ?>
-						<ul>
-							<?php echo $children; ?>
-						</ul>
-				<?php } ?>
-			</aside>
-		</div>
-		<div class="content__page">
+  <div id="search"></div>
+  <div class="content__wrapper">
+    <div class="content__left">
+      <aside>
+        <?php
+          if($post->post_parent)
+            $children = wp_list_pages("title_li=&child_of=".$post->post_parent."&echo=0");
+          else
+            $children = wp_list_pages("title_li=&child_of=".$post->ID."&echo=0");
+          if ($children) { ?>
+            <ul>
+              <?php echo $children; ?>
+            </ul>
+        <?php } ?>
+      </aside>
+    </div>
+    <div class="content__page">
 
-		<?php
-		// Start the loop.
-		while ( have_posts() ) : the_post();
+    <?php
+    // Start the loop.
+    while ( have_posts() ) : the_post();
 
-			// Include the page content template.
-			get_template_part( 'content', 'page' );
+      // Include the page content template.
+      get_template_part( 'content', 'page' );
 
-			// If comments are open or we have at least one comment, load up the comment template.
-			// if ( comments_open() || get_comments_number() ) :
-			// 	comments_template();
-			// endif;
+      // If comments are open or we have at least one comment, load up the comment template.
+      // if ( comments_open() || get_comments_number() ) :
+      // 	comments_template();
+      // endif;
 
-		// End the loop.
-		endwhile;
-		?>
-		</div>
-	</div>
-
+    // End the loop.
+    endwhile;
+    ?>
+    </div>
+  </div>
+<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/main.js"></script>
 <?php get_footer(); ?>
