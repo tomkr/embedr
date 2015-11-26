@@ -20,13 +20,13 @@ describe("ResultList", function () {
       expect(this.result.type).to.equal("div");
     });
 
-    it("renders one result", function () {
-      var results = this.result.props.children[0].props.children;
+    it("renders two results", function () {
+      var results = this.result.props.children.props.children;
       expect(results.length).to.equal(2);
     });
   });
 
-  describe("with no resultss", function() {
+  describe("with no results", function() {
     before(function() {
       var results = []
       shallowRenderer.render(<ResultList results={results}/>);
@@ -38,7 +38,7 @@ describe("ResultList", function () {
     });
 
     it("renders no results", function () {
-      var results = this.result.props.children[0].props.children;
+      var results = this.result.props.children.props.children[0];
       expect(results.type).to.equal('p');
       expect(results.props.className).to.equal('results__empty');
     });
