@@ -6,7 +6,7 @@
     "Tom Kruijsen <tom@tomkruijsen.nl>",
     "Maarten Zeinstra <mz@kl.nl>"
   ],
-  "license": "EUPL",
+  "license": "EUPL-1.1",
   "repository": {
     "type" : "git",
     "url" : "https://github.com/tomkr/embedr.git"
