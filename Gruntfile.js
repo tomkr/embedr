@@ -16,8 +16,7 @@ module.exports = function (grunt) {
   var config = {
     app: 'src',
     dist: 'dist',
-    build: 'build',
-    wp: 'wp'
+    build: 'build'
   };
 
   // Define the configuration for all the tasks
@@ -237,6 +236,25 @@ module.exports = function (grunt) {
           host: "kennisland-dev"
         }
       }
+    },
+
+    uglify: {
+      app: {
+        files: [{
+          expand: true,
+          cwd: 'build/embedr/js',
+          src: ['detail.js', 'main.js', 'results.js'],
+          dest: 'build/viewer/static/js'
+        }]
+      },
+      viewer: {
+        files: [{
+          expand: true,
+          cwd: 'build/viewer/static/js',
+          src: ['osdregionselect.js', 'viewer.js'],
+          dest: 'build/viewer/static/js'
+        }]
+      }
     }
   });
 
@@ -265,6 +283,12 @@ module.exports = function (grunt) {
   // Build wordpress
   grunt.registerTask('buildWordpress', [
     'copy:wordpress'
+  ]);
+
+  // Build wordpress
+  grunt.registerTask('buildProduction', [
+    'build',
+    'uglify'
   ]);
 
   // Test then build
