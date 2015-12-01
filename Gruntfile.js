@@ -244,7 +244,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: 'build/embedr/js',
           src: ['detail.js', 'main.js', 'results.js'],
-          dest: 'build/viewer/static/js'
+          dest: 'build/embedr/js'
         }]
       },
       viewer: {
