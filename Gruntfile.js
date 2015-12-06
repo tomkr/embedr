@@ -14,10 +14,9 @@ module.exports = function (grunt) {
 
   // Configurable paths
   var config = {
-    app: 'app',
+    app: 'src',
     dist: 'dist',
-    build: 'build',
-    wp: 'wp'
+    build: 'build'
   };
 
   // Define the configuration for all the tasks
@@ -30,12 +29,16 @@ module.exports = function (grunt) {
       options:      {
         transform:  [ require('grunt-react').browserify ]
       },
-      app:          {
+      app: {
         files: {
-          'build/scripts/main.js': 'app/scripts/main.js',
-          'build/scripts/detail.js': 'app/scripts/detail.js',
-          'viewer/static/js/viewer.js': 'app/scripts/viewer.js',
-          'viewer/static/js/osdregionselect.js': 'app/scripts/osdregionselect.js'
+          'build/embedr/js/main.js': 'src/scripts/main.js',
+          'build/embedr/js/detail.js': 'src/scripts/detail.js',
+          'build/embedr/js/results.js': 'src/scripts/results.js'
+        }
+      },
+      viewer: {
+        files: {
+          'build/viewer/static/js/viewer.js': 'src/scripts/viewer.js'
         }
       }
     },
@@ -46,17 +49,17 @@ module.exports = function (grunt) {
       },
       myTarget: {
         src: [
-          'test/**/*spec.js.jsx'
+          'test/**/*spec.jsx'
         ],
         options: {
-          transform:  [ "reactify" ]
+          transform:  [ 'reactify' ]
         }
       }
     },
 
     replace: {
-      viewerjs: {
-        src: 'viewer/static/js/viewer.js',
+      viewer: {
+        src: 'build/viewer/static/js/viewer.js',
         overwrite: true,
         replacements: [{
           from: /\/images\//g,
@@ -73,7 +76,7 @@ module.exports = function (grunt) {
       },
       sass: {
         files: ['<%= config.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['sass', 'copy:build', 'copy:viewer']
+        tasks: ['sass', 'copy:app', 'copy:viewer']
       },
       styles: {
         files: ['<%= config.app %>/styles/{,*/}*.css'],
@@ -81,11 +84,11 @@ module.exports = function (grunt) {
       },
       react: {
         files: ['<%= config.app %>/scripts/{,*/}*.jsx','<%= config.app %>/scripts/*.js'],
-        tasks: ['browserify:app', 'replace:viewerjs']
+        tasks: ['browserify:app', 'browserify:viewer', 'replace:viewer']
       },
       wordpress: {
-        files: ['wordpress/**/*'],
-        tasks: ['build']
+        files: ['wordpress-theme/**/*'],
+        tasks: ['buildWordpress']
       },
       images: {
         files: ['app/images/*'],
@@ -121,15 +124,21 @@ module.exports = function (grunt) {
 
     // Compiles Sass to CSS and generates necessary files if requested
     sass: {
-      options: {
-        loadPath: 'bower_components'
-      },
-      dist: {
+      app: {
         files: [{
           expand: true,
           cwd: '<%= config.app %>/styles',
-          src: ['*.{scss,sass}'],
-          dest: '.tmp/styles',
+          src: ['detail.scss', 'main.scss'],
+          dest: 'build/embedr/css',
+          ext: '.css'
+        }]
+      },
+      viewer: {
+        files: [{
+          expand: true,
+          cwd: '<%= config.app %>/styles',
+          src: 'viewer.scss',
+          dest: 'build/viewer/static/css/',
           ext: '.css'
         }]
       },
@@ -144,60 +153,24 @@ module.exports = function (grunt) {
       }
     },
 
-    // Renames files for browser caching purposes
-    rev: {
-      dist: {
-        files: {
-          src: [
-            '<%= config.dist %>/scripts/{,*/}*.js',
-            '<%= config.dist %>/styles/{,*/}*.css',
-            '<%= config.dist %>/images/{,*/}*.*',
-            '<%= config.dist %>/styles/fonts/{,*/}*.*',
-            '<%= config.dist %>/*.{ico,png}'
-          ]
-        }
-      }
-    },
-
-    // Reads HTML for usemin blocks to enable smart builds that automatically
-    // concat, minify and revision files. Creates configurations in memory so
-    // additional tasks can operate on them
-    useminPrepare: {
-      options: {
-        dest: '<%= config.dist %>'
-      },
-      html: '<%= config.app %>/index.html'
-    },
-
-    // Performs rewrites based on rev and the useminPrepare configuration
-    usemin: {
-      options: {
-        assetsDirs: [
-          '<%= config.dist %>',
-          '<%= config.dist %>/images',
-          '<%= config.dist %>/styles'
-        ]
-      },
-      html: ['<%= config.dist %>/{,*/}*.html'],
-      css: ['<%= config.dist %>/styles/{,*/}*.css']
-    },
-
     // Copies remaining files to places other tasks can use
     copy: {
       wordpress: {
-         expand: true,
-         dot: true,
-         cwd: 'wordpress',
-         src: '**',
-         dest: 'build/'
-      },
-      build: {
         files: [{
           expand: true,
-          cwd: '.tmp/styles',
+          dot: true,
+          cwd: 'wordpress-theme',
           src: '**',
-          dest: 'build/styles'
+          dest: 'build'
         }, {
+          expand: true,
+          cwd: 'src/styles/fonts',
+          src: '**',
+          dest: 'build/embedr/css/fonts'
+        }]
+      },
+      app: {
+        files: [{
           expand: true,
           cwd: 'app',
           src: 'images/**',
@@ -211,11 +184,6 @@ module.exports = function (grunt) {
       },
       viewer: {
         files: [{
-          expand: true,
-          cwd: '.tmp/styles',
-          src: 'viewer.css*',
-          dest: 'viewer/static/css'
-        }, {
           expand: true,
           cwd: 'app/images',
           src: [
@@ -234,118 +202,97 @@ module.exports = function (grunt) {
           cwd: 'app/styles/fonts',
           src: '**',
           dest: 'viewer/static/css/fonts'
+        },{
+          dest: 'build/viewer/static/js/osdregionselect.js',
+          src: 'src/scripts/osdregionselect.js'
         }]
-      },
-      viewerjs: {
-        src: 'build/scripts/vendor.js',
-        dest: 'viewer/static/js/vendor.js'
       }
     },
 
-    // Run some tasks in parallel to speed up build process
-    concurrent: {
-      server: [
-        'sass:server',
-        'coffee:dist',
-        'react:dist'
-      ],
-      test: [
-        'coffee'
-      ],
-      dist: [
-        'sass'
-      ]
-    },
-
+    // Some deployment scripts
     rsync: {
       options: {
         args: ["--verbose"],
-        exclude: ["wp-config.php"],
         recursive: true
       },
       dev: {
         options: {
-          src: "build/",
-          dest: "/web",
+          src: "build/embedr",
+          dest: "/web/wp-content/themes",
           host: "kennisland-dev"
         }
       },
       prod: {
         options: {
-          src: "build/",
-          dest: "/web",
+          src: "build/embedr",
+          dest: "/web/wp-content/themes",
           host: "kennisland"
         }
       },
       viewer: {
         options: {
-          src: "viewer/",
+          src: "build/viewer/",
           dest: "/web/viewer",
           host: "kennisland-dev"
         }
       }
+    },
+
+    uglify: {
+      app: {
+        files: [{
+          expand: true,
+          cwd: 'build/embedr/js',
+          src: ['detail.js', 'main.js', 'results.js'],
+          dest: 'build/embedr/js'
+        }]
+      },
+      viewer: {
+        files: [{
+          expand: true,
+          cwd: 'build/viewer/static/js',
+          src: ['osdregionselect.js', 'viewer.js'],
+          dest: 'build/viewer/static/js'
+        }]
+      }
     }
   });
 
-
-  grunt.registerTask('serve', 'start the server and preview your app, --allow-remote for remote access', function (target) {
-    if (grunt.option('allow-remote')) {
-      grunt.config.set('connect.options.hostname', '0.0.0.0');
-    }
-    if (target === 'dist') {
-      return grunt.task.run(['build', 'connect:dist:keepalive']);
-    }
-
-    grunt.task.run([
-      'clean:server',
-      'wiredep',
-      'concurrent:server',
-      'autoprefixer',
-      'connect:livereload',
-      'watch'
-    ]);
-  });
-
-  grunt.registerTask('server', function (target) {
-    grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-    grunt.task.run([target ? ('serve:' + target) : 'serve']);
-  });
-
+  // Run all the build steps
   grunt.registerTask('build', [
-    'clean:build',
-    'copy:wordpress',
-    'sass',
-    'browserify:app',
-    'copy:build'
+    'buildWordpress',
+    'buildApp',
+    'buildViewer'
   ]);
 
-  grunt.registerTask('buildAssets', [
-    // 'clean:dist',
-    // 'clean:build',
-    // 'wiredep',
-    // 'useminPrepare',
-    'concurrent:dist',
-    // 'autoprefixer',
-    // 'cssmin',
-    // 'uglify',
-    // 'copy:wordpress',
+  // Build the React app
+  grunt.registerTask('buildApp', [
     'browserify:app',
-    'copy:build',
-    // 'rev',
-    // 'usemin',
-    // 'htmlmin'
+    'sass:app',
+    'copy:app'
   ]);
 
+  // Build the viewer
   grunt.registerTask('buildViewer', [
-    'browserify:app',
-    'sass',
-    'copy:viewerjs',
+    'browserify:viewer',
+    'sass:viewer',
     'copy:viewer',
-    'replace:viewerjs'
+    'replace:viewer'
   ]);
 
+  // Build wordpress
+  grunt.registerTask('buildWordpress', [
+    'copy:wordpress'
+  ]);
+
+  // Build wordpress
+  grunt.registerTask('buildProduction', [
+    'build',
+    'uglify'
+  ]);
+
+  // Test then build
   grunt.registerTask('default', [
-    'newer:jshint',
     'test',
     'build'
   ]);
