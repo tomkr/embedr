@@ -52,21 +52,21 @@
 	}
     ?>
     <meta name="dc:rights" content="<?php echo($metadata->license)?>"/>
-    <meta name="dc:description" content="<?php echo($metadata->description)?>"/>
+    <meta name="dc:description" content="<?php echo(htmlspecialchars($metadata->description)); ?>"/>
     <!-- Open Graph Integrations -->
-    <meta property="og:title" content="<?php echo($metadata->label)?>"/>
+    <meta property="og:title" content="<?php echo(htmlspecialchars($metadata->label)); ?>"/>
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Embedr.eu | Image Embedding Done Right"/>
     <meta property="og:image" content="http://iiif.embedr.eu/<?php echo($imageId); ?>/full/1200,/0/native.jpg"/>
     <meta property="og:url" content="http://embedr.eu/<?php echo($imageId); ?>/"/>
-    <meta property="og:description" content="<?php echo($metadata->label); ?> | <?php echo($creator); ?> | <?php echo $publisher; ?> | available under: <?php echo($metadata->license)?>"/>
+    <meta property="og:description" content="<?php echo(htmlspecialchars($metadata->label)); ?> | <?php echo(htmlspecialchars($creator)); ?> | <?php echo(htmlspecialchars($publisher)); ?> | available under: <?php echo($metadata->license)?>"/>
 
     <!-- Twitter Integrations -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@embedr_eu">
-    <meta name="twitter:creator" content="<?php echo($creator); ?>">
-    <meta name="twitter:title" content="<?php echo($metadata->label)?>">
-    <meta name="twitter:description" content="<?php echo($metadata->label); ?> | <?php echo($creator); ?> | <?php echo $publisher; ?> | available under: <?php echo($metadata->license); ?>">
+    <meta name="twitter:creator" content="<?php echo(htmlspecialchars($creator)); ?>">
+    <meta name="twitter:title" content="<?php echo(substr(htmlspecialchars($metadata->label),0,200)); ?>">
+    <meta name="twitter:description" content="<?php echo(substr(htmlspecialchars($metadata->label),0,200)); ?> | <?php echo(htmlspecialchars($creator)); ?> | <?php echo(htmlspecialchars($publisher)); ?> | available under: <?php echo($metadata->license); ?>">
     <meta name="twitter:image" content="http://iiif.embedr.eu/<?php echo($imageId); ?>/full/1200,/0/native.jpg"/>
 
     <link rel="alternate" type="application/json+oembed" href="<?php echo('http://media.embedr.eu/oembed?url=http%3A//media.embedr.eu/'.$imageId.'/0&format=json')?>" title="<?php echo($metadata->label)?>" />
